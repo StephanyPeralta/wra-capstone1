@@ -3,10 +3,7 @@ import React from 'react';
 import './Home.styled';
 
 function HomePage() {
-  return (
-    <section>
-    </section>
-  );
+  return <section />;
 }
 
 export default HomePage;
