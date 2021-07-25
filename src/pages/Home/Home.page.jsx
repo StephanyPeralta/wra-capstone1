@@ -1,9 +1,14 @@
 import React from 'react';
 
-import './Home.styled';
+import VideoList from '../../components/VideoList';
+// import { } from './Home.styled';
 
 function HomePage() {
-  return <section />;
+  return (
+    <>
+      <VideoList />
+    </>
+  );
 }
 
 export default HomePage;

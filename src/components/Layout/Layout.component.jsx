@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LayoutContainer from './Layout.styled';
+import { LayoutContainer } from './Layout.styled';
 import Header from '../Header';
 
 function Layout({ children }) {

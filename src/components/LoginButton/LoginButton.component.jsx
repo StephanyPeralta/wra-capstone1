@@ -1,9 +1,9 @@
 import React from 'react';
 import PersonIcon from '@material-ui/icons/Person';
 
-import { LoginIconWrapper } from './Login.styled';
+import { LoginIconWrapper } from './LoginButton.styled';
 
-function Login() {
+function LoginButton() {
   return (
     <LoginIconWrapper>
       <PersonIcon />
@@ -11,4 +11,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default LoginButton;

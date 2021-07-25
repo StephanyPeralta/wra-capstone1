@@ -1,12 +1,12 @@
 import React from 'react';
-import MenuIcon from '@material-ui/icons/Menu';
 
 import Search from '../Search';
 import ThemeToggle from '../ThemeToggle';
-import Login from '../Login';
+import LoginButton from '../LoginButton';
 import {
   HeaderWrapper,
   HeaderMenu,
+  MenuButton,
   LogoTitle,
   HeaderLeft,
   HeaderRight,
@@ -17,13 +17,13 @@ function Header() {
     <HeaderWrapper>
       <HeaderMenu>
         <HeaderLeft>
-          <MenuIcon />
-          <LogoTitle>YouCool</LogoTitle>
+          <MenuButton />
+          <LogoTitle href="/">YouCool</LogoTitle>
         </HeaderLeft>
         <Search />
         <HeaderRight>
           <ThemeToggle />
-          <Login />
+          <LoginButton />
         </HeaderRight>
       </HeaderMenu>
     </HeaderWrapper>

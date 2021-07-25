@@ -4,4 +4,4 @@ const LayoutContainer = styled.div`
   height: 100%;
 `;
 
-export default LayoutContainer;
+export { LayoutContainer };

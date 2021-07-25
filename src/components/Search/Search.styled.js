@@ -13,6 +13,9 @@ const SearchContainer = styled.div`
   &:hover {
     background-color: rgba(255, 255, 255, 0.75);
   }
+  @media (max-width: 768px) {
+    width: 50%;
+  }
 `;
 
 const SearchIconWrapper = styled.div`
