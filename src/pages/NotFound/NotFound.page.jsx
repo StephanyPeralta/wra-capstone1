@@ -1,16 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
-import './NotFound.styles.css';
+import {
+  ErrorSection,
+  ErrorWrapper,
+  ErrorTitle,
+  ErrorText,
+  ErrorLink,
+  ErrorImage,
+} from './NotFound.styled';
 
 function NotFoundPage() {
   return (
-    <section className="not-found">
-      <Link to="/" className="home-link">
-        home
-      </Link>
-      <img src="404.gif" alt="page not found" />
-    </section>
+    <ErrorSection>
+      <ErrorWrapper>
+        <ErrorTitle>404</ErrorTitle>
+        <ErrorText>Page Not Found :(</ErrorText>
+        <ErrorLink to="/">
+          <ErrorImage src="404.gif" alt="page not found" />
+        </ErrorLink>
+      </ErrorWrapper>
+    </ErrorSection>
   );
 }
 

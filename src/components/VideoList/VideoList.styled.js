@@ -18,10 +18,6 @@ const VideoFlex = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, 350px);
-  grid-gap: 40px 10px;
-  justify-content: center; */
   @media (min-width: 1968px) {
     width: 1850px;
   }

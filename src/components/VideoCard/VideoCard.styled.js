@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
-  /* border: 1px solid black; */
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   width: 350px;
@@ -16,10 +15,6 @@ const CardWrapper = styled.div`
     background-color: rgba(0, 0, 0, 0.05);
     opacity: 0.9;
   }
-  /* @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
-  } */
 `;
 
 const CardThumbnail = styled.img`
