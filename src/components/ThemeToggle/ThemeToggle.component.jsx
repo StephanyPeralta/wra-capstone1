@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import NightsStayIcon from '@material-ui/icons/NightsStay';
+// import WbSunnyIcon from '@material-ui/icons/WbSunny';
+// import NightsStayIcon from '@material-ui/icons/NightsStay';
 
 import { Toggle } from './ThemeToggle.styled';
 
@@ -15,11 +15,13 @@ function ThemeToggle() {
     }
   }
 
-  const icon = themeIcon === 'light' ? <NightsStayIcon /> : <WbSunnyIcon />;
+  const icon = themeIcon === 'light' ? 'Dark' : 'Light';
 
   return (
     <>
-      <Toggle onClick={changeThemeIcon}>{icon}</Toggle>
+      <Toggle onClick={changeThemeIcon} title="themeButton">
+        {icon}
+      </Toggle>
     </>
   );
 }

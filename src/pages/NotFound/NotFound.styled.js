@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const ErrorSection = styled.section`
   margin: 0 60px;
@@ -30,7 +29,7 @@ const ErrorText = styled.h2`
   margin: 0;
 `;
 
-const ErrorLink = styled(Link)`
+const ErrorLink = styled.a`
   color: red;
   text-decoration: none;
   display: block;

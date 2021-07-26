@@ -15,7 +15,7 @@ function NotFoundPage() {
       <ErrorWrapper>
         <ErrorTitle>404</ErrorTitle>
         <ErrorText>Page Not Found :(</ErrorText>
-        <ErrorLink to="/">
+        <ErrorLink href="/">
           <ErrorImage src="404.gif" alt="page not found" />
         </ErrorLink>
       </ErrorWrapper>
