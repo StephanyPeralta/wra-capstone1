@@ -1,0 +1,63 @@
+> react-certification-2020@0.1.0 test:coverage /Users/sdperalta/Documents/Steph Docs/Documents/Programming/REACT-BOOTCAMP_WZ/react-certification-2021
+> npm run test -- --coverage --collectCoverageFrom='src/**/*.{js,jsx}' --watchAll=false
+
+
+> react-certification-2020@0.1.0 test /Users/sdperalta/Documents/Steph Docs/Documents/Programming/REACT-BOOTCAMP_WZ/react-certification-2021
+> react-scripts test "--coverage" "--collectCoverageFrom=src/**/*.{js,jsx}" "--watchAll=false"
+
+ PASS  src/components/Header/Header.component.test.jsx
+ PASS  src/components/App/App.component.test.jsx
+ PASS  src/components/ThemeToggle/ThemeToggle.component.test.jsx
+ PASS  src/pages/Home/Home.page.test.jsx
+ PASS  src/pages/NotFound/NotFound.page.test.jsx
+ PASS  src/components/VideoList/VideoList.component.test.jsx
+ PASS  src/components/Layout/Layout.component.test.jsx
+----------------------------|----------|----------|----------|----------|-------------------|
+File                        |  % Stmts | % Branch |  % Funcs |  % Lines | Uncovered Line #s |
+----------------------------|----------|----------|----------|----------|-------------------|
+All files                   |      100 |      100 |      100 |      100 |                   |
+ components/App             |      100 |      100 |      100 |      100 |                   |
+  App.component.jsx         |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ components/Header          |      100 |      100 |      100 |      100 |                   |
+  Header.component.jsx      |      100 |      100 |      100 |      100 |                   |
+  Header.styled.js          |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ components/Layout          |      100 |      100 |      100 |      100 |                   |
+  Layout.component.jsx      |      100 |      100 |      100 |      100 |                   |
+  Layout.styled.js          |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ components/LoginButton     |      100 |      100 |      100 |      100 |                   |
+  LoginButton.component.jsx |      100 |      100 |      100 |      100 |                   |
+  LoginButton.styled.js     |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ components/Search          |      100 |      100 |      100 |      100 |                   |
+  Search.component.jsx      |      100 |      100 |      100 |      100 |                   |
+  Search.styled.js          |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ components/ThemeToggle     |      100 |      100 |      100 |      100 |                   |
+  ThemeToggle.component.jsx |      100 |      100 |      100 |      100 |                   |
+  ThemeToggle.styled.js     |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ components/VideoCard       |      100 |      100 |      100 |      100 |                   |
+  VideoCard.component.jsx   |      100 |      100 |      100 |      100 |                   |
+  VideoCard.styled.js       |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ components/VideoList       |      100 |      100 |      100 |      100 |                   |
+  VideoList.component.jsx   |      100 |      100 |      100 |      100 |                   |
+  VideoList.styled.js       |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ pages/Home                 |      100 |      100 |      100 |      100 |                   |
+  Home.page.jsx             |      100 |      100 |      100 |      100 |                   |
+  Home.styled.js            |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+ pages/NotFound             |      100 |      100 |      100 |      100 |                   |
+  NotFound.page.jsx         |      100 |      100 |      100 |      100 |                   |
+  NotFound.styled.js        |      100 |      100 |      100 |      100 |                   |
+  index.js                  |        0 |        0 |        0 |        0 |                   |
+----------------------------|----------|----------|----------|----------|-------------------|
+
+Test Suites: 7 passed, 7 total
+Tests:       11 passed, 11 total
+Snapshots:   0 total
+Time:        6.054s
