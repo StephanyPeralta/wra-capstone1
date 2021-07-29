@@ -1,9 +1,19 @@
 import React from 'react';
 
-import './Layout.styles.css';
+import Header from '../Header';
+import SideMenu from '../SideMenu';
+import { LayoutContainer, SectionWrapper } from './Layout.styled';
 
 function Layout({ children }) {
-  return <main className="container">{children}</main>;
+  return (
+    <LayoutContainer>
+      <Header />
+      <SectionWrapper>
+        <SideMenu />
+        {children}
+      </SectionWrapper>
+    </LayoutContainer>
+  );
 }
 
 export default Layout;
