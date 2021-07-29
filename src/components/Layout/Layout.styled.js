@@ -4,4 +4,9 @@ const LayoutContainer = styled.div`
   height: 100%;
 `;
 
-export { LayoutContainer };
+const SectionWrapper = styled.section`
+  display: flex;
+  transition: all 1s ease;
+`;
+
+export { LayoutContainer, SectionWrapper };

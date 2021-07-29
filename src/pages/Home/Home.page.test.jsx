@@ -15,8 +15,6 @@ describe('Home page', () => {
   });
   it('renders Home elements', () => {
     render(<Home />);
-
-    expect(screen.getByText('Welcome!')).toBeInTheDocument();
     expect(screen.getByText('VideoList Mock')).toBeInTheDocument();
   });
 });

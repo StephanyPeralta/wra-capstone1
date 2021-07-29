@@ -1,45 +1,43 @@
 import styled from 'styled-components';
 
-const SearchContainer = styled.div`
-  position: relative;
+const SearchContainer = styled.form`
   border-radius: 15px;
   border: 2px solid black;
   background-color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30%;
+  flex: 0.5;
+  padding: 0.1rem;
+  margin: 0 1rem;
   transition: all 0.5s ease;
   &:hover {
     background-color: rgba(255, 255, 255, 0.75);
   }
   @media (max-width: 768px) {
-    width: 50%;
+    flex: 1;
   }
-`;
-
-const SearchIconWrapper = styled.div`
-  padding: 5px;
-  position: absolute;
-  color: black;
-  right: 0;
-  top: 0;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
 
 const SearchInput = styled.input`
   height: 30px;
   width: 100%;
-  border-radius: 15px;
-  padding: 5px 40px 5px 10px;
-  background-color: transparent;
+  padding: 0.3rem 0 0.3rem 0.5rem;
+  background: transparent;
   border: none;
   &:focus {
     outline: none;
   }
 `;
 
-export { SearchContainer, SearchIconWrapper, SearchInput };
+const SearchIconButton = styled.button`
+  background: transparent;
+  border: none;
+  color: black;
+  padding: 0 1rem;
+  &:focus {
+    border: none;
+  }
+`;
+
+export { SearchContainer, SearchInput, SearchIconButton };
