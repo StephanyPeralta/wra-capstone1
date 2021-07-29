@@ -16,6 +16,9 @@ const LoginIconWrapper = styled.div`
   &:hover {
     background-color: rgba(187, 154, 217, 0.8);
   }
+  @media (max-width: 768px) {
+    margin: 0;
+  }
 `;
 
 export { LoginIconWrapper };

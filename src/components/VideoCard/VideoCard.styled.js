@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const CardWrapper = styled.div`
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  width: 350px;
-  height: 350px;
+  width: 315px;
+  height: 320px;
   margin: 0 10px 40px;
   cursor: pointer;
   transition: all 1s ease;

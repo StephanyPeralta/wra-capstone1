@@ -1,15 +1,15 @@
 import React from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { SearchContainer, SearchIconWrapper, SearchInput } from './Search.styled';
+import { SearchContainer, SearchInput, SearchIconButton } from './Search.styled';
 
 function Search() {
   return (
     <SearchContainer>
       <SearchInput type="text" placeholder="Search" />
-      <SearchIconWrapper>
+      <SearchIconButton type="submit">
         <SearchIcon />
-      </SearchIconWrapper>
+      </SearchIconButton>
     </SearchContainer>
   );
 }

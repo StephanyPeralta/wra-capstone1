@@ -1,13 +1,17 @@
 import React from 'react';
 
-import { LayoutContainer } from './Layout.styled';
 import Header from '../Header';
+import SideMenu from '../SideMenu';
+import { LayoutContainer, SectionWrapper } from './Layout.styled';
 
 function Layout({ children }) {
   return (
     <LayoutContainer>
       <Header />
-      {children}
+      <SectionWrapper>
+        <SideMenu />
+        {children}
+      </SectionWrapper>
     </LayoutContainer>
   );
 }

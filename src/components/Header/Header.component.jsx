@@ -1,4 +1,5 @@
 import React from 'react';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import Search from '../Search';
 import ThemeToggle from '../ThemeToggle';
@@ -8,23 +9,28 @@ import {
   HeaderMenu,
   MenuButton,
   LogoTitle,
-  HeaderLeft,
-  HeaderRight,
+  HeaderSection,
 } from './Header.styled';
 
 function Header() {
   return (
     <HeaderWrapper>
       <HeaderMenu>
-        <HeaderLeft>
-          <MenuButton />
-          <LogoTitle href="/">YouCool</LogoTitle>
-        </HeaderLeft>
+        <HeaderSection>
+          <MenuButton className="shown-mobile">
+            <MenuIcon />
+          </MenuButton>
+          <LogoTitle href="/" className="hidden-mobile">
+            YouCool
+          </LogoTitle>
+        </HeaderSection>
         <Search />
-        <HeaderRight>
-          <ThemeToggle />
+        <HeaderSection>
+          <div className="hidden-tablet">
+            <ThemeToggle />
+          </div>
           <LoginButton />
-        </HeaderRight>
+        </HeaderSection>
       </HeaderMenu>
     </HeaderWrapper>
   );
