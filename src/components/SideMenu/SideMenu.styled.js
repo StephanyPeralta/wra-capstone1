@@ -5,7 +5,12 @@ const SideMenuNav = styled.nav`
   display: flex;
   flex-direction: column;
   width: 250px;
-  padding: 1.5rem 0 0;
+  height: 90vh;
+  padding: 20px 0 0;
+  transition: transform 0.3s ease-in;
+  &.open-menu {
+    transform: translateX(0);
+  }
   @media (max-width: 768px) {
     width: 90px;
     .hidden-tablet {
@@ -16,7 +21,9 @@ const SideMenuNav = styled.nav`
     }
   }
   @media (max-width: 576px) {
-    display: none;
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 999;
   }
 `;
 
