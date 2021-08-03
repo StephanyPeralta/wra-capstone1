@@ -9,8 +9,6 @@ describe('VideoList component', () => {
   it('renders VideoList elements', () => {
     render(<VideoList />);
 
-    // console.log(container.outerHTML);
-
     expect(screen.getAllByText('VideoCard Mock')).toBeTruthy();
   });
 });

@@ -10,9 +10,6 @@ afterEach(() => {
 jest.mock('../../components/VideoList', () => () => <div>VideoList Mock</div>);
 
 describe('Home page', () => {
-  it('renders Home page without crashing', () => {
-    render(<Home />);
-  });
   it('renders Home elements', () => {
     render(<Home />);
     expect(screen.getByText('VideoList Mock')).toBeInTheDocument();

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
+import { VideoContext } from '../../providers/Video.provider';
 import {
   CardWrapper,
   CardThumbnail,
@@ -8,14 +10,28 @@ import {
   CardDescription,
 } from './VideoCard.styled';
 
-function VideoCard({ img, title, description }) {
+function VideoCard({ img, title, description, videoId }) {
+  const { dispatch } = useContext(VideoContext);
+
+  const selectCard = (videoInfo) => () => {
+    dispatch({
+      type: 'SET_VIDEO_PROPS',
+      payload: {
+        status: false,
+        videoProps: videoInfo,
+      },
+    });
+  };
+
   return (
-    <CardWrapper>
-      <CardThumbnail src={img} alt={title} />
-      <CardContent>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
-      </CardContent>
+    <CardWrapper id={videoId} onClick={selectCard({ title, description, videoId })}>
+      <Link to={`/${videoId}`}>
+        <CardThumbnail src={img} alt={title} />
+        <CardContent>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardContent>
+      </Link>
     </CardWrapper>
   );
 }

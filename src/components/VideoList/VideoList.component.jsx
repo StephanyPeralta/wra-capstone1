@@ -12,6 +12,7 @@ function VideoList(videos) {
         .map((video) => (
           <VideoCard
             key={video.id.videoId}
+            videoId={video.id.videoId}
             img={video.snippet.thumbnails.medium.url}
             title={video.snippet.title}
             description={video.snippet.description}

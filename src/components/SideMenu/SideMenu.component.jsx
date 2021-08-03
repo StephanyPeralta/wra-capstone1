@@ -24,7 +24,7 @@ function SideMenu({ sideMenuAction, handleToggleMenu }) {
         <hr />
         <SideMenuItems className="centered-items" tabIndex="0">
           <ExitToAppOutlinedIcon />
-          <SideMenuLink className="hidden-tablet">Log 0ut</SideMenuLink>
+          <SideMenuLink className="hidden-tablet">Log Out</SideMenuLink>
         </SideMenuItems>
         <hr />
       </ul>

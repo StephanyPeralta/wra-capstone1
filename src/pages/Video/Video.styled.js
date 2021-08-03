@@ -25,14 +25,4 @@ const ErrorAlert = styled(Alert)`
   margin: 15px;
 `;
 
-const HomeWrapper = styled.div`
-  padding: 60px;
-  @media (max-width: 768px) {
-    padding: 60px 40px;
-  }
-  @media (max-width: 576px) {
-    padding: 40px 20px;
-  }
-`;
-
-export { LoaderContainer, Loader, ErrorAlert, HomeWrapper };
+export { LoaderContainer, Loader, ErrorAlert };

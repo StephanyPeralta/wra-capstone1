@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 
-import VideoList from '../../components/VideoList';
 import { VideoContext } from '../../providers/Video.provider';
 import useYoutubeApi from '../../utils/hooks/useYoutubeApi';
-import { LoaderContainer, Loader, ErrorAlert, HomeWrapper } from './Home.styled';
+import VideoPlayer from '../../components/VideoPlayer';
+import VideoList from '../../components/VideoList';
+import { LoaderContainer, Loader, ErrorAlert } from './Video.styled';
 
-function HomePage() {
+function VideoPage() {
   const { state } = useContext(VideoContext);
   const { videos, isLoading, error } = useYoutubeApi(state.searchTerm);
 
@@ -21,10 +22,12 @@ function HomePage() {
   }
 
   return (
-    <HomeWrapper>
-      <VideoList videos={videos} />
-    </HomeWrapper>
+    <>
+      <VideoPlayer videoProps={state.videoProps}>
+        <VideoList videos={videos} />
+      </VideoPlayer>
+    </>
   );
 }
 
-export default HomePage;
+export default VideoPage;
