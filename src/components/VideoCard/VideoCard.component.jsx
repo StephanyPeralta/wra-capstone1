@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { VideoContext } from '../../providers/Video.provider';
+import { useVideo } from '../../providers/Video.provider';
 import {
   CardWrapper,
   CardThumbnail,
@@ -11,7 +11,7 @@ import {
 } from './VideoCard.styled';
 
 function VideoCard({ img, title, description, videoId }) {
-  const { dispatch } = useContext(VideoContext);
+  const { dispatch } = useVideo();
 
   const selectCard = (videoInfo) => () => {
     dispatch({

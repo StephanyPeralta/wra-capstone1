@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
@@ -6,6 +7,8 @@ import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 import { SideMenuNav, SideMenuItems, SideMenuLink } from './SideMenu.styled';
 
 function SideMenu({ sideMenuAction, handleToggleMenu }) {
+  const { push } = useHistory();
+
   return (
     <SideMenuNav
       className={sideMenuAction ? 'open-menu' : ''}
@@ -13,7 +16,7 @@ function SideMenu({ sideMenuAction, handleToggleMenu }) {
       tabIndex="0"
     >
       <ul aria-label="navbar-list">
-        <SideMenuItems className="centered-items" tabIndex="0">
+        <SideMenuItems className="centered-items" tabIndex="0" onClick={() => push('/')}>
           <HomeOutlinedIcon />
           <SideMenuLink className="hidden-tablet">Home</SideMenuLink>
         </SideMenuItems>

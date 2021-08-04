@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { VideoContext } from '../../providers/Video.provider';
+import { useVideo } from '../../providers/Video.provider';
 import { SearchContainer, SearchInput, SearchIconWrapper } from './Search.styled';
 
 function Search() {
   const [termValue, setTermValue] = useState('');
-  const { state, dispatch } = useContext(VideoContext);
+  const { state, dispatch } = useVideo();
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       dispatch({

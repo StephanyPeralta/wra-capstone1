@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { VideoContext } from '../../providers/Video.provider';
+import { useVideo } from '../../providers/Video.provider';
 import useYoutubeApi from '../../utils/hooks/useYoutubeApi';
 import VideoPlayer from '../../components/VideoPlayer';
 import VideoList from '../../components/VideoList';
 import { LoaderContainer, Loader, ErrorAlert } from './Video.styled';
 
 function VideoPage() {
-  const { state } = useContext(VideoContext);
+  const { state } = useVideo();
   const { videos, isLoading, error } = useYoutubeApi(state.searchTerm);
 
   if (error) {
