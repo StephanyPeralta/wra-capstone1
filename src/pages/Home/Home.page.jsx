@@ -20,6 +20,8 @@ function HomePage() {
     );
   }
 
+  console.log(videos);
+
   return (
     <HomeWrapper>
       {videos.items.length === 0 ? (

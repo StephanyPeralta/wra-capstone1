@@ -25,7 +25,7 @@ function VideoCard({ img, title, description, videoId }) {
 
   return (
     <CardWrapper id={videoId} onClick={selectCard({ title, description, videoId })}>
-      <Link to={`/${videoId}`}>
+      <Link to={`/video/${videoId}`}>
         <CardThumbnail src={img} alt={title} />
         <CardContent>
           <CardTitle>{title}</CardTitle>

@@ -8,6 +8,7 @@ const initialState = {
   searchStatus: true,
   searchTerm: 'wizeline',
   videoProps: {},
+  video: null,
 };
 
 const VideoContext = createContext(initialState);
@@ -28,9 +29,12 @@ function VideoProvider({ children, selectedState }) {
     storage.set(VIDEO_STORAGE_KEY, state);
   }, [state]);
 
-  return (
-    <VideoContext.Provider value={{ state, dispatch }}>{children}</VideoContext.Provider>
-  );
+  const value = {
+    state,
+    dispatch,
+  };
+
+  return <VideoContext.Provider value={value}>{children}</VideoContext.Provider>;
 }
 
 export { useVideo };

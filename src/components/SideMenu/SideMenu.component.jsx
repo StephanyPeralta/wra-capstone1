@@ -1,14 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 
-import { SideMenuNav, SideMenuItems, SideMenuLink } from './SideMenu.styled';
+import { SideMenuNav, SideMenuLink, SideMenuText } from './SideMenu.styled';
 
 function SideMenu({ sideMenuAction, handleToggleMenu }) {
-  const { push } = useHistory();
-
   return (
     <SideMenuNav
       className={sideMenuAction ? 'open-menu' : ''}
@@ -16,19 +14,19 @@ function SideMenu({ sideMenuAction, handleToggleMenu }) {
       tabIndex="0"
     >
       <ul aria-label="navbar-list">
-        <SideMenuItems className="centered-items" tabIndex="0" onClick={() => push('/')}>
+        <SideMenuLink to="/" className="centered-items" tabIndex="0">
           <HomeOutlinedIcon />
-          <SideMenuLink className="hidden-tablet">Home</SideMenuLink>
-        </SideMenuItems>
-        <SideMenuItems className="centered-items" tabIndex="0">
+          <SideMenuText className="hidden-tablet">Home</SideMenuText>
+        </SideMenuLink>
+        <SideMenuLink to="/" className="centered-items" tabIndex="0">
           <ThumbUpAltOutlinedIcon />
-          <SideMenuLink className="hidden-tablet">Favorites</SideMenuLink>
-        </SideMenuItems>
+          <SideMenuText className="hidden-tablet">Favorites</SideMenuText>
+        </SideMenuLink>
         <hr />
-        <SideMenuItems className="centered-items" tabIndex="0">
+        <SideMenuLink to="/" className="centered-items" tabIndex="0">
           <ExitToAppOutlinedIcon />
-          <SideMenuLink className="hidden-tablet">Log Out</SideMenuLink>
-        </SideMenuItems>
+          <SideMenuText className="hidden-tablet">Log Out</SideMenuText>
+        </SideMenuLink>
         <hr />
       </ul>
     </SideMenuNav>
