@@ -4,10 +4,10 @@ import React from 'react';
 import VideoCard from '../VideoCard';
 import { VideoWrapper } from './VideoList.styled';
 
-function VideoList(videos) {
+function VideoList({ videos }) {
   return (
     <VideoWrapper>
-      {videos.videos.items
+      {videos
         .filter((video) => video.id.kind === 'youtube#video')
         .map((video) => (
           <VideoCard

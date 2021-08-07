@@ -2,14 +2,14 @@ import React from 'react';
 // import { Redirect } from 'react-router-dom';
 
 import { useVideo } from '../../providers/Video.provider';
-import useYoutubeApi from '../../utils/hooks/useYoutubeApi';
+import useYoutube from '../../utils/hooks/useYoutube';
 import VideoPlayer from '../../components/VideoPlayer';
 import VideoList from '../../components/VideoList';
 import { LoaderContainer, Loader, ErrorAlert } from './Video.styled';
 
 function VideoPage() {
   const { state } = useVideo();
-  const { videos, isLoading, error } = useYoutubeApi(state.searchTerm);
+  const { videos, isLoading, error } = useYoutube(state.searchTerm);
 
   if (error) {
     return <ErrorAlert severity="error">Error loading page!</ErrorAlert>;

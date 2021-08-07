@@ -1,10 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 
-function useYoutubeApi(searchTerm) {
+function useYoutube(searchTerm) {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const fetchVideos = useCallback(async () => {
+  const fetchSearchVideos = useCallback(async () => {
     try {
       setIsLoading(true);
       const response = await fetch(
@@ -16,7 +16,7 @@ function useYoutubeApi(searchTerm) {
         })}`
       );
       const data = await response.json();
-      setVideos(data);
+      setVideos(data.items);
       setIsLoading(false);
     } catch (e) {
       console.log(e);
@@ -26,10 +26,10 @@ function useYoutubeApi(searchTerm) {
   }, [searchTerm]);
 
   useEffect(() => {
-    fetchVideos();
-  }, [fetchVideos]);
+    fetchSearchVideos();
+  }, [fetchSearchVideos]);
 
   return { videos, isLoading, error };
 }
 
-export default useYoutubeApi;
+export default useYoutube;

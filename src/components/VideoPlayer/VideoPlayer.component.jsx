@@ -16,6 +16,8 @@ function VideoPlayer({ children, videoProps }) {
           id="videoPlayer"
           title="Video Iframe"
           src={`https://youtube.com/embed/${videoProps.videoId}?autoplay=0`}
+          frameBorder="0"
+          allowFullScreen
         />
         <VideoInfo>
           <h1>{videoProps.title}</h1>
