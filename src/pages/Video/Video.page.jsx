@@ -1,11 +1,13 @@
 import React from 'react';
+// import { Redirect } from 'react-router-dom';
 
-import VideoList from '../../components/VideoList';
 import { useVideo } from '../../providers/Video.provider';
 import useYoutube from '../../utils/hooks/useYoutube';
-import { LoaderContainer, Loader, ErrorAlert, HomeWrapper } from './Home.styled';
+import VideoPlayer from '../../components/VideoPlayer';
+import VideoList from '../../components/VideoList';
+import { LoaderContainer, Loader, ErrorAlert } from './Video.styled';
 
-function HomePage() {
+function VideoPage() {
   const { state } = useVideo();
   const { videos, isLoading, error } = useYoutube(state.searchTerm);
 
@@ -20,15 +22,17 @@ function HomePage() {
     );
   }
 
+  // if (state.searchStatus) {
+  //   return <Redirect to="/" />;
+  // }
+
   return (
-    <HomeWrapper>
-      {videos.length === 0 ? (
-        <ErrorAlert severity="error">No videos found</ErrorAlert>
-      ) : (
+    <>
+      <VideoPlayer videoProps={state.videoProps}>
         <VideoList videos={videos} />
-      )}
-    </HomeWrapper>
+      </VideoPlayer>
+    </>
   );
 }
 
-export default HomePage;
+export default VideoPage;

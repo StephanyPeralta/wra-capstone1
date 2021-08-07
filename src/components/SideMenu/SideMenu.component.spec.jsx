@@ -16,8 +16,9 @@ describe('SideMenu component', () => {
 
     expect(screen.getByRole('navigation')).toBeInTheDocument();
     expect(screen.getByLabelText('navbar-list')).toBeInTheDocument();
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Favorites')).toBeInTheDocument();
-    expect(screen.getByText('Log Out')).toBeInTheDocument();
+    expect(screen.getAllByRole('listitem').length).not.toBe(0);
+    expect(screen.getByText('Home')).toBeTruthy();
+    expect(screen.getByText('Favorites')).toBeTruthy();
+    expect(screen.getByText('Log Out')).toBeTruthy();
   });
 });

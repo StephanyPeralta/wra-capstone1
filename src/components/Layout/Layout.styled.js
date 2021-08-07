@@ -4,9 +4,14 @@ const LayoutContainer = styled.div`
   height: 100%;
 `;
 
-const SectionWrapper = styled.section`
+const SectionWrapper = styled.div`
   display: flex;
-  transition: all 1s ease;
+  height: 90vh;
 `;
 
-export { LayoutContainer, SectionWrapper };
+const SectionContainer = styled.section`
+  overflow-y: scroll;
+  width: 100%;
+`;
+
+export { LayoutContainer, SectionWrapper, SectionContainer };

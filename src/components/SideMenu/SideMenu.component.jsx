@@ -1,27 +1,32 @@
 import React from 'react';
-import HomeIcon from '@material-ui/icons/Home';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import { SideMenuNav, SideMenuItems, SideMenuLink } from './SideMenu.styled';
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
+import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
 
-function SideMenu() {
+import { SideMenuNav, SideMenuLink, SideMenuText } from './SideMenu.styled';
+
+function SideMenu({ sideMenuAction, handleToggleMenu }) {
   return (
-    <SideMenuNav>
+    <SideMenuNav
+      className={sideMenuAction ? 'open-menu' : ''}
+      onClick={() => handleToggleMenu(false)}
+      tabIndex="0"
+    >
       <ul aria-label="navbar-list">
-        <SideMenuItems className="centered-items">
-          <HomeIcon />
-          <SideMenuLink className="hidden-tablet">Home</SideMenuLink>
-        </SideMenuItems>
-        <SideMenuItems className="centered-items">
-          <ThumbUpIcon />
-          <SideMenuLink className="hidden-tablet">Favorites</SideMenuLink>
-        </SideMenuItems>
+        <SideMenuLink to="/" className="centered-items" tabIndex="0">
+          <HomeOutlinedIcon />
+          <SideMenuText className="hidden-tablet">Home</SideMenuText>
+        </SideMenuLink>
+        <SideMenuLink to="/" className="centered-items" tabIndex="0">
+          <ThumbUpAltOutlinedIcon />
+          <SideMenuText className="hidden-tablet">Favorites</SideMenuText>
+        </SideMenuLink>
         <hr />
-        <SideMenuItems className="centered-items">
-          <ExitToAppIcon />
-          <SideMenuLink className="hidden-tablet">Log Out</SideMenuLink>
-        </SideMenuItems>
+        <SideMenuLink to="/" className="centered-items" tabIndex="0">
+          <ExitToAppOutlinedIcon />
+          <SideMenuText className="hidden-tablet">Log Out</SideMenuText>
+        </SideMenuLink>
         <hr />
       </ul>
     </SideMenuNav>

@@ -37,6 +37,7 @@ const CardTitle = styled.h4`
 const CardDescription = styled.p`
   font-size: 14px;
   margin: 0;
+  font-weight: 400;
 `;
 
 export { CardWrapper, CardThumbnail, CardContent, CardTitle, CardDescription };

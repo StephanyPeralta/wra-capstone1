@@ -1,20 +1,16 @@
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
-  background-color: #80cbc4;
-  color: #000;
-  position: sticky;
-  top: 0;
-  width: 100%;
-  z-index: 100;
-`;
-
-const HeaderMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 60px;
+  background-color: #80cbc4;
+  width: 100%;
   height: 10vh;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   @media (max-width: 768px) {
     padding: 0 40px;
   }
@@ -51,4 +47,4 @@ const LogoTitle = styled.a`
   font-size: 22px;
 `;
 
-export { HeaderWrapper, HeaderMenu, HeaderSection, MenuButton, LogoTitle };
+export { HeaderWrapper, HeaderSection, MenuButton, LogoTitle };

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const SideMenuNav = styled.nav`
@@ -5,7 +6,12 @@ const SideMenuNav = styled.nav`
   display: flex;
   flex-direction: column;
   width: 250px;
-  padding: 1.5rem 0 0;
+  height: 90vh;
+  padding: 20px 0 0;
+  transition: transform 0.3s ease-in;
+  &.open-menu {
+    transform: translateX(0);
+  }
   @media (max-width: 768px) {
     width: 90px;
     .hidden-tablet {
@@ -16,11 +22,13 @@ const SideMenuNav = styled.nav`
     }
   }
   @media (max-width: 576px) {
-    display: none;
+    transform: translateX(-100%);
+    position: fixed;
+    z-index: 999;
   }
 `;
 
-const SideMenuItems = styled.li`
+const SideMenuLink = styled(Link)`
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
@@ -31,11 +39,11 @@ const SideMenuItems = styled.li`
   }
 `;
 
-const SideMenuLink = styled.span`
+const SideMenuText = styled.span`
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.4px;
   margin-left: 1rem;
 `;
 
-export { SideMenuNav, SideMenuItems, SideMenuLink };
+export { SideMenuNav, SideMenuLink, SideMenuText };

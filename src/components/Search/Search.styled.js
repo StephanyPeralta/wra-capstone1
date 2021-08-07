@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-const SearchContainer = styled.form`
+const SearchContainer = styled.div`
+  position: relative;
   border-radius: 15px;
   border: 2px solid black;
   background-color: white;
@@ -22,7 +23,7 @@ const SearchContainer = styled.form`
 const SearchInput = styled.input`
   height: 30px;
   width: 100%;
-  padding: 0.3rem 0 0.3rem 0.5rem;
+  padding: 0.3rem 2.3rem 0.3rem 0.5rem;
   background: transparent;
   border: none;
   &:focus {
@@ -30,14 +31,19 @@ const SearchInput = styled.input`
   }
 `;
 
-const SearchIconButton = styled.button`
-  background: transparent;
-  border: none;
+const SearchIconWrapper = styled.div`
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: black;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   &:focus {
     border: none;
   }
 `;
 
-export { SearchContainer, SearchInput, SearchIconButton };
+export { SearchContainer, SearchInput, SearchIconWrapper };
