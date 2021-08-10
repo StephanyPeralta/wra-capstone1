@@ -26,12 +26,12 @@ const ErrorAlert = styled(Alert)`
 `;
 
 const HomeWrapper = styled.div`
-  padding: 60px;
+  padding: 60px 60px 20px;
   @media (max-width: 768px) {
-    padding: 60px 40px;
+    padding: 60px 40px 20px;
   }
   @media (max-width: 576px) {
-    padding: 40px 20px;
+    padding: 40px 20px 0;
   }
 `;
 

@@ -13,7 +13,7 @@ function Header({ handleToggleMenu }) {
         <MenuButton className="shown-mobile" onClick={() => handleToggleMenu()}>
           <MenuIcon />
         </MenuButton>
-        <LogoTitle href="/" className="hidden-mobile">
+        <LogoTitle to="/" className="hidden-mobile">
           YouCool
         </LogoTitle>
       </HeaderSection>

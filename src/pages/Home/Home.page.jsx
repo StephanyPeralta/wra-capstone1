@@ -1,7 +1,7 @@
 import React from 'react';
 
 import VideoList from '../../components/VideoList';
-import { useVideo } from '../../providers/Video.provider';
+import { useVideo } from '../../providers/Video';
 import useYoutube from '../../utils/hooks/useYoutube';
 import { LoaderContainer, Loader, ErrorAlert, HomeWrapper } from './Home.styled';
 

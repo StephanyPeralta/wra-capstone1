@@ -4,9 +4,9 @@ function useYoutube(searchTerm) {
   const [videos, setVideos] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
-  const fetchSearchVideos = useCallback(async () => {
+  const fetchVideos = useCallback(async () => {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       const response = await fetch(
         `https://www.googleapis.com/youtube/v3/search?${new URLSearchParams({
           maxResults: 25,
@@ -16,18 +16,17 @@ function useYoutube(searchTerm) {
         })}`
       );
       const data = await response.json();
-      setVideos(data.items);
-      setIsLoading(false);
+      const videoList = data.items;
+      setVideos([...videoList]);
     } catch (e) {
-      console.log(e);
       setError(true);
-      setIsLoading(false);
     }
+    setIsLoading(false);
   }, [searchTerm]);
 
   useEffect(() => {
-    fetchSearchVideos();
-  }, [fetchSearchVideos]);
+    fetchVideos();
+  }, [fetchVideos]);
 
   return { videos, isLoading, error };
 }

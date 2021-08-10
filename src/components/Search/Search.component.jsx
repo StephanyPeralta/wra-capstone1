@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom';
 
-import { useVideo } from '../../providers/Video.provider';
+import { useVideo } from '../../providers/Video';
 import { SearchContainer, SearchInput, SearchIconWrapper } from './Search.styled';
 
 function Search() {
@@ -14,7 +14,7 @@ function Search() {
       dispatch({
         type: 'SET_SEARCH_TERM',
         payload: {
-          status: true,
+          searchStatus: true,
           searchTerm: e.target.value,
         },
       });

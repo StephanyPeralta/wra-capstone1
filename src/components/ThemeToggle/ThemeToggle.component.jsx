@@ -1,26 +1,21 @@
-import React, { useState } from 'react';
-// import WbSunnyIcon from '@material-ui/icons/WbSunny';
-// import NightsStayIcon from '@material-ui/icons/NightsStay';
+import React from 'react';
 
-import { Toggle } from './ThemeToggle.styled';
+import { useGlobal } from '../../providers/Global';
+import { Toggle, InputTheme, SliderTheme } from './ThemeToggle.styled';
 
 function ThemeToggle() {
-  const [themeIcon, setThemeIcon] = useState('light');
+  const { dispatch } = useGlobal();
 
-  function changeThemeIcon() {
-    if (themeIcon === 'light') {
-      setThemeIcon('dark');
-    } else {
-      setThemeIcon('light');
-    }
-  }
-
-  const icon = themeIcon === 'light' ? 'Dark' : 'Light';
+  const handleThemeMode = (e) => {
+    const isLight = e.target.checked;
+    dispatch({ type: 'SET_THEME', payload: { theme: isLight ? 'dark' : 'light' } });
+  };
 
   return (
     <>
-      <Toggle onClick={changeThemeIcon} title="themeButton">
-        {icon}
+      <Toggle title="theme-mode">
+        <InputTheme type="checkbox" onChange={handleThemeMode} />
+        <SliderTheme />
       </Toggle>
     </>
   );

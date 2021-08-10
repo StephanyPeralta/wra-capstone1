@@ -10,18 +10,18 @@ export default function videoReducer(state, action) {
     case SET_SEARCH_STATUS:
       return {
         ...state,
-        searchStatus: action.payload.status,
+        searchStatus: action.payload.searchStatus,
       };
     case SET_SEARCH_TERM:
       return {
         ...state,
-        searchStatus: action.payload.status,
+        searchStatus: action.payload.searchStatus,
         searchTerm: action.payload.searchTerm,
       };
     case SET_VIDEO_PROPS:
       return {
         ...state,
-        searchStatus: action.payload.status,
+        searchStatus: action.payload.searchStatus,
         videoProps: action.payload.videoProps,
       };
     case SET_CURRENT_VIDEO:

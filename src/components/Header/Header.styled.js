@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderWrapper = styled.header`
@@ -5,7 +6,7 @@ const HeaderWrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 60px;
-  background-color: #80cbc4;
+  background-color: ${(props) => props.theme.primary};
   width: 100%;
   height: 10vh;
   position: sticky;
@@ -42,9 +43,10 @@ const MenuButton = styled.div`
   display: none;
 `;
 
-const LogoTitle = styled.a`
+const LogoTitle = styled(Link)`
   padding: 0.3rem;
   font-size: 22px;
+  font-weight: 700;
 `;
 
 export { HeaderWrapper, HeaderSection, MenuButton, LogoTitle };

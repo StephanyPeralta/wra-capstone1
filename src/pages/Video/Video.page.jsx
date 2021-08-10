@@ -1,7 +1,6 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
 
-import { useVideo } from '../../providers/Video.provider';
+import { useVideo } from '../../providers/Video';
 import useYoutube from '../../utils/hooks/useYoutube';
 import VideoPlayer from '../../components/VideoPlayer';
 import VideoList from '../../components/VideoList';
@@ -21,10 +20,6 @@ function VideoPage() {
       </LoaderContainer>
     );
   }
-
-  // if (state.searchStatus) {
-  //   return <Redirect to="/" />;
-  // }
 
   return (
     <>

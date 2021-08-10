@@ -1,25 +1,18 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
-import {
-  ErrorSection,
-  ErrorWrapper,
-  ErrorTitle,
-  ErrorText,
-  ErrorLink,
-  ErrorImage,
-} from './NotFound.styled';
+import { ErrorWrapper, ErrorImage, ErrorButton } from './NotFound.styled';
 
 function NotFoundPage() {
+  const { push } = useHistory();
+
   return (
-    <ErrorSection>
-      <ErrorWrapper>
-        <ErrorTitle>404</ErrorTitle>
-        <ErrorText>Page Not Found :(</ErrorText>
-        <ErrorLink href="/">
-          <ErrorImage src="404.gif" alt="page not found" />
-        </ErrorLink>
-      </ErrorWrapper>
-    </ErrorSection>
+    <ErrorWrapper>
+      <div className="error-container">
+        <ErrorImage src="error404.svg" alt="page not found" />
+        <ErrorButton onClick={() => push('/')}>Go Back Home</ErrorButton>
+      </div>
+    </ErrorWrapper>
   );
 }
 

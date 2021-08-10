@@ -4,7 +4,6 @@ import {
   VideoSectionWrapper,
   VideoPlayerWrapper,
   IframeVideo,
-  VideoInfo,
   RelatedVideos,
 } from './VideoPlayer.styled';
 
@@ -19,10 +18,10 @@ function VideoPlayer({ children, videoProps }) {
           frameBorder="0"
           allowFullScreen
         />
-        <VideoInfo>
+        <div>
           <h1>{videoProps.title}</h1>
           <p>{videoProps.description}</p>
-        </VideoInfo>
+        </div>
       </VideoPlayerWrapper>
       <RelatedVideos>{children}</RelatedVideos>
     </VideoSectionWrapper>

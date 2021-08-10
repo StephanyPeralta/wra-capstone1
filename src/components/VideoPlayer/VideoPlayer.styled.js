@@ -2,42 +2,43 @@ import styled from 'styled-components';
 
 const VideoSectionWrapper = styled.div`
   display: flex;
-  margin: 10px 0 0;
-  @media (max-width: 768px) {
+  margin: 0 auto;
+  max-width: 1800px;
+  padding: 15px 15px 0;
+  @media (max-width: 992px) {
     flex-direction: column;
   }
 `;
+
 const VideoPlayerWrapper = styled.div`
-  display: inline;
-  flex: 8;
+  display: flex;
+  flex-direction: column;
+  flex: 6;
+  padding: 15px;
 `;
 
 const IframeVideo = styled.iframe`
   display: block;
-  padding: 15px;
-  border: none;
   width: 100%;
-  height: 65%;
-  @media (max-width: 768px) {
-    height: 35vh;
+  height: 60%;
+  @media (max-width: 992px) {
+    height: 40vh;
   }
-`;
-
-const VideoInfo = styled.div`
-  padding: 15px;
 `;
 
 const RelatedVideos = styled.div`
-  flex: 4;
   display: inline;
+  flex: 2;
   height: 90vh;
-  padding: 15px;
+  padding: 15px 15px 0 0;
+  margin: 0 auto;
   overflow: scroll;
   overflow-x: hidden;
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     flex-direction: column;
-    max-height: 40vh;
+    max-height: 30vh;
+    padding: 0 15px;
   }
 `;
 
-export { VideoSectionWrapper, VideoPlayerWrapper, IframeVideo, VideoInfo, RelatedVideos };
+export { VideoSectionWrapper, VideoPlayerWrapper, IframeVideo, RelatedVideos };

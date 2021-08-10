@@ -11,7 +11,7 @@ describe('ThemeToggle component', () => {
   });
   it('clicking ThemeToggle changes text mode', () => {
     render(<ThemeToggle />);
-    const themeToggle = screen.getByTitle('themeButton');
+    const themeToggle = screen.getByTitle('theme-mode');
     fireEvent.click(themeToggle);
     expect(themeToggle.innerHTML).toBe('Light');
     fireEvent.click(themeToggle);
