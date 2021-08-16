@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Layout from '../Layout';
 import HomePage from '../../pages/Home';
-import Video from '../../pages/Video';
+import VideoPage from '../../pages/Video';
 import NotFound from '../../pages/NotFound';
 
 function Router() {
@@ -15,7 +15,7 @@ function Router() {
             <HomePage />
           </Route>
           <Route exact path="/video/:videoId">
-            <Video />
+            <VideoPage />
           </Route>
           <Route path="*">
             <NotFound />

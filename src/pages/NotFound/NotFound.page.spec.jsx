@@ -1,20 +1,32 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { useHistory } from 'react-router-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import NotFound from './NotFound.page';
 
-afterEach(() => {
-  cleanup();
-});
+const mockHistoryPush = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+  useHistory: jest.fn(() => ({ push: mockHistoryPush })),
+}));
 
 describe('NotFound page', () => {
-  it('renders NotFound page without crashing', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
     render(<NotFound />);
   });
-  it('renders NotFound elements', () => {
-    render(<NotFound />);
 
-    expect(screen.getByText('404')).toBeInTheDocument();
-    expect(screen.getByText('Page Not Found :(')).toBeInTheDocument();
+  it('renders NotFound elements', () => {
+    expect(screen.getByAltText('page not found')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Go Back Home' })).toBeInTheDocument();
+  });
+
+  it('redirects to HomePage after click ErrorButton', () => {
+    useHistory.mockReturnValue({ push: mockHistoryPush });
+
+    const errorButton = screen.getByRole('button', { name: 'Go Back Home' });
+    fireEvent.click(errorButton);
+
+    expect(mockHistoryPush).toHaveBeenCalledWith('/');
   });
 });

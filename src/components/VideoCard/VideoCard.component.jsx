@@ -7,7 +7,7 @@ import { CardWrapper, CardWrapperRV } from './VideoCard.styled';
 function VideoCard({ img, title, description, videoId, publishDate }) {
   const { state, dispatch } = useVideo();
 
-  const selectCard = (videoInfo) => () => {
+  const currentCard = (videoInfo) => () => {
     dispatch({
       type: 'SET_VIDEO_PROPS',
       payload: {
@@ -20,8 +20,8 @@ function VideoCard({ img, title, description, videoId, publishDate }) {
   if (!state.searchStatus) {
     return (
       <CardWrapperRV
-        id={videoId}
-        onClick={selectCard({ title, description, videoId, publishDate })}
+        data-testid="card-relatedvideos"
+        onClick={currentCard({ img, title, description, videoId, publishDate })}
       >
         <Link className="card-link" to={`/video/${videoId}`}>
           <img className="card-thumbnail" src={img} alt={title} />
@@ -36,8 +36,8 @@ function VideoCard({ img, title, description, videoId, publishDate }) {
 
   return (
     <CardWrapper
-      id={videoId}
-      onClick={selectCard({ title, description, videoId, publishDate })}
+      data-testid="card-normal"
+      onClick={currentCard({ img, title, description, videoId, publishDate })}
     >
       <Link to={`/video/${videoId}`}>
         <img className="card-thumbnail" src={img} alt={title} />

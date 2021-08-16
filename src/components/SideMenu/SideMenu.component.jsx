@@ -1,7 +1,7 @@
 import React from 'react';
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
+import { VscHome } from 'react-icons/vsc';
+import { BiLike } from 'react-icons/bi';
+import { MdExitToApp } from 'react-icons/md';
 
 import { useVideo } from '../../providers/Video';
 import { SideMenuNav, SideMenuLink, SideMenuText } from './SideMenu.styled';
@@ -31,16 +31,26 @@ function SideMenu({ sideMenuAction, handleToggleMenu }) {
           className="centered-items"
           tabIndex="0"
         >
-          <HomeOutlinedIcon />
+          <VscHome size={27} />
           <SideMenuText className="hidden-tablet">Home</SideMenuText>
         </SideMenuLink>
-        <SideMenuLink onClick={handleClick} className="centered-items" tabIndex="0">
-          <ThumbUpAltOutlinedIcon />
+        <SideMenuLink
+          to="/"
+          onClick={handleClick}
+          className="centered-items"
+          tabIndex="0"
+        >
+          <BiLike size={27} />
           <SideMenuText className="hidden-tablet">Favorites</SideMenuText>
         </SideMenuLink>
         <hr />
-        <SideMenuLink onClick={handleClick} className="centered-items" tabIndex="0">
-          <ExitToAppOutlinedIcon />
+        <SideMenuLink
+          to="/"
+          onClick={handleClick}
+          className="centered-items"
+          tabIndex="0"
+        >
+          <MdExitToApp size={27} />
           <SideMenuText className="hidden-tablet">Log Out</SideMenuText>
         </SideMenuLink>
         <hr />

@@ -1,6 +1,6 @@
 import { SET_THEME } from './actionType';
 
-export default function videoReducer(state, action) {
+export default function selectorReducer(state, action) {
   switch (action.type) {
     case SET_THEME:
       return {

@@ -12,15 +12,14 @@ function VideoPlayer({ children, videoProps }) {
     <VideoSectionWrapper>
       <VideoPlayerWrapper>
         <IframeVideo
-          id="videoPlayer"
-          title="Video Iframe"
-          src={`https://youtube.com/embed/${videoProps.videoId}?autoplay=0`}
+          title="Video Player"
+          src={`https://youtube.com/embed/${videoProps.videoId}`}
           frameBorder="0"
           allowFullScreen
         />
         <div>
-          <h1>{videoProps.title}</h1>
-          <p>{videoProps.description}</p>
+          <h1 className="video-title">{videoProps.title}</h1>
+          <p className="video-description">{videoProps.description}</p>
         </div>
       </VideoPlayerWrapper>
       <RelatedVideos>{children}</RelatedVideos>

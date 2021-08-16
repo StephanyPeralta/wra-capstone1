@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useGlobal } from '../../providers/Global';
+import { useSelector } from '../../providers/Selector';
 import { Toggle, InputTheme, SliderTheme } from './ThemeToggle.styled';
 
 function ThemeToggle() {
-  const { dispatch } = useGlobal();
+  const { dispatch } = useSelector();
 
   const handleThemeMode = (e) => {
     const isLight = e.target.checked;

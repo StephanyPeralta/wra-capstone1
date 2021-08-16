@@ -31,4 +31,4 @@ function useYoutube(searchTerm) {
   return { videos, isLoading, error };
 }
 
-export default useYoutube;
+export { useYoutube };

@@ -1,15 +1,26 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import Video from './Video.page';
+import VideoPage from './Video.page';
+import VideoProvider from '../../providers/Video';
+import { useYoutube } from '../../utils/hooks/useYoutube';
+import videosMock from '../../mocks/youtube-videos-mock.json';
 
-jest.mock('../../components/VideoPlayer', () => () => <div>VideoPlayer Mock</div>);
-jest.mock('../../components/VideoList', () => () => <div>VideoList Mock</div>);
+jest.mock('../../utils/hooks/useYoutube', () => ({
+  useYotube: jest.fn(),
+}));
 
 describe('Video page', () => {
   it('renders Video elements', () => {
-    render(<Video />);
-    expect(screen.getByText('VideoPlayer Mock')).toBeInTheDocument();
-    expect(screen.getByText('VideoList Mock')).toBeInTheDocument();
+    const videos = videosMock;
+    const isLoading = false;
+    const error = false;
+    useYoutube.mockReturnValue({ videos, isLoading, error });
+    render(
+      <VideoProvider>
+        <VideoPage />
+      </VideoProvider>
+    );
+    expect(screen.getByTestId('video-player')).toBeInTheDocument();
   });
 });

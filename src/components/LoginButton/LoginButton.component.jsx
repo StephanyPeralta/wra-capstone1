@@ -1,12 +1,12 @@
 import React from 'react';
-import PersonIcon from '@material-ui/icons/Person';
+import { BsPersonFill } from 'react-icons/bs';
 
 import { LoginIconWrapper } from './LoginButton.styled';
 
 function LoginButton() {
   return (
     <LoginIconWrapper>
-      <PersonIcon />
+      <BsPersonFill size={25} />
     </LoginIconWrapper>
   );
 }

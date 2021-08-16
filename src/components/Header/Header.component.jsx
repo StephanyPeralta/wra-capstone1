@@ -1,5 +1,5 @@
 import React from 'react';
-import MenuIcon from '@material-ui/icons/Menu';
+import { FiMenu } from 'react-icons/fi';
 
 import Search from '../Search';
 import ThemeToggle from '../ThemeToggle';
@@ -11,9 +11,9 @@ function Header({ handleToggleMenu }) {
     <HeaderWrapper>
       <HeaderSection>
         <MenuButton className="shown-mobile" onClick={() => handleToggleMenu()}>
-          <MenuIcon />
+          <FiMenu size={27} />
         </MenuButton>
-        <LogoTitle to="/" className="hidden-mobile">
+        <LogoTitle href="/" className="hidden-mobile">
           YouCool
         </LogoTitle>
       </HeaderSection>

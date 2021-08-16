@@ -1,15 +1,15 @@
 import React from 'react';
 
 import VideoProvider from '../../providers/Video';
-import GlobalProvider from '../../providers/Global';
+import SelectorProvider from '../../providers/Selector';
 import Router from '../Router';
 
 function App() {
   return (
     <VideoProvider>
-      <GlobalProvider>
+      <SelectorProvider>
         <Router />
-      </GlobalProvider>
+      </SelectorProvider>
     </VideoProvider>
   );
 }

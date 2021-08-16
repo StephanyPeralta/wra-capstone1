@@ -40,7 +40,7 @@ const SearchIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   color: black;
-  padding: 0 0.5rem;
+  padding: 0 0.6rem;
   &:focus {
     border: none;
   }

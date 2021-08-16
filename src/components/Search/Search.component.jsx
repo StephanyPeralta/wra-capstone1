@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom';
+import { BiSearchAlt2 } from 'react-icons/bi';
 
 import { useVideo } from '../../providers/Video';
 import { SearchContainer, SearchInput, SearchIconWrapper } from './Search.styled';
@@ -40,7 +40,7 @@ function Search() {
         value={termValue}
       />
       <SearchIconWrapper>
-        <SearchIcon />
+        <BiSearchAlt2 size={25} />
       </SearchIconWrapper>
     </SearchContainer>
   );

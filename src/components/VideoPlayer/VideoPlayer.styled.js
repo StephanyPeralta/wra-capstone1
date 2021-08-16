@@ -4,7 +4,7 @@ const VideoSectionWrapper = styled.div`
   display: flex;
   margin: 0 auto;
   max-width: 1800px;
-  padding: 15px 15px 0;
+  padding: 0 15px;
   @media (max-width: 992px) {
     flex-direction: column;
   }
@@ -15,12 +15,20 @@ const VideoPlayerWrapper = styled.div`
   flex-direction: column;
   flex: 6;
   padding: 15px;
+  height: 90vh;
+  overflow: scroll;
+  .video-title {
+    margin: 15px 0;
+  }
+  .video-description {
+    margin: 0 0 15px;
+  }
 `;
 
 const IframeVideo = styled.iframe`
   display: block;
   width: 100%;
-  height: 60%;
+  height: 62%;
   @media (max-width: 992px) {
     height: 40vh;
   }
