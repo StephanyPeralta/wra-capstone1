@@ -11,13 +11,11 @@ const videoPropsMock = {
   publishDate: '2014-09-27T01:39:18Z',
 };
 
-const childrenMock = {
-  children: <div>A child element</div>,
-};
+const childrenMock = <div>A child element</div>;
 
 describe('VideoPlayer component', () => {
   it('renders VideoPlayer elements', () => {
-    render(<VideoPlayer {...childrenMock} {...videoPropsMock} />);
+    render(<VideoPlayer videoProps={videoPropsMock}>{childrenMock}</VideoPlayer>);
 
     const iframe = screen.getByTitle('Video Player');
 
@@ -27,5 +25,3 @@ describe('VideoPlayer component', () => {
     expect(screen.getByText('A child element')).toBeInTheDocument();
   });
 });
-
-// How to fix this error: Cannot read property 'videoId' of undefined

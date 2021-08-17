@@ -22,7 +22,7 @@ function VideoPage() {
 
   if (isLoading) {
     return (
-      <LoaderContainer>
+      <LoaderContainer data-testid="loader-icon1">
         <Loader size={60} />
       </LoaderContainer>
     );
@@ -30,7 +30,7 @@ function VideoPage() {
 
   return (
     <>
-      <VideoPlayer data-testid="video-player" videoProps={state.videoProps}>
+      <VideoPlayer videoProps={state.videoProps}>
         <VideoList videos={videos} />
       </VideoPlayer>
     </>

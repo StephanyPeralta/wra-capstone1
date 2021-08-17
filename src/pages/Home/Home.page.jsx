@@ -21,7 +21,7 @@ function HomePage() {
 
   if (isLoading) {
     return (
-      <LoaderContainer>
+      <LoaderContainer data-testid="loader-icon2">
         <Loader size={60} />
       </LoaderContainer>
     );

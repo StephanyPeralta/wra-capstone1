@@ -7,15 +7,13 @@ import SelectorProvider from '../../providers/Selector';
 jest.mock('../Header', () => () => <div>Header Mock</div>);
 jest.mock('../SideMenu', () => () => <div>SideMenu Mock</div>);
 
-const childrenMock = {
-  children: <div>A child element</div>,
-};
+const childrenMock = <div>A child element</div>;
 
 describe('Layout component', () => {
   it('renders Layout elements', () => {
     render(
       <SelectorProvider>
-        <Layout {...childrenMock} />
+        <Layout>{childrenMock}</Layout>
       </SelectorProvider>
     );
 

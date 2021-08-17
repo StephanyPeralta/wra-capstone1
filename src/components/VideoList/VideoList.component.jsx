@@ -9,7 +9,10 @@ function VideoList({ videos }) {
   const { state } = useVideo();
 
   return (
-    <VideoWrapper className={!state.searchStatus ? 'related-list' : ''}>
+    <VideoWrapper
+      data-testid="video-list"
+      className={!state.searchStatus ? 'related-list' : ''}
+    >
       {videos
         .filter((video) => video.id.kind === 'youtube#video')
         .map((video) => (

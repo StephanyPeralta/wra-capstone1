@@ -18,11 +18,15 @@ function VideoPlayer({ children, videoProps }) {
           allowFullScreen
         />
         <div>
-          <h1 className="video-title">{videoProps.title}</h1>
-          <p className="video-description">{videoProps.description}</p>
+          <h1 data-testid="video-title" className="video-title">
+            {videoProps.title}
+          </h1>
+          <p data-testid="video-description" className="video-description">
+            {videoProps.description}
+          </p>
         </div>
       </VideoPlayerWrapper>
-      <RelatedVideos>{children}</RelatedVideos>
+      <RelatedVideos data-testid="related-videos">{children}</RelatedVideos>
     </VideoSectionWrapper>
   );
 }

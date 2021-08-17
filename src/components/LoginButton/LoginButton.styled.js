@@ -17,4 +17,28 @@ const LoginIconWrapper = styled.div`
   }
 `;
 
-export { LoginIconWrapper };
+const Dropdown = styled.div`
+  position: absolute;
+  top: 10vh;
+  width: 150px;
+  transform: translateX(-60%);
+  padding: 0.5rem 0;
+  background-color: ${(props) => props.theme.button};
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  .dropdown-button {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: ${(props) => props.theme.hover};
+    }
+  }
+`;
+
+export { LoginIconWrapper, Dropdown };

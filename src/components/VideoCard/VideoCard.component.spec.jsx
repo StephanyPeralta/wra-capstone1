@@ -30,15 +30,12 @@ describe('VideoCard component', () => {
       searchTerm: 'wizeline',
       videoProps: {},
     };
-
     useVideo.mockReturnValue({ state, dispatch });
 
     render(
-      //   <VideoProvider>
       <MemoryRouter>
         <VideoCard {...videoCardMock} />
       </MemoryRouter>
-      //   </VideoProvider>
     );
 
     expect(screen.getByAltText(videoCardMock.title)).toBeInTheDocument();
@@ -52,22 +49,17 @@ describe('VideoCard component', () => {
       searchTerm: 'wizeline',
       videoProps: {},
     };
-
     useVideo.mockReturnValue({ state, dispatch });
 
     render(
-      //   <VideoProvider>
       <MemoryRouter>
         <VideoCard {...videoCardMock} />
       </MemoryRouter>
-      //   </VideoProvider>
     );
 
     const videoCardRV = screen.getByTestId('card-relatedvideos');
 
-    const searchStatusMock = state.searchStatus;
-
-    expect(searchStatusMock).toBeFalsy();
+    expect(state.searchStatus).toBeFalsy();
     expect(videoCardRV).toBeInTheDocument();
   });
 });

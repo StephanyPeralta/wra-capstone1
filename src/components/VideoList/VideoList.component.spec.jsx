@@ -8,13 +8,12 @@ import videosMock from '../../mocks/youtube-videos-mock.json';
 jest.mock('../VideoCard', () => () => <div>VideoCard Mock</div>);
 
 const videos = videosMock.items;
-const videoListMock = { videos };
 
 describe('VideoList component', () => {
   it('renders VideoList elements', () => {
     render(
       <VideoProvider>
-        <VideoList {...videoListMock} />
+        <VideoList videos={videos} />
       </VideoProvider>
     );
     expect(screen.getAllByText('VideoCard Mock').length).toEqual(24);

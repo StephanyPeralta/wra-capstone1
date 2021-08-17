@@ -7,13 +7,11 @@ jest.mock('../Search', () => () => <div>Search Mock</div>);
 jest.mock('../ThemeToggle', () => () => <div>ThemeToggle Mock</div>);
 jest.mock('../LoginButton', () => () => <div>LoginButton Mock</div>);
 
-const mockHandler = {
-  handleToggleMenu: jest.fn(),
-};
+const mockHandler = jest.fn();
 
 describe('Header component', () => {
   it('renders Header elements', () => {
-    render(<Header {...mockHandler} />);
+    render(<Header handleToggleMenu={mockHandler} />);
 
     expect(screen.getByText('YouCool')).toBeInTheDocument();
     expect(screen.getByText('Search Mock')).toBeInTheDocument();
@@ -22,10 +20,10 @@ describe('Header component', () => {
   });
 
   it('calls onClick prop when clicked MenuButton', () => {
-    render(<Header {...mockHandler} />);
+    render(<Header handleToggleMenu={mockHandler} />);
 
     const MenuButton = screen.getByRole('button', { hidden: true });
     fireEvent.click(MenuButton);
-    expect(mockHandler.handleToggleMenu).toHaveBeenCalledTimes(1);
+    expect(mockHandler).toHaveBeenCalledTimes(1);
   });
 });
