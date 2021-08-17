@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const Form = styled.div`
-  max-width: 350px;
+const Form = styled.form`
+  max-width: 320px;
   margin: 0 auto;
   width: 100%;
   .form-label {
@@ -16,14 +16,19 @@ const Form = styled.div`
     line-height: 2;
     font-size: 16px;
     width: 100%;
-    padding: 0 8px;
+    padding: 3px 8px;
     margin-bottom: 16px;
     margin-top: 4px;
   }
   .button-wrapper {
     display: flex;
     justify-content: flex-end;
+    margin: 30px 0 0;
   }
+`;
+
+const FormTitle = styled.h1`
+  margin: 20px 0 10px;
 `;
 
 const Button = styled.button`
@@ -35,11 +40,12 @@ const Button = styled.button`
   cursor: pointer;
   color: black;
   font-size: 14px;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 15px;
+  min-width: 90px;
   transition: all 0.3s ease-in-out;
   &:hover {
     background-color: ${(props) => props.theme.primary};
   }
 `;
 
-export { Form, Button };
+export { Form, Button, FormTitle };

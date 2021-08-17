@@ -21,7 +21,7 @@ describe('NotFound page', () => {
     expect(screen.getByRole('button', { name: 'Go Back Home' })).toBeInTheDocument();
   });
 
-  it('redirects to HomePage after click ErrorButton', () => {
+  it('redirects to HomePage after clicking ErrorButton', () => {
     useHistory.mockReturnValue({ push: mockHistoryPush });
 
     const errorButton = screen.getByRole('button', { name: 'Go Back Home' });

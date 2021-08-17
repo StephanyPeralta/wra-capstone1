@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Form, Button } from './LoginForm.styled';
+import { Form, Button, FormTitle } from './LoginForm.styled';
 
-function LoginForm() {
+function LoginForm({ onClose }) {
   return (
     <>
-      <h1>Login</h1>
-      <Form className="form">
+      <FormTitle>Login</FormTitle>
+      <Form>
         <label className="form-label" htmlFor="username">
           Username
           <input
@@ -28,7 +28,9 @@ function LoginForm() {
         </label>
 
         <div className="button-wrapper">
-          <Button type="button">Cancel</Button>
+          <Button type="button" onClick={onClose}>
+            Cancel
+          </Button>
           <Button type="submit">Login</Button>
         </div>
       </Form>

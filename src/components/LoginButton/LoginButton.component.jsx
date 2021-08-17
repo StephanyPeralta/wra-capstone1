@@ -31,8 +31,8 @@ function LoginButton() {
         </Dropdown>
       )}
       {showModal && (
-        <ModalPortal onClose={handleClose}>
-          <LoginForm />
+        <ModalPortal>
+          <LoginForm onClose={handleClose} />
         </ModalPortal>
       )}
     </div>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginIconWrapper = styled.div`
+const LoginIconWrapper = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;

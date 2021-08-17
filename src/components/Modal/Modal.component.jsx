@@ -3,22 +3,17 @@ import ReactDOM from 'react-dom';
 
 import { ModalWrapper } from './Modal.styled';
 
-function Modal({ children, onClose }) {
+function Modal({ children }) {
   return (
     <ModalWrapper className="modal">
-      <div className="modal-content">
-        <button type="button" onClick={onClose}>
-          🅧
-        </button>
-        {children}
-      </div>
+      <div className="modal-content">{children}</div>
     </ModalWrapper>
   );
 }
 
-export default function ModalPortal({ children, onClose }) {
+export default function ModalPortal({ children }) {
   return ReactDOM.createPortal(
-    <Modal onClose={onClose}>{children}</Modal>,
+    <Modal>{children}</Modal>,
     document.getElementById('portal')
   );
 }

@@ -7,7 +7,7 @@ const Themes = {
     button: '#ae90c8',
     color: '#000',
     input: '#e0e0e0',
-    hover: 'rgba(0, 0, 0, 0.06)',
+    hover: 'rgba(0, 0, 0, 0.1)',
   },
   dark: {
     primary: '#ae90c8',
