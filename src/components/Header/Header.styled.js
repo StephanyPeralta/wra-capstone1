@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const HeaderWrapper = styled.header`
   display: flex;
@@ -44,7 +45,7 @@ const MenuButton = styled.button`
   display: none;
 `;
 
-const LogoTitle = styled.a`
+const LogoTitle = styled(Link)`
   padding: 0.3rem;
   font-size: 22px;
   font-weight: 700;

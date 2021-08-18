@@ -4,7 +4,7 @@ import { BiLike } from 'react-icons/bi';
 import { MdExitToApp } from 'react-icons/md';
 
 import { useVideo } from '../../providers/Video';
-import { SideMenuNav, SideMenuLink, SideMenuText } from './SideMenu.styled';
+import { MenuNav, MenuLink, MenuText } from './SideMenu.styled';
 
 function SideMenu({ sideMenuAction, handleToggleMenu }) {
   const { dispatch } = useVideo();
@@ -19,43 +19,44 @@ function SideMenu({ sideMenuAction, handleToggleMenu }) {
   };
 
   return (
-    <SideMenuNav
+    <MenuNav
       className={sideMenuAction ? 'open-menu' : ''}
       onClick={() => handleToggleMenu(false)}
       tabIndex="0"
     >
       <ul aria-label="navbar-list">
-        <SideMenuLink
+        <MenuLink
           to="/"
           onClick={handleClick}
           className="centered-items"
           tabIndex="0"
+          data-testid="home-link"
         >
           <VscHome size={27} />
-          <SideMenuText className="hidden-tablet">Home</SideMenuText>
-        </SideMenuLink>
-        <SideMenuLink
+          <MenuText className="hidden-tablet">Home</MenuText>
+        </MenuLink>
+        <MenuLink
           to="/"
-          onClick={handleClick}
+          // onClick={handleClick}
           className="centered-items"
           tabIndex="0"
         >
           <BiLike size={27} />
-          <SideMenuText className="hidden-tablet">Favorites</SideMenuText>
-        </SideMenuLink>
+          <MenuText className="hidden-tablet">Favorites</MenuText>
+        </MenuLink>
         <hr />
-        <SideMenuLink
+        <MenuLink
           to="/"
-          onClick={handleClick}
+          // onClick={handleClick}
           className="centered-items"
           tabIndex="0"
         >
           <MdExitToApp size={27} />
-          <SideMenuText className="hidden-tablet">Log Out</SideMenuText>
-        </SideMenuLink>
+          <MenuText className="hidden-tablet">Log Out</MenuText>
+        </MenuLink>
         <hr />
       </ul>
-    </SideMenuNav>
+    </MenuNav>
   );
 }
 

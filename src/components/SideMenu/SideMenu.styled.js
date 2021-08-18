@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
-const SideMenuNav = styled.nav`
+const MenuNav = styled.nav`
   background-color: ${(props) => props.theme.secondary};
   display: flex;
   flex-direction: column;
@@ -28,7 +28,7 @@ const SideMenuNav = styled.nav`
   }
 `;
 
-const SideMenuLink = styled(Link)`
+const MenuLink = styled(Link)`
   color: ${(props) => props.theme.color};
   display: flex;
   align-items: center;
@@ -41,11 +41,11 @@ const SideMenuLink = styled(Link)`
   }
 `;
 
-const SideMenuText = styled.span`
+const MenuText = styled.span`
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.4px;
   margin-left: 1rem;
 `;
 
-export { SideMenuNav, SideMenuLink, SideMenuText };
+export { MenuNav, MenuLink, MenuText };

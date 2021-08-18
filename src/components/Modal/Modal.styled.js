@@ -18,7 +18,7 @@ const ModalWrapper = styled.div`
     height: 40vh;
     margin: 30vh auto;
     position: relative;
-    overflow: hidden;
+    overflow: scroll;
   }
 `;
 

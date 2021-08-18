@@ -1,9 +1,9 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import { useVideo } from '../../providers/Video';
 
 import VideoCard from './VideoCard.component';
+import { useVideo } from '../../providers/Video';
 
 jest.mock('../../providers/Video', () => ({
   useVideo: jest.fn(() => ({ state: jest.fn(), dispatch: jest.fn() })),
