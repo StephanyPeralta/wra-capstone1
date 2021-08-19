@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 const MenuNav = styled.nav`
   background-color: ${(props) => props.theme.secondary};
@@ -17,7 +16,7 @@ const MenuNav = styled.nav`
     .hidden-tablet {
       display: none;
     }
-    .centered-items {
+    .centered {
       justify-content: center;
     }
   }
@@ -28,14 +27,18 @@ const MenuNav = styled.nav`
   }
 `;
 
-const MenuLink = styled(Link)`
-  color: ${(props) => props.theme.color};
+const MenuItem = styled.li`
   display: flex;
   align-items: center;
-  padding: 0.5rem 1rem;
+  padding: 0.7rem 1rem;
   margin: 0.2rem 0;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  .link-item {
+    color: ${(props) => props.theme.color};
+    display: flex;
+    align-items: center;
+  }
   &:hover {
     background-color: ${(props) => props.theme.hover};
   }
@@ -48,4 +51,4 @@ const MenuText = styled.span`
   margin-left: 1rem;
 `;
 
-export { MenuNav, MenuLink, MenuText };
+export { MenuNav, MenuItem, MenuText };
