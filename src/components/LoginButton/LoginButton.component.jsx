@@ -26,7 +26,7 @@ function LoginButton() {
       {open && (
         <Dropdown>
           <button type="button" className="dropdown-button" onClick={handleClick}>
-            Login
+            Log In
           </button>
         </Dropdown>
       )}

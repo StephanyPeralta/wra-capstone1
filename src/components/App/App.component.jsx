@@ -1,7 +1,7 @@
 import React from 'react';
 
-import VideoProvider from '../../providers/Video';
 import SelectorProvider from '../../providers/Selector';
+import VideoProvider from '../../providers/Video';
 import Router from '../Router';
 
 function App() {

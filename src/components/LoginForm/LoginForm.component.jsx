@@ -5,15 +5,16 @@ import { Form, Button, FormTitle } from './LoginForm.styled';
 function LoginForm({ onClose }) {
   return (
     <>
-      <FormTitle>Login</FormTitle>
+      <FormTitle>Log In</FormTitle>
       <Form>
-        <label className="form-label" htmlFor="username">
-          Username
+        <label className="form-label" htmlFor="email">
+          Email
           <input
             className="form-input"
-            type="text"
-            id="username"
-            placeholder="Username"
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
           />
         </label>
 
@@ -24,6 +25,7 @@ function LoginForm({ onClose }) {
             type="password"
             id="password"
             placeholder="Password"
+            required
           />
         </label>
 
@@ -31,7 +33,7 @@ function LoginForm({ onClose }) {
           <Button type="button" onClick={onClose}>
             Cancel
           </Button>
-          <Button type="submit">Login</Button>
+          <Button type="submit">Log In</Button>
         </div>
       </Form>
     </>

@@ -48,4 +48,19 @@ const Button = styled.button`
   }
 `;
 
-export { Form, Button, FormTitle };
+const ErrorAlert = styled.div`
+  display: flex;
+  color: darkred;
+  align-items: center;
+  background-color: #ffebee;
+  border-radius: 10px;
+  height: 50px;
+  margin: 15px auto;
+  padding: 6px 16px;
+  width: 100%;
+  .error-msg {
+    padding: 8px 15px;
+  }
+`;
+
+export { Form, Button, FormTitle, ErrorAlert };
