@@ -1,8 +1,8 @@
 import React from 'react';
-// import { Redirect } from 'react-router-dom';
+import { FiAlertCircle } from 'react-icons/fi';
 
-import { useVideo } from '../../providers/Video.provider';
-import useYoutube from '../../utils/hooks/useYoutube';
+import { useVideo } from '../../providers/Video';
+import { useYoutube } from '../../utils/hooks/useYoutube';
 import VideoPlayer from '../../components/VideoPlayer';
 import VideoList from '../../components/VideoList';
 import { LoaderContainer, Loader, ErrorAlert } from './Video.styled';
@@ -12,19 +12,21 @@ function VideoPage() {
   const { videos, isLoading, error } = useYoutube(state.searchTerm);
 
   if (error) {
-    return <ErrorAlert severity="error">Error loading page!</ErrorAlert>;
-  }
-  if (isLoading) {
     return (
-      <LoaderContainer>
-        <Loader style={{ fontSize: 60 }} />
-      </LoaderContainer>
+      <ErrorAlert>
+        <FiAlertCircle />
+        <span className="error-msg"> Error loading page!</span>
+      </ErrorAlert>
     );
   }
 
-  // if (state.searchStatus) {
-  //   return <Redirect to="/" />;
-  // }
+  if (isLoading) {
+    return (
+      <LoaderContainer data-testid="loader-icon1">
+        <Loader size={60} />
+      </LoaderContainer>
+    );
+  }
 
   return (
     <>

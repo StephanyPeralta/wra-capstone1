@@ -1,13 +1,41 @@
-import React from 'react';
-import PersonIcon from '@material-ui/icons/Person';
+import React, { useState } from 'react';
+import { BsPersonFill } from 'react-icons/bs';
 
-import { LoginIconWrapper } from './LoginButton.styled';
+import ModalPortal from '../Modal';
+import LoginForm from '../LoginForm';
+import { LoginIconWrapper, Dropdown } from './LoginButton.styled';
 
 function LoginButton() {
+  const [open, setOpen] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClick = () => {
+    setShowModal(true);
+    setOpen(false);
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   return (
-    <LoginIconWrapper>
-      <PersonIcon />
-    </LoginIconWrapper>
+    <div>
+      <LoginIconWrapper onClick={() => setOpen(!open)}>
+        <BsPersonFill size={25} />
+      </LoginIconWrapper>
+      {open && (
+        <Dropdown>
+          <button type="button" className="dropdown-button" onClick={handleClick}>
+            Log In
+          </button>
+        </Dropdown>
+      )}
+      {showModal && (
+        <ModalPortal>
+          <LoginForm onClose={handleClose} />
+        </ModalPortal>
+      )}
+    </div>
   );
 }
 

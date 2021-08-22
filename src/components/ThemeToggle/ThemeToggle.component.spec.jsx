@@ -2,19 +2,34 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import ThemeToggle from './ThemeToggle.component';
+import SelectorProvider from '../../providers/Selector';
 
 describe('ThemeToggle component', () => {
-  it('renders ThemeToggle', () => {
-    render(<ThemeToggle />);
-    const themeToggle = screen.getByTitle('themeButton');
+  it('renders ThemeToggle elements', () => {
+    render(
+      <SelectorProvider>
+        <ThemeToggle />
+      </SelectorProvider>
+    );
+
+    const themeToggle = screen.getByTitle('theme-mode');
+
     expect(themeToggle).toBeTruthy();
   });
-  it('clicking ThemeToggle changes text mode', () => {
-    render(<ThemeToggle />);
-    const themeToggle = screen.getByTitle('themeButton');
-    fireEvent.click(themeToggle);
-    expect(themeToggle.innerHTML).toBe('Light');
-    fireEvent.click(themeToggle);
-    expect(themeToggle.innerHTML).toBe('Dark');
+
+  it('clicking ThemeToggle changes theme mode', () => {
+    render(
+      <SelectorProvider>
+        <ThemeToggle />
+      </SelectorProvider>
+    );
+
+    const inputTheme = screen.getByRole('checkbox');
+
+    fireEvent.click(inputTheme);
+    expect(inputTheme).toBeChecked();
+
+    fireEvent.click(inputTheme);
+    expect(inputTheme).not.toBeChecked();
   });
 });

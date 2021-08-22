@@ -6,6 +6,10 @@ const VideoWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  &.related-list {
+    display: flex;
+    flex-direction: column;
+  }
   @media (min-width: 2018px) {
     max-width: 1800px;
   }

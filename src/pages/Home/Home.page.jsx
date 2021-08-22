@@ -1,8 +1,9 @@
 import React from 'react';
+import { FiAlertCircle } from 'react-icons/fi';
 
 import VideoList from '../../components/VideoList';
-import { useVideo } from '../../providers/Video.provider';
-import useYoutube from '../../utils/hooks/useYoutube';
+import { useVideo } from '../../providers/Video';
+import { useYoutube } from '../../utils/hooks/useYoutube';
 import { LoaderContainer, Loader, ErrorAlert, HomeWrapper } from './Home.styled';
 
 function HomePage() {
@@ -10,12 +11,18 @@ function HomePage() {
   const { videos, isLoading, error } = useYoutube(state.searchTerm);
 
   if (error) {
-    return <ErrorAlert severity="error">Error loading page!</ErrorAlert>;
+    return (
+      <ErrorAlert>
+        <FiAlertCircle />
+        <span className="error-msg"> Error loading page!</span>
+      </ErrorAlert>
+    );
   }
+
   if (isLoading) {
     return (
-      <LoaderContainer>
-        <Loader style={{ fontSize: 60 }} />
+      <LoaderContainer data-testid="loader-icon2">
+        <Loader size={60} />
       </LoaderContainer>
     );
   }
@@ -23,7 +30,10 @@ function HomePage() {
   return (
     <HomeWrapper>
       {videos.length === 0 ? (
-        <ErrorAlert severity="error">No videos found</ErrorAlert>
+        <ErrorAlert>
+          <FiAlertCircle />
+          <span className="error-msg">No videos found</span>
+        </ErrorAlert>
       ) : (
         <VideoList videos={videos} />
       )}

@@ -1,35 +1,57 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { VscHome } from 'react-icons/vsc';
+import { BiLike } from 'react-icons/bi';
+import { MdExitToApp } from 'react-icons/md';
 
-import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
-import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
-import ExitToAppOutlinedIcon from '@material-ui/icons/ExitToAppOutlined';
-
-import { SideMenuNav, SideMenuLink, SideMenuText } from './SideMenu.styled';
+import { useVideo } from '../../providers/Video';
+import { MenuNav, MenuItem, MenuText } from './SideMenu.styled';
 
 function SideMenu({ sideMenuAction, handleToggleMenu }) {
+  const { dispatch } = useVideo();
+
+  const handleClick = () => {
+    dispatch({
+      type: 'SET_SEARCH_STATUS',
+      payload: {
+        searchStatus: true,
+      },
+    });
+  };
+
   return (
-    <SideMenuNav
+    <MenuNav
       className={sideMenuAction ? 'open-menu' : ''}
       onClick={() => handleToggleMenu(false)}
       tabIndex="0"
     >
       <ul aria-label="navbar-list">
-        <SideMenuLink to="/" className="centered-items" tabIndex="0">
-          <HomeOutlinedIcon />
-          <SideMenuText className="hidden-tablet">Home</SideMenuText>
-        </SideMenuLink>
-        <SideMenuLink to="/" className="centered-items" tabIndex="0">
-          <ThumbUpAltOutlinedIcon />
-          <SideMenuText className="hidden-tablet">Favorites</SideMenuText>
-        </SideMenuLink>
+        <MenuItem onClick={handleClick} className="centered" data-testid="home-link">
+          <Link to="/" className="link-item">
+            <VscHome size={27} />
+            <MenuText className="hidden-tablet">Home</MenuText>
+          </Link>
+        </MenuItem>
+
+        <MenuItem onClick={handleClick} className="centered">
+          <Link to="/" className="link-item">
+            <BiLike size={27} />
+            <MenuText className="hidden-tablet">Favorites</MenuText>
+          </Link>
+        </MenuItem>
+
         <hr />
-        <SideMenuLink to="/" className="centered-items" tabIndex="0">
-          <ExitToAppOutlinedIcon />
-          <SideMenuText className="hidden-tablet">Log Out</SideMenuText>
-        </SideMenuLink>
+
+        <MenuItem className="centered">
+          <Link to="/" className="link-item">
+            <MdExitToApp size={27} />
+            <MenuText className="hidden-tablet">Log Out</MenuText>
+          </Link>
+        </MenuItem>
+
         <hr />
       </ul>
-    </SideMenuNav>
+    </MenuNav>
   );
 }
 

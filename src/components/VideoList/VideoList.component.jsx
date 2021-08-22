@@ -1,12 +1,18 @@
 import React from 'react';
 
 // import videos from '../../mocks/youtube-videos-mock.json';
+import { useVideo } from '../../providers/Video';
 import VideoCard from '../VideoCard';
 import { VideoWrapper } from './VideoList.styled';
 
 function VideoList({ videos }) {
+  const { state } = useVideo();
+
   return (
-    <VideoWrapper>
+    <VideoWrapper
+      data-testid="video-list"
+      className={!state.searchStatus ? 'related-list' : ''}
+    >
       {videos
         .filter((video) => video.id.kind === 'youtube#video')
         .map((video) => (
@@ -16,7 +22,7 @@ function VideoList({ videos }) {
             img={video.snippet.thumbnails.medium.url}
             title={video.snippet.title}
             description={video.snippet.description}
-            publishTime={video.snippet.publishTime}
+            publishDate={new Date(video.snippet.publishedAt).toDateString()}
           />
         ))}
     </VideoWrapper>

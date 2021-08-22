@@ -1,43 +1,80 @@
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
+  background-color: ${(props) => props.theme.card};
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   width: 315px;
-  height: 320px;
+  height: 332px;
   margin: 0 10px 40px;
   cursor: pointer;
-  transition: all 1s ease;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  .card-thumbnail {
+    border-radius: 10px 10px 0 0;
+    background-color: gray;
+    display: block;
+    height: 140px;
+    width: 100%;
+    object-fit: cover;
+  }
+  .card-content {
+    color: ${(props) => props.theme.color};
+    padding: 10px;
+  }
+  .card-title {
+    margin: 0;
+  }
+  .card-date {
+    margin: 2px 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #a3a3a3;
+  }
+  .card-description {
+    font-size: 14px;
+    margin: 0;
+    line-height: 155%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: ${(props) => props.theme.hover};
     opacity: 0.9;
   }
 `;
 
-const CardThumbnail = styled.img`
-  border-radius: 10px 10px 0 0;
-  background-color: gray;
-  display: block;
-  height: 140px;
+const CardWrapperRV = styled(CardWrapper)`
+  border-radius: 0;
+  box-shadow: none;
   width: 100%;
-  object-fit: cover;
+  height: 110px;
+  margin: 0 0 15px;
+  .card-link {
+    display: flex;
+  }
+  .card-thumbnail {
+    border-radius: 0;
+    height: 110px;
+    max-width: 40%;
+    object-fit: cover;
+  }
+  .card-content {
+    color: ${(props) => props.theme.color};
+    padding: 10px;
+    max-width: 60%;
+  }
+  .card-title {
+    font-size: 16px;
+    margin: 0;
+  }
+  .card-date {
+    margin: 2px 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: #a3a3a3;
+  }
 `;
 
-const CardContent = styled.div`
-  padding: 15px;
-`;
-
-const CardTitle = styled.h4`
-  margin: 0 0 5px;
-`;
-
-const CardDescription = styled.p`
-  font-size: 14px;
-  margin: 0;
-  font-weight: 400;
-`;
-
-export { CardWrapper, CardThumbnail, CardContent, CardTitle, CardDescription };
+export { CardWrapper, CardWrapperRV };

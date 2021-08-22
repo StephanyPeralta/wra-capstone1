@@ -7,6 +7,8 @@ const LayoutContainer = styled.div`
 const SectionWrapper = styled.div`
   display: flex;
   height: 90vh;
+  background-color: ${(props) => props.theme.background};
+  color: ${(props) => props.theme.color};
 `;
 
 const SectionContainer = styled.section`

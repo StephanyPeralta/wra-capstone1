@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginIconWrapper = styled.div`
+const LoginIconWrapper = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -9,16 +9,36 @@ const LoginIconWrapper = styled.div`
   width: 45px;
   border-radius: 50%;
   border: 2px solid black;
-  background-color: #ae90c8;
+  background-color: ${(props) => props.theme.button};
   color: black;
   margin: 0 0 0 15px;
-  transition: all 0.5s ease;
-  &:hover {
-    background-color: rgba(187, 154, 217, 0.8);
-  }
   @media (max-width: 768px) {
     margin: 0;
   }
 `;
 
-export { LoginIconWrapper };
+const Dropdown = styled.div`
+  position: absolute;
+  top: 10vh;
+  width: 150px;
+  transform: translateX(-60%);
+  padding: 0.5rem 0;
+  background-color: ${(props) => props.theme.button};
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  .dropdown-button {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background-color: ${(props) => props.theme.hover};
+    }
+  }
+`;
+
+export { LoginIconWrapper, Dropdown };

@@ -4,7 +4,6 @@ import {
   VideoSectionWrapper,
   VideoPlayerWrapper,
   IframeVideo,
-  VideoInfo,
   RelatedVideos,
 } from './VideoPlayer.styled';
 
@@ -13,18 +12,21 @@ function VideoPlayer({ children, videoProps }) {
     <VideoSectionWrapper>
       <VideoPlayerWrapper>
         <IframeVideo
-          id="videoPlayer"
-          title="Video Iframe"
-          src={`https://youtube.com/embed/${videoProps.videoId}?autoplay=0`}
+          title="Video Player"
+          src={`https://youtube.com/embed/${videoProps.videoId}`}
           frameBorder="0"
           allowFullScreen
         />
-        <VideoInfo>
-          <h1>{videoProps.title}</h1>
-          <p>{videoProps.description}</p>
-        </VideoInfo>
+        <div>
+          <h1 data-testid="video-title" className="video-title">
+            {videoProps.title}
+          </h1>
+          <p data-testid="video-description" className="video-description">
+            {videoProps.description}
+          </p>
+        </div>
       </VideoPlayerWrapper>
-      <RelatedVideos>{children}</RelatedVideos>
+      <RelatedVideos data-testid="related-videos">{children}</RelatedVideos>
     </VideoSectionWrapper>
   );
 }
