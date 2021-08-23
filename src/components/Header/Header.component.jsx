@@ -4,7 +4,7 @@ import { FiMenu } from 'react-icons/fi';
 import { useVideo } from '../../providers/Video';
 import Search from '../Search';
 import ThemeToggle from '../ThemeToggle';
-import LoginButton from '../LoginButton';
+import ProfileButton from '../ProfileButton';
 import { HeaderWrapper, MenuButton, LogoTitle, HeaderSection } from './Header.styled';
 
 function Header({ handleToggleMenu }) {
@@ -33,7 +33,7 @@ function Header({ handleToggleMenu }) {
         <div className="hidden-tablet">
           <ThemeToggle />
         </div>
-        <LoginButton />
+        <ProfileButton />
       </HeaderSection>
     </HeaderWrapper>
   );

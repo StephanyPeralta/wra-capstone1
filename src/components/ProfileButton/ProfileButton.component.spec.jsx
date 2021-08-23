@@ -1,21 +1,21 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
-import LoginButton from './LoginButton.component';
+import ProfileButton from './ProfileButton.component';
 
 describe('LoginButton component', () => {
   it('renders LoginButton element', () => {
-    render(<LoginButton />);
+    render(<ProfileButton />);
 
-    const loginIconButton = screen.getByRole('button');
-    expect(loginIconButton).toBeInTheDocument();
+    const profileIconButton = screen.getByRole('button');
+    expect(profileIconButton).toBeInTheDocument();
   });
 
   it('renders Login Button after clicking the Avatar icon', () => {
-    render(<LoginButton />);
+    render(<ProfileButton />);
 
-    const loginIconButton = screen.getByRole('button');
-    fireEvent.click(loginIconButton);
+    const profileIconButton = screen.getByRole('button');
+    fireEvent.click(profileIconButton);
 
     const loginButton = screen.getByRole('button', { name: 'Log In' });
     expect(loginButton).toBeInTheDocument();

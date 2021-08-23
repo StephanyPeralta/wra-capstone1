@@ -9,25 +9,25 @@ import {
   FormButton,
   FormTitle,
   ErrorAlert,
-} from './LoginForm.styled';
+} from './SignupForm.styled';
 
-function LoginForm({ onClose }) {
-  const { login } = useAuth();
+function SignupForm({ onClose }) {
   const emailRef = useRef();
   const passwordRef = useRef();
+  const { signup } = useAuth();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  async function handleLogin(e) {
+  async function handleSignup(e) {
     e.preventDefault();
 
     try {
       setError('');
       setLoading(true);
-      await login(emailRef.current.value, passwordRef.current.value);
+      await signup(emailRef.current.value, passwordRef.current.value);
       onClose();
     } catch {
-      setError('Incorrect email or password');
+      setError('Failed to create an account');
     }
 
     setLoading(false);
@@ -41,11 +41,11 @@ function LoginForm({ onClose }) {
         </Button>
       </ButtonWrapper>
 
-      <FormTitle>Log In</FormTitle>
+      <FormTitle>Sign Up</FormTitle>
 
       {error && <ErrorAlert>{error}</ErrorAlert>}
 
-      <Form onSubmit={handleLogin}>
+      <Form onSubmit={handleSignup}>
         <label className="form-label" htmlFor="email">
           Email
           <input
@@ -73,7 +73,7 @@ function LoginForm({ onClose }) {
 
         <ButtonWrapper className="btn-margin">
           <FormButton type="submit" disabled={loading}>
-            Log In
+            Sign Up
           </FormButton>
         </ButtonWrapper>
       </Form>
@@ -81,4 +81,4 @@ function LoginForm({ onClose }) {
   );
 }
 
-export default LoginForm;
+export default SignupForm;
