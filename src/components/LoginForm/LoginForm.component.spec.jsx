@@ -7,10 +7,10 @@ describe('LoginForm component', () => {
   it('renders LoginForm elements', () => {
     render(<LoginForm />);
 
-    const inputUsername = screen.getByPlaceholderText('Username');
+    const inputUsername = screen.getByPlaceholderText('Email');
     const inputPassword = screen.getByPlaceholderText('Password');
     const cancelButton = screen.getByRole('button', { name: 'Cancel' });
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'Log In' });
 
     expect(inputUsername).toBeInTheDocument();
     expect(inputPassword).toBeInTheDocument();

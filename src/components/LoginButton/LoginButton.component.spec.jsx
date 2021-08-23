@@ -17,7 +17,7 @@ describe('LoginButton component', () => {
     const loginIconButton = screen.getByRole('button');
     fireEvent.click(loginIconButton);
 
-    const loginButton = screen.getByRole('button', { name: 'Login' });
+    const loginButton = screen.getByRole('button', { name: 'Log In' });
     expect(loginButton).toBeInTheDocument();
   });
 });

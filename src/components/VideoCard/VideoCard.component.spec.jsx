@@ -43,7 +43,7 @@ describe('VideoCard component', () => {
     expect(screen.getByText(videoCardMock.description)).toBeInTheDocument();
   });
 
-  it('renders card-relatedvideos style if searchStatus is false', () => {
+  it('renders CardWrapperRV styles if searchStatus is false', () => {
     const state = {
       searchStatus: false,
       searchTerm: 'wizeline',
@@ -57,9 +57,9 @@ describe('VideoCard component', () => {
       </MemoryRouter>
     );
 
-    const videoCardRV = screen.getByTestId('card-relatedvideos');
+    const CardWrapperRV = screen.getByTestId('video-card');
 
     expect(state.searchStatus).toBeFalsy();
-    expect(videoCardRV).toBeInTheDocument();
+    expect(CardWrapperRV).toBeInTheDocument();
   });
 });
