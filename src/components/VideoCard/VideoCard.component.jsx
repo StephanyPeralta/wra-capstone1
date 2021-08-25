@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { useVideo } from '../../providers/Video';
-import { CardWrapperMain, CardWrapperRV } from './VideoCard.styled';
+import { CardWrapper, CardWrapperRV } from './VideoCard.styled';
 
 function VideoCard({ img, title, description, videoId, publishDate, pathVideo }) {
   const { state, dispatch } = useVideo();
@@ -17,10 +17,10 @@ function VideoCard({ img, title, description, videoId, publishDate, pathVideo })
     });
   };
 
-  const CardWrapper = state.searchStatus ? CardWrapperMain : CardWrapperRV;
+  const CardWrapperMain = state.searchStatus ? CardWrapper : CardWrapperRV;
 
   return (
-    <CardWrapper
+    <CardWrapperMain
       data-testid="video-card"
       onClick={currentCard({ img, title, description, videoId, publishDate, pathVideo })}
     >
@@ -32,7 +32,7 @@ function VideoCard({ img, title, description, videoId, publishDate, pathVideo })
           {state.searchStatus && <p className="card-description">{description}</p>}
         </div>
       </Link>
-    </CardWrapper>
+    </CardWrapperMain>
   );
 }
 

@@ -16,6 +16,9 @@ function Router() {
           <PrivateRoute exact path="/favorites">
             <FavoritesPage />
           </PrivateRoute>
+          <PrivateRoute exact path="/favorites/:videoId">
+            <VideoPage />
+          </PrivateRoute>
           <Route exact path="/">
             <HomePage />
           </Route>

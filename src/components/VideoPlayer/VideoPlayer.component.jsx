@@ -11,13 +11,17 @@ import {
 } from './VideoPlayer.styled';
 
 function VideoPlayer({ children, videoProps }) {
-  const { addFavVideo, isFavorite } = useSelector();
+  const { addFavVideo, removeFavVideo, isFavorite } = useSelector();
   const { currentUser } = useAuth();
 
   const isAuthenticated = Boolean(currentUser);
 
   function handleAddVideo() {
     addFavVideo(videoProps);
+  }
+
+  function handleRemoveVideo() {
+    removeFavVideo(videoProps.videoId);
   }
 
   return (
@@ -35,7 +39,7 @@ function VideoPlayer({ children, videoProps }) {
           </h1>
           {isAuthenticated &&
             (isFavorite(videoProps) ? (
-              <FavButton>Remove from Favorites</FavButton>
+              <FavButton onClick={handleRemoveVideo}>Remove from Favorites</FavButton>
             ) : (
               <FavButton onClick={handleAddVideo}>Add to Favorites</FavButton>
             ))}

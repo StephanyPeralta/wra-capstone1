@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
+import { CgPlayButtonO } from 'react-icons/cg';
 
 import { useVideo } from '../../providers/Video';
 import Search from '../Search';
@@ -25,7 +26,7 @@ function Header({ handleToggleMenu }) {
           <FiMenu size={27} />
         </MenuButton>
         <LogoTitle to="/" className="hidden-mobile" onClick={() => handleClick()}>
-          YouWize
+          <CgPlayButtonO size={27} /> <span className="brand-name">YouWize</span>
         </LogoTitle>
       </HeaderSection>
       <Search />

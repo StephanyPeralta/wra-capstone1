@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const CardWrapperMain = styled.div`
+const CardWrapper = styled.div`
   background-color: ${(props) => props.theme.card};
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -45,7 +45,7 @@ const CardWrapperMain = styled.div`
   }
 `;
 
-const CardWrapperRV = styled(CardWrapperMain)`
+const CardWrapperRV = styled(CardWrapper)`
   border-radius: 0;
   box-shadow: none;
   width: 100%;
@@ -77,4 +77,4 @@ const CardWrapperRV = styled(CardWrapperMain)`
   }
 `;
 
-export { CardWrapperMain, CardWrapperRV };
+export { CardWrapper, CardWrapperRV };

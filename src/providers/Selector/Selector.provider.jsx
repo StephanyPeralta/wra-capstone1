@@ -33,11 +33,16 @@ function SelectorProvider({ children }) {
     return state.favorites.find((favorite) => favorite.videoId === video.videoId);
   }
 
+  const removeFavVideo = (videoId) => {
+    dispatch({ type: 'REMOVE_FAV_VIDEO', payload: { videoId } });
+  };
+
   const value = {
     favorites: state.favorites,
     theme: state.theme,
     changeThemeMode,
     addFavVideo,
+    removeFavVideo,
     isFavorite,
   };
 
