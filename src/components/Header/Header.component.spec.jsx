@@ -36,7 +36,7 @@ describe('Header component', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText('YouCool')).toBeInTheDocument();
+    expect(screen.getByText('YouWize')).toBeInTheDocument();
     expect(screen.getByText('Search Mock')).toBeInTheDocument();
     expect(screen.getByText('ThemeToggle Mock')).toBeInTheDocument();
     expect(screen.getByText('ProfileButton Mock')).toBeInTheDocument();
@@ -65,7 +65,7 @@ describe('Header component', () => {
       </MemoryRouter>
     );
 
-    const logoTitle = screen.getByText('YouCool');
+    const logoTitle = screen.getByText('YouWize');
     fireEvent.click(logoTitle);
 
     expect(dispatch).toHaveBeenCalledWith(

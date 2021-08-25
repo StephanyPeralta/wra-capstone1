@@ -30,7 +30,6 @@ const MenuNav = styled.nav`
 const MenuItem = styled.li`
   display: flex;
   align-items: center;
-  padding: 0.7rem 1rem;
   margin: 0.2rem 0;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
@@ -38,6 +37,8 @@ const MenuItem = styled.li`
     color: ${(props) => props.theme.color};
     display: flex;
     align-items: center;
+    padding: 0.7rem 1rem;
+    width: 100%;
   }
   &:hover {
     background-color: ${(props) => props.theme.hover};

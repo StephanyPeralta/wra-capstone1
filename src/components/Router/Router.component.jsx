@@ -5,12 +5,17 @@ import Layout from '../Layout';
 import HomePage from '../../pages/Home';
 import VideoPage from '../../pages/Video';
 import NotFound from '../../pages/NotFound';
+import FavoritesPage from '../../pages/Favorites';
+import PrivateRoute from '../PrivateRoute';
 
 function Router() {
   return (
     <BrowserRouter>
       <Layout>
         <Switch>
+          <PrivateRoute exact path="/favorites">
+            <FavoritesPage />
+          </PrivateRoute>
           <Route exact path="/">
             <HomePage />
           </Route>

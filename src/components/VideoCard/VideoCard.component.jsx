@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useVideo } from '../../providers/Video';
 import { CardWrapperMain, CardWrapperRV } from './VideoCard.styled';
 
-function VideoCard({ img, title, description, videoId, publishDate }) {
+function VideoCard({ img, title, description, videoId, publishDate, pathVideo }) {
   const { state, dispatch } = useVideo();
 
   const currentCard = (videoInfo) => () => {
@@ -22,9 +22,9 @@ function VideoCard({ img, title, description, videoId, publishDate }) {
   return (
     <CardWrapper
       data-testid="video-card"
-      onClick={currentCard({ img, title, description, videoId, publishDate })}
+      onClick={currentCard({ img, title, description, videoId, publishDate, pathVideo })}
     >
-      <Link className={!state.searchStatus ? 'card-link' : ''} to={`/video/${videoId}`}>
+      <Link className={!state.searchStatus ? 'card-link' : ''} to={pathVideo}>
         <img className="card-thumbnail" src={img} alt={title} />
         <div className="card-content">
           <h4 className="card-title">{title}</h4>

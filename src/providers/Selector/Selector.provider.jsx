@@ -4,6 +4,7 @@ import selectorReducer from './selectorReducer';
 
 const initialState = {
   theme: 'light',
+  favorites: [],
 };
 
 const SelectorContext = createContext(null);
@@ -19,9 +20,25 @@ function useSelector() {
 function SelectorProvider({ children }) {
   const [state, dispatch] = useReducer(selectorReducer, initialState);
 
+  const changeThemeMode = (e) => {
+    const isLight = e.target.checked;
+    dispatch({ type: 'SET_THEME', payload: { theme: isLight ? 'dark' : 'light' } });
+  };
+
+  const addFavVideo = (video) => {
+    dispatch({ type: 'ADD_FAV_VIDEO', payload: { video } });
+  };
+
+  function isFavorite(video) {
+    return state.favorites.find((favorite) => favorite.videoId === video.videoId);
+  }
+
   const value = {
-    state,
-    dispatch,
+    favorites: state.favorites,
+    theme: state.theme,
+    changeThemeMode,
+    addFavVideo,
+    isFavorite,
   };
 
   return <SelectorContext.Provider value={value}>{children}</SelectorContext.Provider>;

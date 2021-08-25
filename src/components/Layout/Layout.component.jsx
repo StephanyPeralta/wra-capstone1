@@ -8,13 +8,13 @@ import SideMenu from '../SideMenu';
 import { LayoutContainer, SectionWrapper, SectionContainer } from './Layout.styled';
 
 function Layout({ children }) {
-  const { state } = useSelector();
+  const { theme } = useSelector();
   const [sideMenuAction, setSideMenuAction] = useState(false);
 
   const handleToggleMenu = () => setSideMenuAction((previousState) => !previousState);
 
   return (
-    <ThemeProvider theme={Themes[state.theme]}>
+    <ThemeProvider theme={Themes[theme]}>
       <LayoutContainer>
         <Header handleToggleMenu={handleToggleMenu} />
         <SectionWrapper>

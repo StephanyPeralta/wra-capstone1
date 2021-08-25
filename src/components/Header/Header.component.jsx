@@ -25,7 +25,7 @@ function Header({ handleToggleMenu }) {
           <FiMenu size={27} />
         </MenuButton>
         <LogoTitle to="/" className="hidden-mobile" onClick={() => handleClick()}>
-          YouCool
+          YouWize
         </LogoTitle>
       </HeaderSection>
       <Search />
