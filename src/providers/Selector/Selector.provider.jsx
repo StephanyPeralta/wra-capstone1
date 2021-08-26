@@ -1,12 +1,13 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 
 import selectorReducer from './selectorReducer';
-import { useAuth } from '../Auth';
 import { storage } from '../../utils/storage';
 
 const initialState = {
-  theme: 'light',
-  favorites: [],
+  theme: storage.get('theme_storage_key') ? storage.get('theme_storage_key') : 'light',
+  favorites: storage.get('favorites_storage_key')
+    ? storage.get('favorites_storage_key')
+    : [],
 };
 
 const SelectorContext = createContext(null);
@@ -19,30 +20,13 @@ function useSelector() {
   return context;
 }
 
-function userStorageKey(user) {
-  return user ? `wa_cert_userstorage_${user.uid}` : 'wa_cert_userstorage';
-}
-
 function SelectorProvider({ children }) {
-  const { currentUser } = useAuth();
   const [state, dispatch] = useReducer(selectorReducer, initialState);
 
   useEffect(() => {
-    const USER_STORAGE_KEY = userStorageKey(currentUser);
-
-    if (currentUser) {
-      storage.set(USER_STORAGE_KEY, state);
-      return;
-    }
-
-    storage.set(USER_STORAGE_KEY, state.theme);
-  }, [state, currentUser]);
-
-  useEffect(() => {
-    const USER_STORAGE_KEY = userStorageKey(currentUser);
-
-    storage.get(USER_STORAGE_KEY);
-  }, [currentUser]);
+    storage.set('theme_storage_key', state.theme);
+    storage.set('favorites_storage_key', state.favorites);
+  }, [state]);
 
   const changeThemeMode = (e) => {
     const isLight = e.target.checked;
