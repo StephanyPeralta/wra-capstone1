@@ -4,6 +4,7 @@ import { render, screen } from '@testing-library/react';
 
 import VideoPage from './Video.page';
 import VideoProvider from '../../providers/Video';
+import SelectorProvider from '../../providers/Selector';
 import { useYoutube } from '../../utils/hooks/useYoutube';
 import videosMock from '../../mocks/youtube-videos-mock.json';
 
@@ -22,9 +23,11 @@ describe('Video page', () => {
 
     render(
       <VideoProvider>
-        <MemoryRouter>
-          <VideoPage />
-        </MemoryRouter>
+        <SelectorProvider>
+          <MemoryRouter>
+            <VideoPage />
+          </MemoryRouter>
+        </SelectorProvider>
       </VideoProvider>
     );
 
@@ -39,9 +42,11 @@ describe('Video page', () => {
 
     render(
       <VideoProvider>
-        <MemoryRouter>
-          <VideoPage />
-        </MemoryRouter>
+        <SelectorProvider>
+          <MemoryRouter>
+            <VideoPage />
+          </MemoryRouter>
+        </SelectorProvider>
       </VideoProvider>
     );
 
@@ -59,9 +64,11 @@ describe('Video page', () => {
 
     render(
       <VideoProvider>
-        <MemoryRouter>
-          <VideoPage />
-        </MemoryRouter>
+        <SelectorProvider>
+          <MemoryRouter>
+            <VideoPage />
+          </MemoryRouter>
+        </SelectorProvider>
       </VideoProvider>
     );
 

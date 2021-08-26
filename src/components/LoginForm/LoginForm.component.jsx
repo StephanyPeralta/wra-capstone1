@@ -36,7 +36,12 @@ function LoginForm({ onClose }) {
   return (
     <>
       <ButtonWrapper>
-        <Button className="modal-button" type="button" onClick={onClose}>
+        <Button
+          data-testid="close-btn"
+          className="modal-button"
+          type="button"
+          onClick={onClose}
+        >
           <CgCloseO />
         </Button>
       </ButtonWrapper>
@@ -45,7 +50,7 @@ function LoginForm({ onClose }) {
 
       {error && <ErrorAlert>{error}</ErrorAlert>}
 
-      <Form onSubmit={handleLogin}>
+      <Form data-testid="login-form" onSubmit={handleLogin}>
         <label className="form-label" htmlFor="email">
           Email
           <input

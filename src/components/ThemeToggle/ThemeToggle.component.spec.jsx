@@ -3,13 +3,16 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import ThemeToggle from './ThemeToggle.component';
 import SelectorProvider from '../../providers/Selector';
+import AuthProvider from '../../providers/Auth';
 
 describe('ThemeToggle component', () => {
   it('renders ThemeToggle elements', () => {
     render(
-      <SelectorProvider>
-        <ThemeToggle />
-      </SelectorProvider>
+      <AuthProvider>
+        <SelectorProvider>
+          <ThemeToggle />
+        </SelectorProvider>
+      </AuthProvider>
     );
 
     const themeToggle = screen.getByTitle('theme-mode');
@@ -19,9 +22,11 @@ describe('ThemeToggle component', () => {
 
   it('clicking ThemeToggle changes theme mode', () => {
     render(
-      <SelectorProvider>
-        <ThemeToggle />
-      </SelectorProvider>
+      <AuthProvider>
+        <SelectorProvider>
+          <ThemeToggle />
+        </SelectorProvider>
+      </AuthProvider>
     );
 
     const inputTheme = screen.getByRole('checkbox');

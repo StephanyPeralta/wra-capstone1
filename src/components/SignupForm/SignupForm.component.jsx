@@ -36,7 +36,12 @@ function SignupForm({ onClose }) {
   return (
     <>
       <ButtonWrapper>
-        <Button className="modal-button" type="button" onClick={onClose}>
+        <Button
+          data-testid="close-btn"
+          className="modal-button"
+          type="button"
+          onClick={onClose}
+        >
           <CgCloseO />
         </Button>
       </ButtonWrapper>
