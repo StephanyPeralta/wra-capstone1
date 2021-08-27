@@ -4,7 +4,7 @@ import { useSelector } from '../../providers/Selector';
 import { Toggle, InputTheme, SliderTheme } from './ThemeToggle.styled';
 
 function ThemeToggle() {
-  const { changeThemeMode } = useSelector();
+  const { changeThemeMode, theme } = useSelector();
 
   const handleThemeMode = (e) => {
     changeThemeMode(e);
@@ -13,7 +13,11 @@ function ThemeToggle() {
   return (
     <>
       <Toggle title="theme-mode">
-        <InputTheme type="checkbox" onChange={handleThemeMode} />
+        <InputTheme
+          type="checkbox"
+          onChange={handleThemeMode}
+          checked={theme !== 'light' ? 'checked' : ''}
+        />
         <SliderTheme />
       </Toggle>
     </>
