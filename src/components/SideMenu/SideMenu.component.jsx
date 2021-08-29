@@ -2,13 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { VscHome } from 'react-icons/vsc';
 import { BiLike } from 'react-icons/bi';
-import { MdExitToApp } from 'react-icons/md';
 
 import { useVideo } from '../../providers/Video';
+import { useAuth } from '../../providers/Auth';
 import { MenuNav, MenuItem, MenuText } from './SideMenu.styled';
 
 function SideMenu({ sideMenuAction, handleToggleMenu }) {
+  const { currentUser } = useAuth();
   const { dispatch } = useVideo();
+
+  const isAuthenticated = Boolean(currentUser);
 
   const handleClick = () => {
     dispatch({
@@ -32,24 +35,19 @@ function SideMenu({ sideMenuAction, handleToggleMenu }) {
             <MenuText className="hidden-tablet">Home</MenuText>
           </Link>
         </MenuItem>
-
-        <MenuItem onClick={handleClick} className="centered">
-          <Link to="/" className="link-item">
-            <BiLike size={27} />
-            <MenuText className="hidden-tablet">Favorites</MenuText>
-          </Link>
-        </MenuItem>
-
         <hr />
 
-        <MenuItem className="centered">
-          <Link to="/" className="link-item">
-            <MdExitToApp size={27} />
-            <MenuText className="hidden-tablet">Log Out</MenuText>
-          </Link>
-        </MenuItem>
-
-        <hr />
+        {isAuthenticated && (
+          <>
+            <MenuItem onClick={handleClick} className="centered">
+              <Link to="/favorites" className="link-item">
+                <BiLike size={27} />
+                <MenuText className="hidden-tablet">Favorites</MenuText>
+              </Link>
+            </MenuItem>
+            <hr />
+          </>
+        )}
       </ul>
     </MenuNav>
   );

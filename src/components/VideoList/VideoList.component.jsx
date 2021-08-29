@@ -23,6 +23,7 @@ function VideoList({ videos }) {
             title={video.snippet.title}
             description={video.snippet.description}
             publishDate={new Date(video.snippet.publishedAt).toDateString()}
+            pathVideo={`/video/${video.id.videoId}`}
           />
         ))}
     </VideoWrapper>

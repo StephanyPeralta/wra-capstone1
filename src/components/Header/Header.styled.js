@@ -46,9 +46,14 @@ const MenuButton = styled.button`
 `;
 
 const LogoTitle = styled(Link)`
+  display: flex;
+  align-items: center;
   padding: 0.3rem;
   font-size: 22px;
   font-weight: 700;
+  .brand-name {
+    margin-left: 5px;
+  }
 `;
 
 export { HeaderWrapper, HeaderSection, MenuButton, LogoTitle };

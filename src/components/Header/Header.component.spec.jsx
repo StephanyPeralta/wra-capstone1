@@ -10,7 +10,7 @@ jest.mock('../../providers/Video', () => ({
 }));
 jest.mock('../Search', () => () => <div>Search Mock</div>);
 jest.mock('../ThemeToggle', () => () => <div>ThemeToggle Mock</div>);
-jest.mock('../LoginButton', () => () => <div>LoginButton Mock</div>);
+jest.mock('../ProfileButton', () => () => <div>ProfileButton Mock</div>);
 
 const mockHandler = jest.fn();
 
@@ -36,10 +36,10 @@ describe('Header component', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByText('YouCool')).toBeInTheDocument();
+    expect(screen.getByText('YouWize')).toBeInTheDocument();
     expect(screen.getByText('Search Mock')).toBeInTheDocument();
     expect(screen.getByText('ThemeToggle Mock')).toBeInTheDocument();
-    expect(screen.getByText('LoginButton Mock')).toBeInTheDocument();
+    expect(screen.getByText('ProfileButton Mock')).toBeInTheDocument();
   });
 
   it('calls onClick prop when clicked MenuButton', () => {
@@ -65,7 +65,7 @@ describe('Header component', () => {
       </MemoryRouter>
     );
 
-    const logoTitle = screen.getByText('YouCool');
+    const logoTitle = screen.getByText('YouWize');
     fireEvent.click(logoTitle);
 
     expect(dispatch).toHaveBeenCalledWith(

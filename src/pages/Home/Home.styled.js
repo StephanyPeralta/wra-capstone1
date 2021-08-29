@@ -28,7 +28,7 @@ const ErrorAlert = styled.div`
   align-items: center;
   background-color: #ffebee;
   border-radius: 10px;
-  height: 50px;
+  min-height: 50px;
   margin: 15px auto;
   padding: 6px 16px;
   width: 100%;

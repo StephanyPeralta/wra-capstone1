@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useVideo } from '../../providers/Video';
 import { CardWrapper, CardWrapperRV } from './VideoCard.styled';
 
-function VideoCard({ img, title, description, videoId, publishDate }) {
+function VideoCard({ img, title, description, videoId, publishDate, pathVideo }) {
   const { state, dispatch } = useVideo();
 
   const currentCard = (videoInfo) => () => {
@@ -17,37 +17,22 @@ function VideoCard({ img, title, description, videoId, publishDate }) {
     });
   };
 
-  if (!state.searchStatus) {
-    return (
-      <CardWrapperRV
-        data-testid="card-relatedvideos"
-        onClick={currentCard({ img, title, description, videoId, publishDate })}
-      >
-        <Link className="card-link" to={`/video/${videoId}`}>
-          <img className="card-thumbnail" src={img} alt={title} />
-          <div className="card-content">
-            <h4 className="card-title">{title}</h4>
-            <p className="card-date">{publishDate}</p>
-          </div>
-        </Link>
-      </CardWrapperRV>
-    );
-  }
+  const CardWrapperMain = state.searchStatus ? CardWrapper : CardWrapperRV;
 
   return (
-    <CardWrapper
-      data-testid="card-normal"
-      onClick={currentCard({ img, title, description, videoId, publishDate })}
+    <CardWrapperMain
+      data-testid="video-card"
+      onClick={currentCard({ img, title, description, videoId, publishDate, pathVideo })}
     >
-      <Link to={`/video/${videoId}`}>
+      <Link className={!state.searchStatus ? 'card-link' : ''} to={pathVideo}>
         <img className="card-thumbnail" src={img} alt={title} />
         <div className="card-content">
           <h4 className="card-title">{title}</h4>
           <p className="card-date">{publishDate}</p>
-          <p className="card-description">{description}</p>
+          {state.searchStatus && <p className="card-description">{description}</p>}
         </div>
       </Link>
-    </CardWrapper>
+    </CardWrapperMain>
   );
 }
 

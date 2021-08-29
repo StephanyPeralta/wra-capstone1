@@ -1,10 +1,11 @@
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
+import { CgPlayButtonO } from 'react-icons/cg';
 
 import { useVideo } from '../../providers/Video';
 import Search from '../Search';
 import ThemeToggle from '../ThemeToggle';
-import LoginButton from '../LoginButton';
+import ProfileButton from '../ProfileButton';
 import { HeaderWrapper, MenuButton, LogoTitle, HeaderSection } from './Header.styled';
 
 function Header({ handleToggleMenu }) {
@@ -25,7 +26,7 @@ function Header({ handleToggleMenu }) {
           <FiMenu size={27} />
         </MenuButton>
         <LogoTitle to="/" className="hidden-mobile" onClick={() => handleClick()}>
-          YouCool
+          <CgPlayButtonO size={27} /> <span className="brand-name">YouWize</span>
         </LogoTitle>
       </HeaderSection>
       <Search />
@@ -33,7 +34,7 @@ function Header({ handleToggleMenu }) {
         <div className="hidden-tablet">
           <ThemeToggle />
         </div>
-        <LoginButton />
+        <ProfileButton />
       </HeaderSection>
     </HeaderWrapper>
   );

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginIconWrapper = styled.button`
+const ProfileIconWrapper = styled.button`
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -12,6 +12,10 @@ const LoginIconWrapper = styled.button`
   background-color: ${(props) => props.theme.button};
   color: black;
   margin: 0 0 0 15px;
+  .profile-img {
+    border-radius: 50%;
+    width: 100%;
+  }
   @media (max-width: 768px) {
     margin: 0;
   }
@@ -41,4 +45,4 @@ const Dropdown = styled.div`
   }
 `;
 
-export { LoginIconWrapper, Dropdown };
+export { ProfileIconWrapper, Dropdown };

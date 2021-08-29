@@ -12,10 +12,12 @@ function HomePage() {
 
   if (error) {
     return (
-      <ErrorAlert>
-        <FiAlertCircle />
-        <span className="error-msg"> Error loading page!</span>
-      </ErrorAlert>
+      <HomeWrapper>
+        <ErrorAlert>
+          <FiAlertCircle />
+          <span className="error-msg"> Error loading page!</span>
+        </ErrorAlert>
+      </HomeWrapper>
     );
   }
 

@@ -14,7 +14,7 @@ const ModalWrapper = styled.div`
     border-radius: 10px;
     color: ${(props) => props.theme.color};
     max-width: 350px;
-    padding: 10px 20px;
+    padding: 15px 20px;
     height: 40vh;
     margin: 30vh auto;
     position: relative;

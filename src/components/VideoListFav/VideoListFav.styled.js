@@ -5,13 +5,16 @@ const VideoWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   &.related-list {
     display: flex;
     flex-direction: column;
   }
   @media (min-width: 2018px) {
     max-width: 1680px;
+  }
+  @media (max-width: 989px) {
+    justify-content: center;
   }
 `;
 
