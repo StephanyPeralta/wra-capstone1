@@ -11,6 +11,10 @@ jest.mock('../SideMenu', () => () => <div>SideMenu Mock</div>);
 const childrenMock = <div>A child element</div>;
 
 describe('Layout component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it('renders Layout elements', () => {
     render(
       <AuthProvider>
