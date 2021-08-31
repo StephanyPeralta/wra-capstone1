@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 
 import LoginForm from './LoginForm.component';
 import { useAuth } from '../../providers/Auth';
@@ -15,11 +15,10 @@ const onCloseMock = jest.fn();
 describe('LoginForm component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    useAuth.mockReturnValue(authMock);
   });
 
   it('renders LoginForm elements', () => {
-    useAuth.mockReturnValue(authMock);
-
     render(<LoginForm onClose={onCloseMock} />);
 
     const loginTitle = screen.getByRole('heading', { name: 'Log In' });
@@ -35,9 +34,7 @@ describe('LoginForm component', () => {
     expect(loginButton).toBeInTheDocument();
   });
 
-  it('handles submit function with provided data', () => {
-    useAuth.mockReturnValue(authMock);
-
+  it('handles submit function with provided data', async () => {
     render(<LoginForm onClose={onCloseMock} />);
 
     const inputEmail = screen.getByPlaceholderText('Email');
@@ -47,7 +44,7 @@ describe('LoginForm component', () => {
     fireEvent.change(inputEmail, { target: { value: 'test@test.com' } });
     fireEvent.change(inputPassword, { target: { value: 'password' } });
 
-    fireEvent.click(loginButton);
+    await act(async () => fireEvent.click(loginButton));
 
     expect(authMock.login).toHaveBeenCalledWith('test@test.com', 'password');
   });

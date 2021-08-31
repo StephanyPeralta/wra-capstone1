@@ -1,13 +1,12 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 
 import selectorReducer from './selectorReducer';
+import { useAuth } from '../Auth';
 import { storage } from '../../utils/storage';
 
 const initialState = {
-  theme: storage.get('theme_storage_key') ? storage.get('theme_storage_key') : 'light',
-  favorites: storage.get('favorites_storage_key')
-    ? storage.get('favorites_storage_key')
-    : [],
+  theme: 'light',
+  favorites: [],
 };
 
 const SelectorContext = createContext(null);
@@ -20,13 +19,33 @@ function useSelector() {
   return context;
 }
 
+function userStorageKey(user) {
+  return user ? `userstorage_${user.uid}` : '';
+}
+
 function SelectorProvider({ children }) {
+  const { currentUser } = useAuth();
   const [state, dispatch] = useReducer(selectorReducer, initialState);
 
   useEffect(() => {
-    storage.set('theme_storage_key', state.theme);
-    storage.set('favorites_storage_key', state.favorites);
-  }, [state]);
+    const USER_STORAGE_KEY = userStorageKey(currentUser);
+
+    if (currentUser) {
+      storage.set(USER_STORAGE_KEY, state);
+    }
+  }, [state, currentUser]);
+
+  useEffect(() => {
+    const USER_STORAGE_KEY = userStorageKey(currentUser);
+    const getUserStorage = storage.get(USER_STORAGE_KEY);
+
+    if (currentUser) {
+      dispatch({
+        type: 'SET_INITIAL_STATE',
+        payload: { theme: getUserStorage.theme, favorites: getUserStorage.favorites },
+      });
+    }
+  }, [currentUser]);
 
   const changeThemeMode = (e) => {
     const isLight = e.target.checked;

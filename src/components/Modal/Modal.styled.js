@@ -1,25 +1,39 @@
 import styled from 'styled-components';
 
 const ModalWrapper = styled.div`
-  background-color: ${(props) => props.theme.hover};
-  backdrop-filter: blur(4px);
   position: fixed;
-  bottom: 0;
   top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
-  z-index: 100000;
-  .modal-content {
-    background-color: ${(props) => props.theme.background};
-    border-radius: 10px;
-    color: ${(props) => props.theme.color};
-    max-width: 350px;
-    padding: 15px 20px;
-    height: 40vh;
-    margin: 30vh auto;
-    position: relative;
-    overflow: scroll;
-  }
+  z-index: 10001;
 `;
 
-export { ModalWrapper };
+const ModalBackdrop = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: ${(props) => props.theme.hover};
+  backdrop-filter: blur(4px);
+  z-index: 10002;
+`;
+
+const ModalContent = styled.div`
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-height: 30%;
+  width: 20%;
+  overflow-y: auto;
+  background-color: ${(props) => props.theme.background};
+  border-radius: 10px;
+  color: ${(props) => props.theme.color};
+  overflow: scroll;
+  padding: 20px 20px 30px;
+  z-index: 10003;
+`;
+
+export { ModalWrapper, ModalBackdrop, ModalContent };

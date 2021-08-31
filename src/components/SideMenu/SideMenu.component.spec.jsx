@@ -4,10 +4,16 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import SideMenu from './SideMenu.component';
 import { useVideo } from '../../providers/Video';
+import { useAuth } from '../../providers/Auth';
 
+jest.mock('../../providers/Auth', () => ({
+  useAuth: jest.fn(),
+}));
 jest.mock('../../providers/Video', () => ({
   useVideo: jest.fn(() => ({ state: jest.fn(), dispatch: jest.fn() })),
 }));
+
+const authMock = { currentUser: false };
 
 const dispatch = jest.fn();
 
@@ -23,10 +29,11 @@ const handleToggleMenuMock = jest.fn();
 describe('SideMenu component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    useVideo.mockReturnValue({ state, dispatch });
   });
 
   it('renders SideMenu elements', () => {
-    useVideo.mockReturnValue({ state, dispatch });
+    useAuth.mockReturnValue(authMock);
 
     render(
       <MemoryRouter>
@@ -40,12 +47,10 @@ describe('SideMenu component', () => {
     expect(screen.getByRole('navigation')).toBeInTheDocument();
     expect(screen.getByLabelText('navbar-list')).toBeInTheDocument();
     expect(screen.getByText('Home')).toBeTruthy();
-    expect(screen.getByText('Favorites')).toBeTruthy();
-    expect(screen.getByText('Log Out')).toBeTruthy();
   });
 
   it('updates searcStatus to true when clicked HomeLink', () => {
-    useVideo.mockReturnValue({ state, dispatch });
+    useAuth.mockReturnValue(authMock);
 
     render(
       <MemoryRouter>
@@ -67,5 +72,21 @@ describe('SideMenu component', () => {
         },
       })
     );
+  });
+
+  it('renders Home and Favorites link if a user is authenticated', () => {
+    useAuth.mockReturnValue({ ...authMock, currentUser: true });
+
+    render(
+      <MemoryRouter>
+        <SideMenu
+          sideMenuAction={sideMenuActionMock}
+          handleToggleMenu={handleToggleMenuMock}
+        />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('Home')).toBeTruthy();
+    expect(screen.getByText('Favorites')).toBeTruthy();
   });
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 
 import Layout from './Layout.component';
 import SelectorProvider from '../../providers/Selector';
@@ -15,13 +15,15 @@ describe('Layout component', () => {
     jest.clearAllMocks();
   });
 
-  it('renders Layout elements', () => {
-    render(
-      <AuthProvider>
-        <SelectorProvider>
-          <Layout>{childrenMock}</Layout>
-        </SelectorProvider>
-      </AuthProvider>
+  it('renders Layout elements', async () => {
+    await act(async () =>
+      render(
+        <AuthProvider>
+          <SelectorProvider>
+            <Layout>{childrenMock}</Layout>
+          </SelectorProvider>
+        </AuthProvider>
+      )
     );
 
     expect(screen.getByText('Header Mock')).toBeInTheDocument();
