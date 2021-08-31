@@ -26,7 +26,7 @@ const ModalContent = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   min-height: 30%;
-  width: 20%;
+  max-width: 320px;
   overflow-y: auto;
   background-color: ${(props) => props.theme.background};
   border-radius: 10px;
