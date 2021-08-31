@@ -48,8 +48,8 @@ function SelectorProvider({ children }) {
     theme: state.theme,
     changeThemeMode,
     addFavVideo,
-    removeFavVideo,
     isFavorite,
+    removeFavVideo,
   };
 
   return <SelectorContext.Provider value={value}>{children}</SelectorContext.Provider>;
