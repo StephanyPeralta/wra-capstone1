@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
+  margin: 0;
+`;
+
+const VideoCardN = styled.div`
   background-color: ${(props) => props.theme.card};
   border-radius: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -10,6 +14,7 @@ const CardWrapper = styled.div`
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
+  position: relative;
   transition: all 0.3s ease-in-out;
   .card-thumbnail {
     border-radius: 10px 10px 0 0;
@@ -39,13 +44,36 @@ const CardWrapper = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .fav-wrapper {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    z-index: 1;
+  }
+  .fav-button {
+    color: ${(props) => props.theme.color};
+    background: rgba(255, 172, 172, 0.3);
+    border: 0;
+    border-radius: 100px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+    transition: all 0.3s ease;
+    &:hover {
+      background: rgba(255, 172, 172, 0.8);
+    }
+  }
   &:hover {
     background-color: ${(props) => props.theme.hover};
     opacity: 0.9;
   }
 `;
 
-const CardWrapperRV = styled(CardWrapper)`
+const VideoCardRV = styled(VideoCardN)`
   border-radius: 0;
   box-shadow: none;
   width: 100%;
@@ -75,6 +103,28 @@ const CardWrapperRV = styled(CardWrapper)`
     font-weight: 700;
     color: #a3a3a3;
   }
+  .fav-wrapper {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    z-index: 1;
+  }
+  .fav-button {
+    color: ${(props) => props.theme.color};
+    background: rgba(255, 172, 172, 0.3);
+    border: 0;
+    border-radius: 100px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    &:hover {
+      background: rgba(255, 172, 172, 0.8);
+    }
+  }
 `;
 
-export { CardWrapper, CardWrapperRV };
+export { CardWrapper, VideoCardN, VideoCardRV };
