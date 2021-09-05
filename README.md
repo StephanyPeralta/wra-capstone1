@@ -5,7 +5,7 @@ This SPA is connected with the [YouTube API](https://developers.google.com/youtu
 
 ## Usage
 
-![YouWize App Image](https://i.ibb.co/5kxNZGp/youwize-app.png)
+![YouWize App Image](https://i.ibb.co/zFdKPRV/youwize-app.png)
 
 - The home page will show Wizeline videos as the default search.
 - Find a video by typing a keyword in the search field.
