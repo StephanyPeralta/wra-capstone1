@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { VscHome } from 'react-icons/vsc';
-import { BiLike } from 'react-icons/bi';
+import { BsHeart } from 'react-icons/bs';
 
 import { useVideo } from '../../providers/Video';
 import { useAuth } from '../../providers/Auth';
@@ -41,7 +41,7 @@ function SideMenu({ sideMenuAction, handleToggleMenu }) {
           <>
             <MenuItem onClick={handleClick} className="centered">
               <Link to="/favorites" className="link-item">
-                <BiLike size={27} />
+                <BsHeart size={27} />
                 <MenuText className="hidden-tablet">Favorites</MenuText>
               </Link>
             </MenuItem>

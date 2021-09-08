@@ -2,18 +2,25 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import ThemeToggle from './ThemeToggle.component';
-import SelectorProvider from '../../providers/Selector';
-import AuthProvider from '../../providers/Auth';
+import { useSelector } from '../../providers/Selector';
+
+jest.mock('../../providers/Selector', () => ({
+  useSelector: jest.fn(),
+}));
+
+const selectorMock = {
+  changeThemeMode: jest.fn(),
+  theme: 'light',
+};
 
 describe('ThemeToggle component', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    useSelector.mockReturnValue(selectorMock);
+  });
+
   it('renders ThemeToggle elements', () => {
-    render(
-      <AuthProvider>
-        <SelectorProvider>
-          <ThemeToggle />
-        </SelectorProvider>
-      </AuthProvider>
-    );
+    render(<ThemeToggle />);
 
     const themeToggle = screen.getByTitle('theme-mode');
 
@@ -21,20 +28,11 @@ describe('ThemeToggle component', () => {
   });
 
   it('clicking ThemeToggle changes theme mode', () => {
-    render(
-      <AuthProvider>
-        <SelectorProvider>
-          <ThemeToggle />
-        </SelectorProvider>
-      </AuthProvider>
-    );
+    render(<ThemeToggle />);
 
     const inputTheme = screen.getByRole('checkbox');
 
     fireEvent.click(inputTheme);
-    expect(inputTheme).toBeChecked();
-
-    fireEvent.click(inputTheme);
-    expect(inputTheme).not.toBeChecked();
+    expect(selectorMock.changeThemeMode).toHaveBeenCalledTimes(1);
   });
 });

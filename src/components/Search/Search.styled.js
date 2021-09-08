@@ -29,6 +29,9 @@ const SearchInput = styled.input`
   &:focus {
     outline: none;
   }
+  @media (max-height: 440px) {
+    height: 23px;
+  }
 `;
 
 const SearchIconWrapper = styled.div`

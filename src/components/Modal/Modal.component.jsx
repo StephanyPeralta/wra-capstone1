@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { ModalWrapper } from './Modal.styled';
+import { ModalWrapper, ModalBackdrop, ModalContent } from './Modal.styled';
 
-function Modal({ children }) {
+function Modal({ children, onClose }) {
   return (
-    <ModalWrapper className="modal">
-      <div className="modal-content">{children}</div>
+    <ModalWrapper>
+      <ModalBackdrop onClick={onClose} />
+      <ModalContent className="modal-content">{children}</ModalContent>
     </ModalWrapper>
   );
 }
 
-export default function ModalPortal({ children }) {
+export default function ModalPortal({ children, onClose }) {
   return ReactDOM.createPortal(
-    <Modal>{children}</Modal>,
+    <Modal onClose={onClose}>{children}</Modal>,
     document.getElementById('portal')
   );
 }

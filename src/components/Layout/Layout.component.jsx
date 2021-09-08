@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import { ThemeProvider } from 'styled-components';
 import { Themes } from '../../utils/themes';
@@ -16,6 +18,7 @@ function Layout({ children }) {
   return (
     <ThemeProvider theme={Themes[theme]}>
       <LayoutContainer>
+        <ToastContainer />
         <Header handleToggleMenu={handleToggleMenu} />
         <SectionWrapper>
           <SideMenu sideMenuAction={sideMenuAction} handleToggleMenu={handleToggleMenu} />

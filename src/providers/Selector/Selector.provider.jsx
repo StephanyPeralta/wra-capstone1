@@ -4,10 +4,8 @@ import selectorReducer from './selectorReducer';
 import { storage } from '../../utils/storage';
 
 const initialState = {
-  theme: storage.get('theme_storage_key') ? storage.get('theme_storage_key') : 'light',
-  favorites: storage.get('favorites_storage_key')
-    ? storage.get('favorites_storage_key')
-    : [],
+  theme: storage.get('theme_storage_key') ?? 'light',
+  favorites: storage.get('favorites_storage_key') ?? [],
 };
 
 const SelectorContext = createContext(null);
@@ -50,8 +48,8 @@ function SelectorProvider({ children }) {
     theme: state.theme,
     changeThemeMode,
     addFavVideo,
-    removeFavVideo,
     isFavorite,
+    removeFavVideo,
   };
 
   return <SelectorContext.Provider value={value}>{children}</SelectorContext.Provider>;

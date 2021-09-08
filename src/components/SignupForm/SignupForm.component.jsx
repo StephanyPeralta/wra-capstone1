@@ -1,5 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CgCloseO } from 'react-icons/cg';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 import { useAuth } from '../../providers/Auth';
 import {
@@ -26,12 +28,17 @@ function SignupForm({ onClose }) {
       setLoading(true);
       await signup(emailRef.current.value, passwordRef.current.value);
       onClose();
+      toast.success('You Have Successfully Signed up!');
     } catch {
       setError('Failed to create an account');
     }
 
     setLoading(false);
   }
+
+  useEffect(() => {
+    emailRef.current.focus();
+  }, []);
 
   return (
     <>

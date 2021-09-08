@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 
 import SignupForm from './SignupForm.component';
 import { useAuth } from '../../providers/Auth';
@@ -15,11 +15,10 @@ const onCloseMock = jest.fn();
 describe('SignupForm component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    useAuth.mockReturnValue(authMock);
   });
 
   it('renders SignupForm elements', () => {
-    useAuth.mockReturnValue(authMock);
-
     render(<SignupForm onClose={onCloseMock} />);
 
     const cancelButton = screen.getByTestId('close-btn');
@@ -32,9 +31,7 @@ describe('SignupForm component', () => {
     expect(signupButton).toBeInTheDocument();
   });
 
-  it('handles submit function with provided data', () => {
-    useAuth.mockReturnValue(authMock);
-
+  it('handles submit function with provided data', async () => {
     render(<SignupForm onClose={onCloseMock} />);
 
     const inputEmail = screen.getByPlaceholderText('Email');
@@ -44,7 +41,7 @@ describe('SignupForm component', () => {
     fireEvent.change(inputEmail, { target: { value: 'test@test.com' } });
     fireEvent.change(inputPassword, { target: { value: 'password' } });
 
-    fireEvent.click(signupButton);
+    await act(async () => fireEvent.click(signupButton));
 
     expect(authMock.signup).toHaveBeenCalledWith('test@test.com', 'password');
   });

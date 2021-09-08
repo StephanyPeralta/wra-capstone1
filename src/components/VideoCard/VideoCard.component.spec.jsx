@@ -17,6 +17,7 @@ const videoCardMock = {
   description: 'Test Description',
   videoId: 'abc123',
   publishDate: '2014-09-27T01:39:18Z',
+  pathVideo: '/video/abc123',
 };
 
 describe('VideoCard component', () => {

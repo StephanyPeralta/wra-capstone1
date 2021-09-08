@@ -19,6 +19,10 @@ const ProfileIconWrapper = styled.button`
   @media (max-width: 768px) {
     margin: 0;
   }
+  @media (max-height: 440px) {
+    height: 38px;
+    width: 38px;
+  }
 `;
 
 const Dropdown = styled.div`
