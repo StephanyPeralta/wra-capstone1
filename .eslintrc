@@ -1,17 +1,37 @@
 {
-  "extends": ["react-app", "airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier"],
+  "root": true,
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 11,
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "prettier/prettier": "error",
-    "react/jsx-filename-extension": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "import/no-unresolved": ["off", { "ignore": [".css$"] }],
-    "import/prefer-default-export": "off",
-    "react/destructuring-assignment": "off",
-    "react/jsx-props-no-spreading": "off",
+    "react/react-in-jsx-scope": "off", 
     "react/prop-types": "off",
-    "array-callback-return": "off",
-    "consistent-return": "off",
-    "no-console": "off"
+    "react/jsx-filename-extension": [2, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": ["off"],
+    "interface-name": false,
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  },
+  "settings": {
+    "react": {
+      "pragma": "React",
+      "version": "detect"
+    }
   }
 }
