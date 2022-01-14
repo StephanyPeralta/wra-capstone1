@@ -13,15 +13,11 @@ interface Props {
 }
 
 function Header({ handleToggleMenu }: Props) {
-  const { dispatch } = useVideo();
+  const { inSearchMode } = useVideo();
+
   const handleClick = () => {
-    dispatch({
-      type: 'SET_SEARCH_STATUS',
-      payload: {
-        searchStatus: true,
-      },
-    });
-  };
+    inSearchMode();
+  }
 
   return (
     <HeaderWrapper>

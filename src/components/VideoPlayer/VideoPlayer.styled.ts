@@ -1,18 +1,5 @@
 import styled from 'styled-components';
 
-const VideoSectionWrapper = styled.div`
-  display: flex;
-  margin: 0 auto;
-  max-width: 1800px;
-  padding: 0 15px;
-  @media (max-width: 992px) {
-    flex-direction: column;
-  }
-  @media (max-width: 576px) {
-    padding: 0 10px;
-  }
-`;
-
 const VideoPlayerWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -67,19 +54,4 @@ const FavButton = styled.button`
   }
 `;
 
-const RelatedVideos = styled.div`
-  display: inline;
-  flex: 2;
-  height: 90vh;
-  padding: 15px 10px 0;
-  margin: 0 auto;
-  overflow: scroll;
-  overflow-x: hidden;
-  @media (max-width: 992px) {
-    flex-direction: column;
-    max-height: 30vh;
-    padding: 0 15px;
-  }
-`;
-
-export { VideoSectionWrapper, VideoPlayerWrapper, IframeVideo, RelatedVideos, FavButton };
+export { VideoPlayerWrapper, IframeVideo, FavButton };

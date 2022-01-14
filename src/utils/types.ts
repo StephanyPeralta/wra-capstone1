@@ -12,7 +12,7 @@ export interface VideoProps {
   }
   
 export interface VideoState {
-    searchStatus: boolean;
+    searchMode: boolean;
     searchTerm: string;
     videoProps: VideoProps | null;
 }

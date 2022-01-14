@@ -14,17 +14,12 @@ type SideMenuProps = {
 
 function SideMenu({ sideMenuAction, handleToggleMenu }: SideMenuProps) {
   const { currentUser } = useAuth();
-  const { dispatch } = useVideo();
+  const { inSearchMode } = useVideo();
 
   const isAuthenticated = Boolean(currentUser);
 
   const handleClick = () => {
-    dispatch({
-      type: 'SET_SEARCH_STATUS',
-      payload: {
-        searchStatus: true,
-      },
-    });
+    inSearchMode();
   };
 
   return (

@@ -7,7 +7,7 @@ import { VideoProps, SelectorState } from '../../utils/types';
 interface ISelectorContext {
   theme: 'light' | 'dark';
   favorites: VideoProps[];
-  changeThemeMode: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  changeThemeMode: (isLight: boolean) => void;
   addFavVideo: (video: VideoProps) => void;
   isFavorite: (video: VideoProps) => VideoProps | undefined;
   removeFavVideo: (videoId: string) => void;
@@ -17,7 +17,7 @@ interface SelectorProviderProps {
   children: React.ReactNode;
 }
 
-export const initialState: SelectorState = {
+const initialState: SelectorState = {
   theme: storage.get('theme_storage_key') ?? 'light',
   favorites: storage.get('favorites_storage_key') ?? [],
 };
@@ -25,7 +25,7 @@ export const initialState: SelectorState = {
 const SelectorContext = createContext<ISelectorContext>({
   theme: 'light',
   favorites: [],
-  changeThemeMode: (e: React.ChangeEvent<HTMLInputElement>) => {},
+  changeThemeMode: (isLight: boolean) => {},
   addFavVideo: (video: VideoProps) => {},
   isFavorite: (video: VideoProps) => undefined,
   removeFavVideo: (videoId: string) => {},
@@ -47,8 +47,7 @@ function SelectorProvider({ children }: SelectorProviderProps) {
     storage.set('favorites_storage_key', state.favorites);
   }, [state]);
 
-  const changeThemeMode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const isLight = e.target.checked;
+  const changeThemeMode = (isLight: boolean) => {
     dispatch({ type: 'SET_THEME', payload: { theme: isLight ? 'dark' : 'light' } });
   };
 

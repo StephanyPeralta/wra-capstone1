@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useRouteMatch } from 'react-router-dom';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import { useVideo } from '../../providers/Video';
@@ -8,19 +8,21 @@ import { useSelector } from '../../providers/Selector';
 import VideoPlayer from '../../components/VideoPlayer';
 import VideoList from '../../components/VideoList';
 import VideoListFav from '../../components/VideoListFav';
-import { LoaderContainer, Loader, ErrorAlert } from './Video.styled';
+import VideoCard from '../../components/VideoCard';
+import { VideoSectionWrapper, RelatedVideos, LoaderContainer, Loader, ErrorAlert } from './Video.styled';
 
 function VideoPage() {
-  const { state } = useVideo();
-  const { videos, isLoading, error } = useYoutube(state.searchTerm);
+  const { videoProps, searchTerm } = useVideo();
+  const { videos, isLoading, error } = useYoutube(searchTerm);
   const { favorites } = useSelector();
-  const { location } = useHistory();
 
-  const VideoListMain = location.pathname.includes('favorites')
+  const favoritesMatch = useRouteMatch("/favorites/:videoId");
+
+  const VideoListMain = favoritesMatch?.isExact
     ? VideoListFav
     : VideoList;
 
-  const videoList = location.pathname.includes('favorites') ? favorites : videos;
+  const videoList = favoritesMatch?.isExact ? favorites : videos;
 
   if (error) {
     return (
@@ -41,10 +43,26 @@ function VideoPage() {
 
   return (
     <>
-      {state.videoProps &&
-        <VideoPlayer videoProps={state.videoProps}>
-            <VideoListMain videos={videoList} />
-        </VideoPlayer>
+      {videoProps &&
+        <VideoSectionWrapper>
+          <VideoPlayer  {...videoProps} />
+          <RelatedVideos data-testid="related-videos">
+            <VideoListMain>
+              {videoList
+                .map((video) => (
+                  <VideoCard
+                    key={video.videoId}
+                    videoId={video.videoId}
+                    img={video.img}
+                    title={video.title}
+                    description={video.description}
+                    publishDate={new Date(video.publishDate).toDateString()}
+                    pathVideo={favoritesMatch?.isExact ? `/favorites/${video.videoId}` : video.pathVideo}
+                  />
+              ))}
+            </VideoListMain>
+          </RelatedVideos>
+        </VideoSectionWrapper>
       }
     </>
   );

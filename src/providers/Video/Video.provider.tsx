@@ -1,11 +1,15 @@
 import React, { createContext, useReducer, useContext } from 'react';
 
-import videoReducer, { ACTIONTYPE } from './videoReducer';
-import { VideoState } from '../../utils/types';
+import videoReducer from './videoReducer';
+import { VideoProps, VideoState } from '../../utils/types';
 
 interface IVideoContext {
-  state: VideoState;
-  dispatch: React.Dispatch<ACTIONTYPE>;
+  searchMode: true | false;
+  searchTerm: string;
+  videoProps: VideoProps | null;
+  inSearchMode: () => void;
+  saveSearchTerm: (term: string) => void;
+  getVideoProps: ({ img, title, description, videoId, publishDate, pathVideo }: VideoProps) => void;
 }
 
 interface VideoProviderProps {
@@ -13,14 +17,18 @@ interface VideoProviderProps {
 }
 
 const initialState: VideoState = {
-  searchStatus: true,
+  searchMode: true,
   searchTerm: 'wizeline',
   videoProps: null,
 };
 
 const VideoContext = createContext<IVideoContext>({
-  state: initialState,
-  dispatch: () => {},
+  searchMode: true,
+  searchTerm: 'wizeline',
+  videoProps: null,
+  inSearchMode: () => {},
+  saveSearchTerm: (term: string) => {},
+  getVideoProps: ({ img, title, description, videoId, publishDate, pathVideo }: VideoProps) => {},
 });
 
 function useVideo() {
@@ -34,9 +42,25 @@ function useVideo() {
 function VideoProvider({ children }: VideoProviderProps) {
   const [state, dispatch] = useReducer(videoReducer, initialState);
 
+  const inSearchMode = () => {
+    dispatch({ type: 'SET_SEARCH_MODE', payload: { searchMode: true } });
+  };
+
+  const saveSearchTerm = (term: string) => {
+    dispatch({ type: 'SET_SEARCH_TERM', payload: { searchMode: true, searchTerm: term } });
+  };
+
+  const getVideoProps = ({ img, title, description, videoId, publishDate, pathVideo }: VideoProps) => {
+    dispatch({ type: 'SET_VIDEO_PROPS', payload: { searchMode: false, videoProps: { img, title, description, videoId, publishDate, pathVideo } } });
+  };
+
   const value = {
-    state,
-    dispatch,
+    searchMode: state.searchMode,
+    searchTerm: state.searchTerm,
+    videoProps: state.videoProps,
+    inSearchMode,
+    saveSearchTerm,
+    getVideoProps
   };
 
   return <VideoContext.Provider value={value}>{children}</VideoContext.Provider>;

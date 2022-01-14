@@ -13,7 +13,7 @@ import { ProfileIconWrapper, Dropdown } from './ProfileButton.styled';
 
 function ProfileButton() {
   const { currentUser, logout } = useAuth();
-  const { dispatch } = useVideo();
+  const { inSearchMode } = useVideo();
   const { push } = useHistory();
   const [openDropdown, setOpenDropdown] = useState(false);
   const [showModalSignup, setShowModalSignup] = useState(false);
@@ -56,12 +56,7 @@ function ProfileButton() {
     try {
       await logout();
       setOpenDropdown(false);
-      dispatch({
-        type: 'SET_SEARCH_STATUS',
-        payload: {
-          searchStatus: true,
-        },
-      });
+      inSearchMode();
       push('/');
       toast.success('You Have Successfully Logged out!');
     } catch {
