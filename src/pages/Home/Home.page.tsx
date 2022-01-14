@@ -4,11 +4,12 @@ import { FiAlertCircle } from 'react-icons/fi';
 import VideoList from '../../components/VideoList';
 import { useVideo } from '../../providers/Video';
 import { useYoutube } from '../../hooks/useYoutube';
+import VideoCard from '../../components/VideoCard';
 import { LoaderContainer, Loader, ErrorAlert, HomeWrapper } from './Home.styled';
 
 function HomePage() {
-  const { state } = useVideo();
-  const { videos, isLoading, error } = useYoutube(state.searchTerm);
+  const { searchTerm } = useVideo();
+  const { videos, isLoading, error } = useYoutube(searchTerm);
 
   if (error) {
     return (
@@ -37,7 +38,20 @@ function HomePage() {
           <span className="error-msg">No videos found</span>
         </ErrorAlert>
       ) : (
-        <VideoList videos={videos} />
+        <VideoList>
+          {videos
+            .map((video) => (
+              <VideoCard
+                key={video.videoId}
+                videoId={video.videoId}
+                img={video.img}
+                title={video.title}
+                description={video.description}
+                publishDate={new Date(video.publishDate).toDateString()}
+                pathVideo={video.pathVideo}
+              />
+          ))}          
+        </VideoList>
       )}
     </HomeWrapper>
   );

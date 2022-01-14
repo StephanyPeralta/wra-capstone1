@@ -7,17 +7,13 @@ import { SearchContainer, SearchInput, SearchIconWrapper } from './Search.styled
 
 function Search() {
   const [termValue, setTermValue] = useState('');
-  const { state, dispatch } = useVideo();
+  const { saveSearchTerm, searchTerm } = useVideo();
   const { push } = useHistory();
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      dispatch({
-        type: 'SET_SEARCH_TERM',
-        payload: {
-          searchStatus: true,
-          searchTerm: (e.target as HTMLInputElement).value,
-        },
-      });
+      const term = (e.target as HTMLInputElement).value;
+      saveSearchTerm(term);
       push('/');
     }
   };
@@ -27,8 +23,8 @@ function Search() {
   };
 
   useEffect(() => {
-    setTermValue(state.searchTerm);
-  }, [state.searchTerm]);
+    setTermValue(searchTerm);
+  }, [searchTerm]);
 
   return (
     <SearchContainer>

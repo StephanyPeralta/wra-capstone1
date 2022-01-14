@@ -1,6 +1,34 @@
 import styled, { keyframes } from 'styled-components';
 import { FaSpinner } from 'react-icons/fa';
 
+const VideoSectionWrapper = styled.div`
+  display: flex;
+  margin: 0 auto;
+  max-width: 1800px;
+  padding: 0 15px;
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+  @media (max-width: 576px) {
+    padding: 0 10px;
+  }
+`;
+
+const RelatedVideos = styled.div`
+  display: inline;
+  flex: 2;
+  height: 90vh;
+  padding: 15px 10px 0;
+  margin: 0 auto;
+  overflow: scroll;
+  overflow-x: hidden;
+  @media (max-width: 992px) {
+    flex-direction: column;
+    max-height: 30vh;
+    padding: 0 15px;
+  }
+`;
+
 const LoaderContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -37,4 +65,6 @@ const ErrorAlert = styled.div`
   }
 `;
 
-export { LoaderContainer, Loader, ErrorAlert };
+
+
+export { VideoSectionWrapper, RelatedVideos, LoaderContainer, Loader, ErrorAlert };

@@ -16,20 +16,14 @@ function VideoCard({
   publishDate,
   pathVideo,
 }: VideoProps) {
-  const { state, dispatch } = useVideo();
+  const { searchMode, getVideoProps } = useVideo();
   const { currentUser } = useAuth();
   const { addFavVideo, removeFavVideo, isFavorite } = useSelector();
 
   const isAuthenticated = Boolean(currentUser);
 
-  const currentCard = (videoInfo: VideoProps) => () => {
-    dispatch({
-      type: 'SET_VIDEO_PROPS',
-      payload: {
-        searchStatus: false,
-        videoProps: videoInfo,
-      },
-    });
+  const currentCard = ({ img, title, description, videoId, publishDate, pathVideo }: VideoProps) => () => {
+    getVideoProps({ img, title, description, videoId, publishDate, pathVideo });
   };
 
   const selectedVideo = { img, title, description, videoId, publishDate, pathVideo };
@@ -44,7 +38,7 @@ function VideoCard({
     }
   }
 
-  const VideoCardMain = state.searchStatus ? VideoCardN : VideoCardRV;
+  const VideoCardMain = searchMode ? VideoCardN : VideoCardRV;
 
   return (
     <VideoCardMain>
@@ -59,12 +53,12 @@ function VideoCard({
           pathVideo,
         })}
       >
-        <Link className={!state.searchStatus ? 'card-link' : ''} to={{pathname: pathVideo}}>
+        <Link className={!searchMode ? 'card-link' : ''} to={{pathname: pathVideo}}>
           <img className="card-thumbnail" src={img} alt={title} />
           <div className="card-content">
             <h4 className="card-title">{title}</h4>
             <p className="card-date">{publishDate}</p>
-            {state.searchStatus && <p className="card-description">{description}</p>}
+            {searchMode && <p className="card-description">{description}</p>}
           </div>
         </Link>
       </CardWrapper>

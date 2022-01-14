@@ -7,7 +7,8 @@ function ThemeToggle() {
   const { changeThemeMode, theme } = useSelector();
 
   const handleThemeMode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    changeThemeMode(e);
+    const isLight = e.target.checked;
+    changeThemeMode(isLight);
   };
 
   return (
