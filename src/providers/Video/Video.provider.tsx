@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useContext } from 'react';
 
 import videoReducer from './videoReducer';
+import { VIDEO_ACTIONS } from './videoReducer';
 import { VideoProps, VideoState } from '../../utils/types';
 
 interface IVideoContext {
@@ -43,15 +44,15 @@ function VideoProvider({ children }: VideoProviderProps) {
   const [state, dispatch] = useReducer(videoReducer, initialState);
 
   const inSearchMode = () => {
-    dispatch({ type: 'SET_SEARCH_MODE', payload: { searchMode: true } });
+    dispatch({ type: VIDEO_ACTIONS.SET_SEARCH_MODE, payload: { searchMode: true } });
   };
 
   const saveSearchTerm = (term: string) => {
-    dispatch({ type: 'SET_SEARCH_TERM', payload: { searchMode: true, searchTerm: term } });
+    dispatch({ type: VIDEO_ACTIONS.SET_SEARCH_TERM, payload: { searchMode: true, searchTerm: term } });
   };
 
   const getVideoProps = ({ img, title, description, videoId, publishDate, pathVideo }: VideoProps) => {
-    dispatch({ type: 'SET_VIDEO_PROPS', payload: { searchMode: false, videoProps: { img, title, description, videoId, publishDate, pathVideo } } });
+    dispatch({ type: VIDEO_ACTIONS.SET_VIDEO_PROPS, payload: { searchMode: false, videoProps: { img, title, description, videoId, publishDate, pathVideo } } });
   };
 
   const value = {

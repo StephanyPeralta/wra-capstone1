@@ -2,23 +2,18 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import FavoritesPage from './Favorites.page';
+import { useAuth } from '../../providers/Auth';
 import { useSelector } from '../../providers/Selector';
-import { VideoProps } from '../../utils/types';
 
-type VideoFavProps = {
-  videos: VideoProps[];
-};
-
+jest.mock('../../providers/Auth', () => ({
+  useAuth: jest.fn(),
+}));
 jest.mock('../../providers/Selector', () => ({
   useSelector: jest.fn(),
 }));
+jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>)
 
-jest.mock(
-  '../../components/VideoListFav',
-  () =>
-    ({ videos }: VideoFavProps) =>
-      videos.map((video) => <div key={video.videoId}>VideoCardFav Mock</div>)
-);
+const authMock = { isAuthenticated: true };
 
 const selectorMock = {
   favorites: [
@@ -30,12 +25,23 @@ const selectorMock = {
       publishDate: '2014-09-27T01:39:18Z',
       pathVideo: '/test/videoId',
     },
+    {
+      img: 'testimg.jpg',
+      title: 'Test Title',
+      description: 'Test Description',
+      videoId: 'abc456',
+      publishDate: '2014-09-27T01:39:18Z',
+      pathVideo: '/test/videoId',
+    },
   ],
 };
+
 
 describe('Favorites page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
+    (useAuth as jest.Mock).mockReturnValue(authMock);
   });
 
   it('renders videoListFav if there are videos to show', () => {
@@ -43,9 +49,9 @@ describe('Favorites page', () => {
 
     render(<FavoritesPage />);
 
-    const videoListFav = screen.getAllByText('VideoCardFav Mock');
+    const videoListFav = screen.getAllByText('VideoCard Mock');
 
-    expect(videoListFav.length).toBe(1);
+    expect(videoListFav.length).toBe(2);
   });
 
   it('renders info alert if there are no videos to show', () => {

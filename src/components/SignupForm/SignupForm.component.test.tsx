@@ -31,12 +31,12 @@ describe('SignupForm component', () => {
     expect(signupButton).toBeInTheDocument();
   });
 
-  it('handles submit function with provided data', async () => {
+  it('handles submit function with provided data', () => {
     render(<SignupForm onClose={onCloseMock} />);
 
-    const inputEmail = await screen.getByPlaceholderText('Email');
-    const inputPassword = await screen.getByPlaceholderText('Password');
-    const signupButton = await screen.getByRole('button', { name: 'Sign Up' });
+    const inputEmail = screen.getByPlaceholderText('Email');
+    const inputPassword = screen.getByPlaceholderText('Password');
+    const signupButton = screen.getByRole('button', { name: 'Sign Up' });
 
     fireEvent.change(inputEmail, { target: { value: 'test@test.com' } });
     fireEvent.change(inputPassword, { target: { value: 'password' } });

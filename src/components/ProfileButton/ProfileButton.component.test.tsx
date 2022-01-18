@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import ProfileButton from './ProfileButton.component';
 import { useAuth } from '../../providers/Auth';
@@ -14,23 +14,21 @@ jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
 jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(() => ({ state: jest.fn(), dispatch: jest.fn() })),
+  useVideo: jest.fn(),
 }));
 
-const authMock = { currentUser: false, logout: jest.fn() };
+const authMock = { isAuthenticated: false, logout: jest.fn() };
 
-const dispatch = jest.fn();
-
-const state = {
-  searchStatus: false,
-  searchTerm: 'wizeline',
-  videoProps: {},
+const videoProviderMock = {
+  searchMode: false,
+  inSearchMode: jest.fn(),
 };
 
 describe('ProfileButton component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useVideo as jest.Mock).mockReturnValue({ state, dispatch });
+    
+    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
   });
 
   it('renders ProfileButton element', () => {
@@ -58,7 +56,7 @@ describe('ProfileButton component', () => {
   });
 
   it('renders Log Out Button after clicking the Avatar if user is logged in', () => {
-    (useAuth as jest.Mock).mockReturnValue({ ...authMock, currentUser: true });
+    (useAuth as jest.Mock).mockReturnValue({ ...authMock, isAuthenticated: true });
 
     render(<ProfileButton />);
 
@@ -70,15 +68,15 @@ describe('ProfileButton component', () => {
     expect(logoutButton).toBeInTheDocument();
   });
 
-  it('triggers logout action after clicking Log Out button', async () => {
-    (useAuth as jest.Mock).mockReturnValue({ ...authMock, currentUser: true });
+  it('triggers logout action after clicking Log Out button', () => {
+    (useAuth as jest.Mock).mockReturnValue({ ...authMock, isAuthenticated: true });
 
     render(<ProfileButton />);
 
-    const profileIconButton = await screen.getByRole('button');
+    const profileIconButton = screen.getByRole('button');
     fireEvent.click(profileIconButton);
 
-    const logoutButton = await screen.getByRole('button', { name: 'Log Out' });
+    const logoutButton = screen.getByRole('button', { name: 'Log Out' });
 
     fireEvent.click(logoutButton);
 

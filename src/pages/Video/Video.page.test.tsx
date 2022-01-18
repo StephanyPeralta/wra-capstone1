@@ -8,6 +8,7 @@ import { useVideo } from '../../providers/Video';
 import { useSelector } from '../../providers/Selector';
 import { useYoutube } from '../../hooks/useYoutube';
 
+jest.mock('../../hooks/useYoutube');
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
@@ -15,15 +16,14 @@ jest.mock('../../providers/Selector', () => ({
   useSelector: jest.fn(),
 }));
 jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(() => ({ state: jest.fn(), dispatch: jest.fn() })),
+  useVideo: jest.fn(),
 }));
-jest.mock('../../hooks/useYoutube');
+jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>)
 
-const authMock = { currentUser: false };
+const authMock = { isAuthenticated: false };
 
 const videos = [
   {
-    key: 1,
     img: 'testimg.jpg',
     title: 'Test Title',
     description: 'Test Description',
@@ -32,7 +32,6 @@ const videos = [
     pathVideo: '/test/videoId',
   },
   {
-    key: 2,
     img: 'testimg.jpg',
     title: 'Test Title',
     description: 'Test Description',
@@ -42,13 +41,17 @@ const videos = [
   },
 ];
 
-const state = {
-  searchStatus: true,
+const videoProviderMock = {
   searchTerm: 'wizeline',
-  videoProps: {},
+  videoProps: {
+    img: 'testimg.jpg',
+    title: 'Test Title',
+    description: 'Test Description',
+    videoId: 'abc456',
+    publishDate: '2014-09-27T01:39:18Z',
+    pathVideo: '/test/videoId',
+  }
 };
-
-const dispatch = jest.fn();
 
 const selectorMock = {
   favorites: [],
@@ -59,7 +62,7 @@ describe('Video page', () => {
     jest.clearAllMocks();
 
     (useAuth as jest.Mock).mockReturnValue(authMock);
-    (useVideo as jest.Mock).mockReturnValue({ state, dispatch });
+    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
     (useSelector as jest.Mock).mockReturnValue(selectorMock);
   });
 
@@ -88,10 +91,9 @@ describe('Video page', () => {
       </MemoryRouter>
     );
 
-    expect(screen.getByTitle('Video Player')).toBeInTheDocument();
-    expect(screen.getByTestId('video-title')).toBeInTheDocument();
-    expect(screen.getByTestId('video-description')).toBeInTheDocument();
-    expect(screen.getByTestId('related-videos')).toBeInTheDocument();
+    const videoList = screen.getAllByText('VideoCard Mock');
+
+    expect(videoList.length).toBe(2);
   });
 
   it('renders Error Alert when error is true', () => {

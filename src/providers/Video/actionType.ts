@@ -1,3 +1,0 @@
-export const SET_SEARCH_MODE = 'SET_SEARCH_MODE';
-export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
-export const SET_VIDEO_PROPS = 'SET_VIDEO_PROPS';

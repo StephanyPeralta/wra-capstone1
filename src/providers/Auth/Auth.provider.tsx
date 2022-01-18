@@ -4,6 +4,7 @@ import { auth } from '../../firebase';
 
 interface IAuthProvider {
   currentUser: firebase.User | null;
+  isAuthenticated: boolean;
   login: (email: string, password: string) => void;
   signup: (email: string, password: string) => void;
   logout: () => void;
@@ -26,6 +27,8 @@ function useAuth() {
 function AuthProvider({ children }: AuthProviderProps) {
   const [currentUser, setCurrentUser] = useState<firebase.User | null>(null);
   const [loading, setLoading] = useState(true);
+
+  const isAuthenticated = Boolean(currentUser);
 
   function signup(email: string, password: string) {
     return auth.createUserWithEmailAndPassword(email, password);
@@ -53,6 +56,7 @@ function AuthProvider({ children }: AuthProviderProps) {
     login,
     signup,
     logout,
+    isAuthenticated
   };
 
   return (

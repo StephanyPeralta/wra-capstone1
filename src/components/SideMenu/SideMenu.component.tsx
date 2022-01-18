@@ -13,10 +13,8 @@ type SideMenuProps = {
 };
 
 function SideMenu({ sideMenuAction, handleToggleMenu }: SideMenuProps) {
-  const { currentUser } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { inSearchMode } = useVideo();
-
-  const isAuthenticated = Boolean(currentUser);
 
   const handleClick = () => {
     inSearchMode();
@@ -24,6 +22,7 @@ function SideMenu({ sideMenuAction, handleToggleMenu }: SideMenuProps) {
 
   return (
     <MenuNav
+      data-testid="sidemenu"
       className={sideMenuAction ? 'open-menu' : ''}
       onClick={() => handleToggleMenu(false)}
       tabIndex={0}

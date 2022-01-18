@@ -20,7 +20,7 @@ function Header({ handleToggleMenu }: Props) {
   }
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper data-testid="header">
       <HeaderSection>
         <MenuButton className="shown-mobile" onClick={handleToggleMenu}>
           <FiMenu size={27} />

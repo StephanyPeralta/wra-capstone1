@@ -10,17 +10,14 @@ jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
 jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(() => ({ state: jest.fn(), dispatch: jest.fn() })),
+  useVideo: jest.fn(),
 }));
 
-const authMock = { currentUser: false };
+const authMock = { isAuthenticated: false };
 
-const dispatch = jest.fn();
-
-const state = {
-  searchStatus: false,
-  searchTerm: 'wizeline',
-  videoProps: {},
+const videoProviderMock = {
+  searchMode: false,
+  inSearchMode: jest.fn(),
 };
 
 const handleToggleMenuMock = jest.fn();
@@ -28,7 +25,7 @@ const handleToggleMenuMock = jest.fn();
 describe('SideMenu component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useVideo as jest.Mock).mockReturnValue({ state, dispatch });
+    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
   });
 
   it('renders SideMenu elements', () => {
@@ -48,7 +45,7 @@ describe('SideMenu component', () => {
     expect(screen.getByText('Home')).toBeTruthy();
   });
 
-  it('updates searcStatus to true when clicked HomeLink', () => {
+  it('calls inSearchMode function when clicked HomeLink', () => {
     (useAuth as jest.Mock).mockReturnValue(authMock);
 
     render(
@@ -63,18 +60,11 @@ describe('SideMenu component', () => {
     const homeLink = screen.getByTestId('home-link');
     fireEvent.click(homeLink);
 
-    expect(dispatch).toHaveBeenCalledWith(
-      expect.objectContaining({
-        type: 'SET_SEARCH_STATUS',
-        payload: {
-          searchStatus: true,
-        },
-      })
-    );
+    expect(videoProviderMock.inSearchMode).toHaveBeenCalledTimes(1)
   });
 
   it('renders Home and Favorites link if a user is authenticated', () => {
-    (useAuth as jest.Mock).mockReturnValue({ ...authMock, currentUser: true });
+    (useAuth as jest.Mock).mockReturnValue({ ...authMock, isAuthenticated: true });
 
     render(
       <MemoryRouter>

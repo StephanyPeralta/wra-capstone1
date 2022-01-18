@@ -3,13 +3,35 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
 import VideoCard from './VideoCard.component';
+import { useAuth } from '../../providers/Auth';
 import { useVideo } from '../../providers/Video';
+import { useSelector } from '../../providers/Selector';
 
+jest.mock('../../providers/Auth', () => ({
+  useAuth: jest.fn(),
+}));
 jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(() => ({ state: jest.fn(), dispatch: jest.fn() })),
+  useVideo: jest.fn(),
+}));
+jest.mock('../../providers/Selector', () => ({
+  useSelector: jest.fn(),
 }));
 
-const dispatch = jest.fn();
+const authMock = { isAuthenticated: false };
+
+const videoProviderMock = {
+  searchMode: true,
+  searchTerm: 'wizeline',
+  videoProps: {},
+  getVideoProps: jest.fn(),
+};
+
+const selectorMock = {
+  favorites: [],
+  addFavVideo: jest.fn(),
+  isFavorite: jest.fn(),
+  removeFavVideo: jest.fn(),
+};
 
 const videoCardMock = {
   img: 'testimg.jpg',
@@ -23,15 +45,13 @@ const videoCardMock = {
 describe('VideoCard component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
+    (useSelector as jest.Mock).mockReturnValue(selectorMock);
+    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
   });
 
   it('renders VideoCard properties', () => {
-    const state = {
-      searchStatus: true,
-      searchTerm: 'wizeline',
-      videoProps: {},
-    };
-    (useVideo as jest.Mock).mockReturnValue({ state, dispatch });
+    (useAuth as jest.Mock).mockReturnValue(authMock);
 
     render(
       <MemoryRouter>
@@ -44,13 +64,8 @@ describe('VideoCard component', () => {
     expect(screen.getByText(videoCardMock.description)).toBeInTheDocument();
   });
 
-  it('renders CardWrapperRV styles if searchStatus is false', () => {
-    const state = {
-      searchStatus: false,
-      searchTerm: 'wizeline',
-      videoProps: {},
-    };
-    (useVideo as jest.Mock).mockReturnValue({ state, dispatch });
+  it("renders 'Add to Favorites' button if the user is logged in", () => {
+    (useAuth as jest.Mock).mockReturnValue({ ...authMock, isAuthenticated: true });
 
     render(
       <MemoryRouter>
@@ -58,9 +73,8 @@ describe('VideoCard component', () => {
       </MemoryRouter>
     );
 
-    const CardWrapperRV = screen.getByTestId('video-card');
+    const addFavButton = screen.getByTestId('button-add');
 
-    expect(state.searchStatus).toBeFalsy();
-    expect(CardWrapperRV).toBeInTheDocument();
+    expect(addFavButton).toBeInTheDocument();
   });
 });

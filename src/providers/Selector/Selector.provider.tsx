@@ -1,6 +1,7 @@
 import React, { createContext, useReducer, useContext, useEffect } from 'react';
 
 import selectorReducer from './selectorReducer';
+import { SELECTOR_ACTIONS } from './selectorReducer';
 import { storage } from '../../utils/storage';
 import { VideoProps, SelectorState } from '../../utils/types';
 
@@ -48,11 +49,11 @@ function SelectorProvider({ children }: SelectorProviderProps) {
   }, [state]);
 
   const changeThemeMode = (isLight: boolean) => {
-    dispatch({ type: 'SET_THEME', payload: { theme: isLight ? 'dark' : 'light' } });
+    dispatch({ type: SELECTOR_ACTIONS.SET_THEME, payload: { theme: isLight ? 'dark' : 'light' } });
   };
 
   const addFavVideo = (video: VideoProps) => {
-    dispatch({ type: 'ADD_FAV_VIDEO', payload: { video } });
+    dispatch({ type: SELECTOR_ACTIONS.ADD_FAV_VIDEO, payload: { video } });
   };
 
   function isFavorite(video: VideoProps) {
@@ -60,7 +61,7 @@ function SelectorProvider({ children }: SelectorProviderProps) {
   }
 
   const removeFavVideo = (videoId: string) => {
-    dispatch({ type: 'REMOVE_FAV_VIDEO', payload: { videoId } });
+    dispatch({ type: SELECTOR_ACTIONS.REMOVE_FAV_VIDEO, payload: { videoId } });
   };
 
   const value = {
