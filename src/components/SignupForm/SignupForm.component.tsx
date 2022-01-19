@@ -31,7 +31,7 @@ function SignupForm({ onClose }: CloseModalProps) {
       onClose();
       toast.success('You Have Successfully Signed up!');
     } catch {
-      setError('Failed to create an account');
+      setError('Failed to create account');
     }
 
     setLoading(false);

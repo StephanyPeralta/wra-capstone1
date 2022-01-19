@@ -3,11 +3,24 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 
 import HomePage from './Home.page';
-import VideoProvider from '../../providers/Video';
-import AuthProvider from '../../providers/Auth';
+import { useAuth } from '../../providers/Auth';
+import { useVideo } from '../../providers/Video';
 import { useYoutube } from '../../hooks/useYoutube';
 
 jest.mock('../../hooks/useYoutube');
+jest.mock('../../providers/Auth', () => ({
+  useAuth: jest.fn(),
+}));
+jest.mock('../../providers/Video', () => ({
+  useVideo: jest.fn(),
+}));
+jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>)
+
+const authMock = { isAuthenticated: true };
+
+const videoProviderMock = {
+  searchTerm: 'wizeline',
+};
 
 const videos = [
   {
@@ -31,6 +44,9 @@ const videos = [
 describe('Home page', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+
+    (useAuth as jest.Mock).mockReturnValue(authMock);
+    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
   });
 
   it('renders Loader icon when isLoading is true', () => {
@@ -38,15 +54,7 @@ describe('Home page', () => {
     const error = false;
     (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
-    render(
-      <AuthProvider>
-        <VideoProvider>
-          <MemoryRouter>
-            <HomePage />
-          </MemoryRouter>
-        </VideoProvider>
-      </AuthProvider>
-    );
+    render(<MemoryRouter><HomePage /></MemoryRouter>);
 
     expect(screen.getByTestId('loader-icon2')).toBeInTheDocument();
   });
@@ -56,17 +64,11 @@ describe('Home page', () => {
     const error = false;
     (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
-    render(
-      <AuthProvider>
-        <VideoProvider>
-          <MemoryRouter>
-            <HomePage />
-          </MemoryRouter>
-        </VideoProvider>
-      </AuthProvider>
-    );
+    render(<MemoryRouter><HomePage /></MemoryRouter>);
 
-    expect(screen.getByTestId('video-list')).toBeInTheDocument();
+    const videoList = screen.getAllByText('VideoCard Mock');
+
+    expect(videoList.length).toBe(2);
   });
 
   it('renders Error Alert when error is true', () => {
@@ -74,15 +76,7 @@ describe('Home page', () => {
     const error = true;
     (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
-    render(
-      <AuthProvider>
-        <VideoProvider>
-          <MemoryRouter>
-            <HomePage />
-          </MemoryRouter>
-        </VideoProvider>
-      </AuthProvider>
-    );
+    render(<MemoryRouter><HomePage /></MemoryRouter>);
 
     expect(screen.getByText('Error loading page!')).toBeInTheDocument();
   });

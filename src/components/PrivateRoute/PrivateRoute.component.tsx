@@ -8,8 +8,7 @@ interface Props extends RouteProps {
 }
 
 function PrivateRoute({ children, ...rest }: Props) {
-  const { currentUser } = useAuth();
-  const isAuthenticated = Boolean(currentUser);
+  const { isAuthenticated } = useAuth();
 
   return (
     <Route {...rest} render={() => (isAuthenticated ? children : <Redirect to="/" />)} />

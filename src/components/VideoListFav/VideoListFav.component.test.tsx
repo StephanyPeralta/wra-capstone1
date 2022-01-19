@@ -2,36 +2,33 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import VideoListFav from './VideoListFav.component';
-import VideoProvider from '../../providers/Video';
+import { useVideo } from '../../providers/Video';
 
-jest.mock('../VideoCard', () => () => <div>VideoCard Mock</div>);
+jest.mock('../../providers/Video', () => ({
+  useVideo: jest.fn(),
+}));
 
-const videosMock = [
-  {
-    img: 'testimg.jpg',
-    title: 'Test Title',
-    description: 'Test Description',
-    videoId: 'abc123',
-    publishDate: '2014-09-27T01:39:18Z',
-    pathVideo: '/test/videoId',
-  },
-  {
-    img: 'testimg.jpg',
-    title: 'Test Title',
-    description: 'Test Description',
-    videoId: 'abc456',
-    publishDate: '2014-09-27T01:39:18Z',
-    pathVideo: '/test/videoId',
-  },
-];
+const videoProviderMock = {
+  searchMode: true,
+  inSearchMode: jest.fn(),
+};
+
+const childrenMock = <div>Children Mock</div>;
 
 describe('VideoListFav component', () => {
-  it('renders VideoListFav elements', () => {
-    render(
-      <VideoProvider>
-        <VideoListFav videos={videosMock} />
-      </VideoProvider>
-    );
-    expect(screen.getAllByText('VideoCard Mock').length).toEqual(2);
+  it('renders VideoListFav children', () => {
+    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
+
+    render(<VideoListFav>{childrenMock}</VideoListFav>);
+
+    expect(screen.getByText('Children Mock')).toBeInTheDocument();
+  });
+
+  it("renders VideoListFav component with class 'related-list' if the searchMode is false", () => {
+    (useVideo as jest.Mock).mockReturnValue({...videoProviderMock, searchMode: false});
+
+    const { container } = render(<VideoListFav>{childrenMock}</VideoListFav>);
+
+    expect(container.firstChild).toHaveClass('related-list')
   });
 });

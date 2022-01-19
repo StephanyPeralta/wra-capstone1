@@ -7,9 +7,7 @@ import { VideoPlayerWrapper, IframeVideo, FavButton } from './VideoPlayer.styled
 
 function VideoPlayer({img, title, description, videoId, publishDate, pathVideo}: VideoProps) {
   const { addFavVideo, removeFavVideo, isFavorite } = useSelector();
-  const { currentUser } = useAuth();
-
-  const isAuthenticated = Boolean(currentUser);
+  const { isAuthenticated } = useAuth();
 
   function handleAddVideo() {
     addFavVideo({img, title, description, videoId, publishDate, pathVideo});

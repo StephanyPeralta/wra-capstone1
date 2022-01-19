@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import ThemeToggle from './ThemeToggle.component';
 import { useSelector } from '../../providers/Selector';
@@ -32,7 +33,8 @@ describe('ThemeToggle component', () => {
 
     const inputTheme = screen.getByRole('checkbox');
 
-    fireEvent.click(inputTheme);
+    userEvent.click(inputTheme);
+;
     expect(selectorMock.changeThemeMode).toHaveBeenCalledTimes(1);
   });
 });

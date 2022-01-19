@@ -17,10 +17,8 @@ function VideoCard({
   pathVideo,
 }: VideoProps) {
   const { searchMode, getVideoProps } = useVideo();
-  const { currentUser } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { addFavVideo, removeFavVideo, isFavorite } = useSelector();
-
-  const isAuthenticated = Boolean(currentUser);
 
   const currentCard = ({ img, title, description, videoId, publishDate, pathVideo }: VideoProps) => () => {
     getVideoProps({ img, title, description, videoId, publishDate, pathVideo });
@@ -65,13 +63,13 @@ function VideoCard({
       {isAuthenticated &&
         (isFavorite(selectedVideo) ? (
           <div className="fav-wrapper">
-            <button className="fav-button" type="button" onClick={handleRemoveVideo}>
+            <button data-testid="button-remove" className="fav-button" type="button" onClick={handleRemoveVideo}>
               <BsHeartFill />
             </button>
           </div>
         ) : (
           <div className="fav-wrapper">
-            <button className="fav-button" type="button" onClick={handleAddVideo}>
+            <button data-testid="button-add" className="fav-button" type="button" onClick={handleAddVideo}>
               <BsHeart />
             </button>
           </div>

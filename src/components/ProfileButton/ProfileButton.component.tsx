@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
 import { BsPersonFill } from 'react-icons/bs';
 import { toast } from 'react-toastify';
@@ -6,32 +6,24 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import { useAuth } from '../../providers/Auth';
 import { useVideo } from '../../providers/Video';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 import ModalPortal from '../Modal';
 import LoginForm from '../LoginForm';
 import SignupForm from '../SignupForm';
 import { ProfileIconWrapper, Dropdown } from './ProfileButton.styled';
 
 function ProfileButton() {
-  const { currentUser, logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   const { inSearchMode } = useVideo();
   const { push } = useHistory();
   const [openDropdown, setOpenDropdown] = useState(false);
   const [showModalSignup, setShowModalSignup] = useState(false);
   const [showModalLogin, setShowModalLogin] = useState(false);
 
-  const isAuthenticated = Boolean(currentUser);
   const menuRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    if (!menuRef.current?.contains(target)) {
-      setOpenDropdown(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+  useOnClickOutside(menuRef, () => {
+    setOpenDropdown(false)
   });
 
   const openModalSignup = () => {
