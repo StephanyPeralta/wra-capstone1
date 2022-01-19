@@ -6,9 +6,11 @@ import VideoPage from './Video.page';
 import { useAuth } from '../../providers/Auth';
 import { useVideo } from '../../providers/Video';
 import { useSelector } from '../../providers/Selector';
-import { useYoutube } from '../../hooks/useYoutube';
+import { useYoutubeVideo } from '../../hooks/useYoutubeVideo';
+import { useYoutubeRelatedVideos } from '../../hooks/useYoutubeRelatedVideos';
 
-jest.mock('../../hooks/useYoutube');
+jest.mock('../../hooks/useYoutubeVideo');
+jest.mock('../../hooks/useYoutubeRelatedVideos');
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
@@ -18,7 +20,7 @@ jest.mock('../../providers/Selector', () => ({
 jest.mock('../../providers/Video', () => ({
   useVideo: jest.fn(),
 }));
-jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>)
+jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>);
 
 const authMock = { isAuthenticated: false };
 
@@ -50,7 +52,7 @@ const videoProviderMock = {
     videoId: 'abc456',
     publishDate: '2014-09-27T01:39:18Z',
     pathVideo: '/test/videoId',
-  }
+  },
 };
 
 const selectorMock = {
@@ -69,7 +71,8 @@ describe('Video page', () => {
   it('renders Loader icon when isLoading is true', () => {
     const isLoading = true;
     const error = false;
-    (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
+    (useYoutubeVideo as jest.Mock).mockReturnValue({ video: null, isLoading, error });
+    (useYoutubeRelatedVideos as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
     render(
       <MemoryRouter>
@@ -80,18 +83,19 @@ describe('Video page', () => {
     expect(screen.getByTestId('loader-icon1')).toBeInTheDocument();
   });
 
-  it('renders Video elements after Loading', () => {
+  fit('renders Video elements after Loading', () => {
     const isLoading = false;
     const error = false;
-    (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
+    (useYoutubeVideo as jest.Mock).mockReturnValue({ video: videos[0], isLoading, error });
+    (useYoutubeRelatedVideos as jest.Mock).mockReturnValue({ relatedVideos: videos, isLoading, error });
 
     render(
       <MemoryRouter>
         <VideoPage />
       </MemoryRouter>
     );
-
     const videoList = screen.getAllByText('VideoCard Mock');
+    
 
     expect(videoList.length).toBe(2);
   });
@@ -99,7 +103,8 @@ describe('Video page', () => {
   it('renders Error Alert when error is true', () => {
     const isLoading = false;
     const error = true;
-    (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
+    (useYoutubeVideo as jest.Mock).mockReturnValue({ video: null, isLoading, error });
+    (useYoutubeRelatedVideos as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
     render(
       <MemoryRouter>

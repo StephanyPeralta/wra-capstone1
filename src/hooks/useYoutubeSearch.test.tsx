@@ -1,6 +1,6 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 
-import { useYoutube } from './useYoutube';
+import { useYoutubeSearch } from './useYoutubeSearch';
 
 const getControlledPromise = () => {
   let deferred;
@@ -13,7 +13,7 @@ const getControlledPromise = () => {
 describe('useYoutube hook', () => {
   it('fetches videos by the searchTerm that is included in the url', async () => {
     global.fetch = jest.fn();
-    renderHook(() => useYoutube('wizeline'));
+    renderHook(() => useYoutubeSearch('wizeline'));
 
     const key = process.env.REACT_APP_YT_API_KEY;
     const searchTerm = 'wizeline';
@@ -26,7 +26,7 @@ describe('useYoutube hook', () => {
   it('handles loading state correctly', async () => {
     const { deferred, promise } = getControlledPromise();
     global.fetch = jest.fn(() => promise);
-    const { result, waitForNextUpdate } = renderHook(useYoutube);
+    const { result, waitForNextUpdate } = renderHook(useYoutubeSearch);
 
     expect(result.current.isLoading).toBe(true);
     deferred.resolve();
@@ -43,7 +43,7 @@ describe('useYoutube hook', () => {
       });
     });
 
-    const { result, waitForNextUpdate } = renderHook(useYoutube);
+    const { result, waitForNextUpdate } = renderHook(useYoutubeSearch);
     await waitForNextUpdate();
 
     expect(result.current.error).toBe(true);

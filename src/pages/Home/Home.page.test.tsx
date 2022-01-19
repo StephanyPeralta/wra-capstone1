@@ -5,16 +5,16 @@ import { render, screen } from '@testing-library/react';
 import HomePage from './Home.page';
 import { useAuth } from '../../providers/Auth';
 import { useVideo } from '../../providers/Video';
-import { useYoutube } from '../../hooks/useYoutube';
+import { useYoutubeSearch } from '../../hooks/useYoutubeSearch';
 
-jest.mock('../../hooks/useYoutube');
+jest.mock('../../hooks/useYoutubeSearch');
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
 jest.mock('../../providers/Video', () => ({
   useVideo: jest.fn(),
 }));
-jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>)
+jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>);
 
 const authMock = { isAuthenticated: true };
 
@@ -52,9 +52,13 @@ describe('Home page', () => {
   it('renders Loader icon when isLoading is true', () => {
     const isLoading = true;
     const error = false;
-    (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
+    (useYoutubeSearch as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
-    render(<MemoryRouter><HomePage /></MemoryRouter>);
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>
+    );
 
     expect(screen.getByTestId('loader-icon2')).toBeInTheDocument();
   });
@@ -62,9 +66,13 @@ describe('Home page', () => {
   it('renders Video elements after Loading', () => {
     const isLoading = false;
     const error = false;
-    (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
+    (useYoutubeSearch as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
-    render(<MemoryRouter><HomePage /></MemoryRouter>);
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>
+    );
 
     const videoList = screen.getAllByText('VideoCard Mock');
 
@@ -74,9 +82,13 @@ describe('Home page', () => {
   it('renders Error Alert when error is true', () => {
     const isLoading = false;
     const error = true;
-    (useYoutube as jest.Mock).mockReturnValue({ videos, isLoading, error });
+    (useYoutubeSearch as jest.Mock).mockReturnValue({ videos, isLoading, error });
 
-    render(<MemoryRouter><HomePage /></MemoryRouter>);
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>
+    );
 
     expect(screen.getByText('Error loading page!')).toBeInTheDocument();
   });
