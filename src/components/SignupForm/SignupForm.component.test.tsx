@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import SignupForm from './SignupForm.component';
 import { useAuth } from '../../providers/Auth';
@@ -38,10 +39,10 @@ describe('SignupForm component', () => {
     const inputPassword = screen.getByPlaceholderText('Password');
     const signupButton = screen.getByRole('button', { name: 'Sign Up' });
 
-    fireEvent.change(inputEmail, { target: { value: 'test@test.com' } });
-    fireEvent.change(inputPassword, { target: { value: 'password' } });
+    userEvent.type(inputEmail, 'test@test.com')
+    userEvent.type(inputPassword, 'password')
 
-    fireEvent.click(signupButton);
+    userEvent.click(signupButton);
 
     expect(authMock.signup).toHaveBeenCalledWith('test@test.com', 'password');
   });

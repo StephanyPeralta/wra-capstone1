@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 
 import LoginForm from './LoginForm.component';
 import { useAuth } from '../../providers/Auth';
@@ -41,10 +42,10 @@ describe('LoginForm component', () => {
     const inputPassword = screen.getByPlaceholderText('Password');
     const loginButton = screen.getByRole('button', { name: 'Log In' });
 
-    fireEvent.change(inputEmail, { target: { value: 'test@test.com' } });
-    fireEvent.change(inputPassword, { target: { value: 'password' } });
+    userEvent.type(inputEmail, 'test@test.com')
+    userEvent.type(inputPassword, 'password')
 
-    fireEvent.click(loginButton);
+    userEvent.click(loginButton);
 
     expect(authMock.login).toHaveBeenCalledWith('test@test.com', 'password');
   });
