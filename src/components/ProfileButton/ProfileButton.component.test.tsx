@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 
 import ProfileButton from './ProfileButton.component';
 import { useAuth } from '../../providers/Auth';
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 
 const mockHistoryPush = jest.fn();
 
@@ -13,13 +13,13 @@ jest.mock('react-router-dom', () => ({
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
-jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(),
+jest.mock('../../providers/SearchStatus', () => ({
+  useSearchStatus: jest.fn(),
 }));
 
 const authMock = { isAuthenticated: false, logout: jest.fn() };
 
-const videoProviderMock = {
+const searchProviderMock = {
   searchMode: false,
   inSearchMode: jest.fn(),
 };
@@ -28,7 +28,7 @@ describe('ProfileButton component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
     
-    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
+    (useSearchStatus as jest.Mock).mockReturnValue(searchProviderMock);
   });
 
   it('renders ProfileButton element', () => {

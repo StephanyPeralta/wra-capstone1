@@ -4,21 +4,21 @@ import { render, screen } from '@testing-library/react';
 
 import HomePage from './Home.page';
 import { useAuth } from '../../providers/Auth';
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import { useYoutubeSearch } from '../../hooks/useYoutubeSearch';
 
 jest.mock('../../hooks/useYoutubeSearch');
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
-jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(),
+jest.mock('../../providers/SearchStatus', () => ({
+  useSearchStatus: jest.fn(),
 }));
 jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>);
 
 const authMock = { isAuthenticated: true };
 
-const videoProviderMock = {
+const searchProviderMock = {
   searchTerm: 'wizeline',
 };
 
@@ -46,7 +46,7 @@ describe('Home page', () => {
     jest.clearAllMocks();
 
     (useAuth as jest.Mock).mockReturnValue(authMock);
-    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
+    (useSearchStatus as jest.Mock).mockReturnValue(searchProviderMock);
   });
 
   it('renders Loader icon when isLoading is true', () => {

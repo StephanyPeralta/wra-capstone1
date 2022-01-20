@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.min.css';
 
 import { ThemeProvider } from 'styled-components';
 import { Themes } from '../../utils/themes';
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 import Header from '../Header';
 import SideMenu from '../SideMenu';
 import { LayoutContainer, SectionWrapper, SectionContainer } from './Layout.styled';
@@ -14,7 +14,7 @@ interface Props {
 }
 
 function Layout({ children }: Props) {
-  const { theme } = useSelector();
+  const { theme } = usePreferences();
   const [sideMenuAction, setSideMenuAction] = useState(false);
 
   const handleToggleMenu = (): void =>

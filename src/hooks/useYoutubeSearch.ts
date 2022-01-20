@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { VideoProps } from '../utils/types';
+import { Video } from '../utils/types';
 import { useFetch } from './useFetch';
 
 const parseResponse = (data: any) => {
@@ -31,7 +31,7 @@ function useYoutubeSearch(searchTerm: string) {
     { defaultValue: [], parseResponse, params }
   );
 
-  return { videos: data as VideoProps[], isLoading, error };
+  return { videos: data as Video[], isLoading, error };
 }
 
 export { useYoutubeSearch };

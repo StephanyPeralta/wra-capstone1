@@ -1,18 +1,18 @@
 import React from 'react';
 
-import SelectorProvider from '../../providers/Selector';
-import VideoProvider from '../../providers/Video';
+import PreferencesProvider from '../../providers/Preferences';
+import SearchStatusProvider from '../../providers/SearchStatus';
 import AuthProvider from '../../providers/Auth';
 import Router from '../Router';
 
 function App() {
   return (
     <AuthProvider>
-      <VideoProvider>
-        <SelectorProvider>
+      <SearchStatusProvider>
+        <PreferencesProvider>
           <Router />
-        </SelectorProvider>
-      </VideoProvider>
+        </PreferencesProvider>
+      </SearchStatusProvider>
     </AuthProvider>
   );
 }

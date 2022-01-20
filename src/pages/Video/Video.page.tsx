@@ -3,7 +3,7 @@ import { useRouteMatch } from 'react-router-dom';
 import { FiAlertCircle } from 'react-icons/fi';
 import { useYoutubeVideo } from '../../hooks/useYoutubeVideo';
 import { useYoutubeRelatedVideos } from '../../hooks/useYoutubeRelatedVideos';
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 import VideoPlayer from '../../components/VideoPlayer';
 import VideoList from '../../components/VideoList';
 import VideoListFav from '../../components/VideoListFav';
@@ -20,12 +20,13 @@ import { useParams } from 'react-router';
 interface VideoPageParams {
   videoId: string;
 }
+
 function VideoPage() {
   let { videoId } = useParams<VideoPageParams>();
   const { video, isLoading, error } = useYoutubeVideo(videoId);
   const { relatedVideos } = useYoutubeRelatedVideos(videoId);
 
-  const { favorites } = useSelector();
+  const { favorites } = usePreferences();
 
   const favoritesMatch = useRouteMatch('/favorites/:videoId');
 
@@ -50,6 +51,7 @@ function VideoPage() {
     );
   }
 
+  // console.log(relatedVideos)
   return (
     <>
       {video && (

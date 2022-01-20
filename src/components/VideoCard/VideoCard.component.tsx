@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { BsHeartFill, BsHeart } from 'react-icons/bs';
 
 import { useAuth } from '../../providers/Auth';
-import { useSelector } from '../../providers/Selector';
-import { useVideo } from '../../providers/Video';
-import { VideoProps } from '../../utils/types';
+import { usePreferences } from '../../providers/Preferences';
+import { useSearchStatus } from '../../providers/SearchStatus';
+import { Video } from '../../utils/types';
 import { CardWrapper, VideoCardN, VideoCardRV } from './VideoCard.styled';
 
 function VideoCard({
@@ -15,14 +15,10 @@ function VideoCard({
   videoId,
   publishDate,
   pathVideo,
-}: VideoProps) {
-  const { searchMode, getVideoProps } = useVideo();
+}: Video) {
+  const { searchMode, inSearchMode } = useSearchStatus();
   const { isAuthenticated } = useAuth();
-  const { addFavVideo, removeFavVideo, isFavorite } = useSelector();
-
-  const currentCard = ({ img, title, description, videoId, publishDate, pathVideo }: VideoProps) => () => {
-    getVideoProps({ img, title, description, videoId, publishDate, pathVideo });
-  };
+  const { addFavVideo, removeFavVideo, isFavorite } = usePreferences();
 
   const selectedVideo = { img, title, description, videoId, publishDate, pathVideo };
 
@@ -36,20 +32,17 @@ function VideoCard({
     }
   }
 
+  const handleClick = () => {
+    inSearchMode(false);
+  }
+
   const VideoCardMain = searchMode ? VideoCardN : VideoCardRV;
 
   return (
     <VideoCardMain>
       <CardWrapper
         data-testid="video-card"
-        onClick={currentCard({
-          img,
-          title,
-          description,
-          videoId,
-          publishDate,
-          pathVideo,
-        })}
+        onClick={handleClick}
       >
         <Link className={!searchMode ? 'card-link' : ''} to={{pathname: pathVideo}}>
           <img className="card-thumbnail" src={img} alt={title} />

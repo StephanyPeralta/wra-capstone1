@@ -3,19 +3,19 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import SideMenu from './SideMenu.component';
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import { useAuth } from '../../providers/Auth';
 
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
-jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(),
+jest.mock('../../providers/SearchStatus', () => ({
+  useSearchStatus: jest.fn(),
 }));
 
 const authMock = { isAuthenticated: false };
 
-const videoProviderMock = {
+const searchProviderMock = {
   searchMode: false,
   inSearchMode: jest.fn(),
 };
@@ -25,7 +25,7 @@ const handleToggleMenuMock = jest.fn();
 describe('SideMenu component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
+    (useSearchStatus as jest.Mock).mockReturnValue(searchProviderMock);
   });
 
   it('renders SideMenu elements', () => {
@@ -60,7 +60,7 @@ describe('SideMenu component', () => {
     const homeLink = screen.getByTestId('home-link');
     fireEvent.click(homeLink);
 
-    expect(videoProviderMock.inSearchMode).toHaveBeenCalledTimes(1)
+    expect(searchProviderMock.inSearchMode).toHaveBeenCalledTimes(1)
   });
 
   it('renders Home and Favorites link if a user is authenticated', () => {

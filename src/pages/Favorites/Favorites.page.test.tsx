@@ -3,19 +3,19 @@ import { render, screen } from '@testing-library/react';
 
 import FavoritesPage from './Favorites.page';
 import { useAuth } from '../../providers/Auth';
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
-jest.mock('../../providers/Selector', () => ({
-  useSelector: jest.fn(),
+jest.mock('../../providers/Preferences', () => ({
+  usePreferences: jest.fn(),
 }));
 jest.mock('../../components/VideoCard', () => () => <div>VideoCard Mock</div>)
 
 const authMock = { isAuthenticated: true };
 
-const selectorMock = {
+const preferencesMock = {
   favorites: [
     {
       img: 'testimg.jpg',
@@ -45,7 +45,7 @@ describe('Favorites page', () => {
   });
 
   it('renders videoListFav if there are videos to show', () => {
-    (useSelector as jest.Mock).mockReturnValue(selectorMock);
+    (usePreferences as jest.Mock).mockReturnValue(preferencesMock);
 
     render(<FavoritesPage />);
 
@@ -55,7 +55,7 @@ describe('Favorites page', () => {
   });
 
   it('renders info alert if there are no videos to show', () => {
-    (useSelector as jest.Mock).mockReturnValue({ ...selectorMock, favorites: [] });
+    (usePreferences as jest.Mock).mockReturnValue({ ...preferencesMock, favorites: [] });
 
     render(<FavoritesPage />);
 

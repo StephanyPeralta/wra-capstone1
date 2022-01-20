@@ -22,6 +22,8 @@ const VideoPlayerWrapper = styled.div`
   }
   .video-description {
     margin: 0 0 15px;
+    max-height: 120px;
+    overflow: scroll;
   }
 `;
 

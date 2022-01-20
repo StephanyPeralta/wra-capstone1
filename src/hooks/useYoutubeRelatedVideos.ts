@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
-import { VideoProps } from '../utils/types';
+import { Video } from '../utils/types';
 import { useFetch } from './useFetch';
 
 const parseResponse = (data: any) => {
   return data.items
-    .filter((item: any) => item.id.kind === 'youtube#video')
+    .filter((item: any) => item.id.kind === 'youtube#video' && item.snippet)
     .map((item: any) => ({
       img: item.snippet.thumbnails.medium.url,
       title: item.snippet.title,
@@ -32,6 +32,6 @@ function useYoutubeRelatedVideos(videoId: string) {
     { defaultValue: [], parseResponse, params }
   );
 
-  return { relatedVideos: data as VideoProps[], isLoading, error };
+  return { relatedVideos: data as Video[], isLoading, error };
 }
 export { useYoutubeRelatedVideos };

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 import { useAuth } from '../../providers/Auth';
-import { VideoProps } from '../../utils/types';
+import { Video } from '../../utils/types';
 import { VideoPlayerWrapper, IframeVideo, FavButton } from './VideoPlayer.styled';
 
-function VideoPlayer({img, title, description, videoId, publishDate, pathVideo}: VideoProps) {
-  const { addFavVideo, removeFavVideo, isFavorite } = useSelector();
+function VideoPlayer({img, title, description, videoId, publishDate, pathVideo}: Video) {
+  const { addFavVideo, removeFavVideo, isFavorite } = usePreferences();
   const { isAuthenticated } = useAuth();
 
   function handleAddVideo() {

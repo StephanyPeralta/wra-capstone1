@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import { VideoWrapper } from './VideoListFav.styled';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 };
 
 function VideoListFav({ children }: Props) {
-  const { searchMode } = useVideo();
+  const { searchMode } = useSearchStatus();
 
   return (
     <VideoWrapper className={!searchMode ? 'related-list' : ''}>

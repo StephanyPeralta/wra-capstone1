@@ -3,24 +3,24 @@ import { render, screen } from '@testing-library/react';
 
 import VideoPlayer from './VideoPlayer.component';
 import { useAuth } from '../../providers/Auth';
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
-jest.mock('../../providers/Selector', () => ({
-  useSelector: jest.fn(),
+jest.mock('../../providers/Preferences', () => ({
+  usePreferences: jest.fn(),
 }));
 
 const authMock = { isAuthenticated: false };
 
-const selectorMock = {
+const preferencesMock = {
   addFavVideo: jest.fn(),
   removeFavVideo: jest.fn(),
   isFavorite: jest.fn(),
 };
 
-const videoPropsMock = {
+const videoMock = {
   img: 'testimg.jpg',
   title: 'Test Title',
   description: 'Test Description',
@@ -36,22 +36,22 @@ describe('VideoPlayer component', () => {
 
   it('renders VideoPlayer elements', () => {
     (useAuth as jest.Mock).mockReturnValue(authMock);
-    (useSelector as jest.Mock).mockReturnValue(selectorMock);
+    (usePreferences as jest.Mock).mockReturnValue(preferencesMock);
 
-    render(<VideoPlayer {...videoPropsMock} />);
+    render(<VideoPlayer {...videoMock} />);
 
     const iframe = screen.getByTitle('Video Player');
 
     expect(iframe).toBeInTheDocument();
-    expect(screen.getByText(videoPropsMock.title)).toBeInTheDocument();
-    expect(screen.getByText(videoPropsMock.description)).toBeInTheDocument();
+    expect(screen.getByText(videoMock.title)).toBeInTheDocument();
+    expect(screen.getByText(videoMock.description)).toBeInTheDocument();
   });
 
   it("renders 'Add to Favorites' Button if user is logged in", () => {
     (useAuth as jest.Mock).mockReturnValue({ ...authMock, isAuthenticated: true });
-    (useSelector as jest.Mock).mockReturnValue(selectorMock);
+    (usePreferences as jest.Mock).mockReturnValue(preferencesMock);
 
-    render(<VideoPlayer {...videoPropsMock} />);
+    render(<VideoPlayer {...videoMock} />);
 
     const addButton = screen.getByRole('button', { name: 'Add to Favorites' });
 

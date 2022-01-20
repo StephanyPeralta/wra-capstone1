@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Search from './Search.component';
-import VideoProvider from '../../providers/Video';
+import SearchStatusProvider from '../../providers/SearchStatus';
 
 const mockHistoryPush = jest.fn();
 
@@ -14,9 +14,9 @@ jest.mock('react-router-dom', () => ({
 describe('Search component', () => {
   beforeEach(() => {
     render(
-      <VideoProvider>
+      <SearchStatusProvider>
         <Search />
-      </VideoProvider>
+      </SearchStatusProvider>
     );
   });
 

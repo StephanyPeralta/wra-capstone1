@@ -42,7 +42,6 @@ const VideoCardN = styled.div`
     margin: 0;
     line-height: 155%;
     overflow: hidden;
-    text-overflow: ellipsis;
   }
   .fav-wrapper {
     position: absolute;

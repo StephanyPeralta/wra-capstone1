@@ -1,8 +1,8 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { VideoProps } from '../utils/types';
+import { useMemo } from 'react';
+import { Video } from '../utils/types';
 import { useFetch } from './useFetch';
 
-type YoutubeVideoResponse = VideoProps | null;
+type YoutubeVideoResponse = Video | null;
 
 const parseResponse = (data: any) => {
   if (data.items.length === 0) {

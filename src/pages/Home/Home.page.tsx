@@ -2,13 +2,13 @@ import React from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 
 import VideoList from '../../components/VideoList';
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import { useYoutubeSearch } from '../../hooks/useYoutubeSearch';
 import VideoCard from '../../components/VideoCard';
 import { LoaderContainer, Loader, ErrorAlert, HomeWrapper } from './Home.styled';
 
 function HomePage() {
-  const { searchTerm } = useVideo();
+  const { searchTerm } = useSearchStatus();
   const { videos, isLoading, error } = useYoutubeSearch(searchTerm);
 
   if (error) {
