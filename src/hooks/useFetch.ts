@@ -35,6 +35,7 @@ function useFetch(
       setError(true);
     }
     setIsLoading(false);
+      // eslint-disable-next-line
   }, [url, options.params, options.parseResponse]);
 
   useEffect(() => {

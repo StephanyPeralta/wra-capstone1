@@ -51,7 +51,6 @@ function VideoPage() {
     );
   }
 
-  // console.log(relatedVideos)
   return (
     <>
       {video && (
