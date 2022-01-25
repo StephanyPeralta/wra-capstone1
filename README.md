@@ -1,7 +1,6 @@
 # YouWize App
 
-This project was created as part of the "2021 React Bootcamp" certification by Wizeline Academy.
-This SPA is connected with the [YouTube API](https://developers.google.com/youtube) so you can search for any video, see its details and reproduce it. If you want to save videos in a "Favorite List" you can Sign up / Log In and do it, also includes dark mode.
+This app is connected with the [YouTube API](https://developers.google.com/youtube) so you can search for any video, see its details and reproduce it. If you want to save videos in a "Favorite List" you can Sign up / Log In and do it, also includes dark mode.
 
 ## Usage
 
@@ -14,7 +13,7 @@ This SPA is connected with the [YouTube API](https://developers.google.com/youtu
 
 ## Tools & Technologies
 
-- Create React App
+- TypeScript
 - Styled-Components
 - Youtube API
 - Firebase
@@ -22,4 +21,4 @@ This SPA is connected with the [YouTube API](https://developers.google.com/youtu
 
 ## Live Mode
 
-See [YouWize App](https://steph-react-certification.netlify.app/).
+See [YouWize App](https://youwize-capstone.netlify.app/).

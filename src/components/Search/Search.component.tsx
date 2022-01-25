@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { BiSearchAlt2 } from 'react-icons/bi';
 
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import { SearchContainer, SearchInput, SearchIconWrapper } from './Search.styled';
 
 function Search() {
   const [termValue, setTermValue] = useState('');
-  const { saveSearchTerm, searchTerm } = useVideo();
+  const { saveSearchTerm, searchTerm } = useSearchStatus();
   const { push } = useHistory();
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

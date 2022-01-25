@@ -2,7 +2,7 @@ import React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import { CgPlayButtonO } from 'react-icons/cg';
 
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import Search from '../Search';
 import ThemeToggle from '../ThemeToggle';
 import ProfileButton from '../ProfileButton';
@@ -13,10 +13,10 @@ interface Props {
 }
 
 function Header({ handleToggleMenu }: Props) {
-  const { inSearchMode } = useVideo();
+  const { inSearchMode } = useSearchStatus();
 
   const handleClick = () => {
-    inSearchMode();
+    inSearchMode(true);
   }
 
   return (

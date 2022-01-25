@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { VscHome } from 'react-icons/vsc';
 import { BsHeart } from 'react-icons/bs';
 
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import { useAuth } from '../../providers/Auth';
 import { MenuNav, MenuItem, MenuText } from './SideMenu.styled';
 
@@ -14,10 +14,10 @@ type SideMenuProps = {
 
 function SideMenu({ sideMenuAction, handleToggleMenu }: SideMenuProps) {
   const { isAuthenticated } = useAuth();
-  const { inSearchMode } = useVideo();
+  const { inSearchMode } = useSearchStatus();
 
   const handleClick = () => {
-    inSearchMode();
+    inSearchMode(true);
   };
 
   return (

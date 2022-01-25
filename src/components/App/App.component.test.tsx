@@ -2,19 +2,19 @@ import React from 'react';
 import { render } from '@testing-library/react';
 
 import App from './App.component';
-import SelectorProvider from '../../providers/Selector';
+import PreferencesProvider from '../../providers/Preferences';
 import AuthProvider from '../../providers/Auth';
-import VideoProvider from '../../providers/Video';
+import SearchStatusProvider from '../../providers/SearchStatus';
 
 describe('App component', () => {
   it('renders App without crashing', async () => {
       render(
         <AuthProvider>
-          <VideoProvider>
-            <SelectorProvider>
+          <SearchStatusProvider>
+            <PreferencesProvider>
               <App />
-            </SelectorProvider>
-          </VideoProvider>
+            </PreferencesProvider>
+          </SearchStatusProvider>
         </AuthProvider>
       )
     });

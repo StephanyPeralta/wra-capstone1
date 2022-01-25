@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 import VideoListFav from '../../components/VideoListFav';
 import VideoCard from '../../components/VideoCard';
 import { FavContainer, InfoAlert } from './Favorites.styled';
 
 function FavoritesPage() {
-  const { favorites } = useSelector();
+  const { favorites } = usePreferences();
 
   return (
     <FavContainer>

@@ -1,28 +1,38 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import { FiAlertCircle } from 'react-icons/fi';
-
-import { useVideo } from '../../providers/Video';
-import { useYoutube } from '../../hooks/useYoutube';
-import { useSelector } from '../../providers/Selector';
+import { useYoutubeVideo } from '../../hooks/useYoutubeVideo';
+import { useYoutubeRelatedVideos } from '../../hooks/useYoutubeRelatedVideos';
+import { usePreferences } from '../../providers/Preferences';
 import VideoPlayer from '../../components/VideoPlayer';
 import VideoList from '../../components/VideoList';
 import VideoListFav from '../../components/VideoListFav';
 import VideoCard from '../../components/VideoCard';
-import { VideoSectionWrapper, RelatedVideos, LoaderContainer, Loader, ErrorAlert } from './Video.styled';
+import {
+  VideoSectionWrapper,
+  RelatedVideos,
+  LoaderContainer,
+  Loader,
+  ErrorAlert,
+} from './Video.styled';
+import { useParams } from 'react-router';
+
+interface VideoPageParams {
+  videoId: string;
+}
 
 function VideoPage() {
-  const { videoProps, searchTerm } = useVideo();
-  const { videos, isLoading, error } = useYoutube(searchTerm);
-  const { favorites } = useSelector();
+  let { videoId } = useParams<VideoPageParams>();
+  const { video, isLoading, error } = useYoutubeVideo(videoId);
+  const { relatedVideos } = useYoutubeRelatedVideos(videoId);
 
-  const favoritesMatch = useRouteMatch("/favorites/:videoId");
+  const { favorites } = usePreferences();
 
-  const VideoListMain = favoritesMatch?.isExact
-    ? VideoListFav
-    : VideoList;
+  const favoritesMatch = useRouteMatch('/favorites/:videoId');
 
-  const videoList = favoritesMatch?.isExact ? favorites : videos;
+  const VideoListMain = favoritesMatch?.isExact ? VideoListFav : VideoList;
+
+  const videoList = favoritesMatch?.isExact ? favorites : relatedVideos;
 
   if (error) {
     return (
@@ -43,27 +53,30 @@ function VideoPage() {
 
   return (
     <>
-      {videoProps &&
+      {video && (
         <VideoSectionWrapper>
-          <VideoPlayer  {...videoProps} />
+          <VideoPlayer {...video} />
           <RelatedVideos data-testid="related-videos">
             <VideoListMain>
-              {videoList
-                .map((video) => (
-                  <VideoCard
-                    key={video.videoId}
-                    videoId={video.videoId}
-                    img={video.img}
-                    title={video.title}
-                    description={video.description}
-                    publishDate={new Date(video.publishDate).toDateString()}
-                    pathVideo={favoritesMatch?.isExact ? `/favorites/${video.videoId}` : video.pathVideo}
-                  />
+              {videoList.map((video) => (
+                <VideoCard
+                  key={video.videoId}
+                  videoId={video.videoId}
+                  img={video.img}
+                  title={video.title}
+                  description={video.description}
+                  publishDate={new Date(video.publishDate).toDateString()}
+                  pathVideo={
+                    favoritesMatch?.isExact
+                      ? `/favorites/${video.videoId}`
+                      : video.pathVideo
+                  }
+                />
               ))}
             </VideoListMain>
           </RelatedVideos>
         </VideoSectionWrapper>
-      }
+      )}
     </>
   );
 }

@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 import { useAuth } from '../../providers/Auth';
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 import useOnClickOutside from '../../hooks/useOnClickOutside';
 import ModalPortal from '../Modal';
 import LoginForm from '../LoginForm';
@@ -14,7 +14,7 @@ import { ProfileIconWrapper, Dropdown } from './ProfileButton.styled';
 
 function ProfileButton() {
   const { isAuthenticated, logout } = useAuth();
-  const { inSearchMode } = useVideo();
+  const { inSearchMode } = useSearchStatus();
   const { push } = useHistory();
   const [openDropdown, setOpenDropdown] = useState(false);
   const [showModalSignup, setShowModalSignup] = useState(false);
@@ -48,7 +48,7 @@ function ProfileButton() {
     try {
       await logout();
       setOpenDropdown(false);
-      inSearchMode();
+      inSearchMode(true);
       push('/');
       toast.success('You Have Successfully Logged out!');
     } catch {

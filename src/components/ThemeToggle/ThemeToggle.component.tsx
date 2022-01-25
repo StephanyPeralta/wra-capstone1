@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 import { Toggle, InputTheme, SliderTheme } from './ThemeToggle.styled';
 
 function ThemeToggle() {
-  const { changeThemeMode, theme } = useSelector();
+  const { changeThemeMode, theme } = usePreferences();
 
   const handleThemeMode = (e: React.ChangeEvent<HTMLInputElement>) => {
     const isLight = e.target.checked;

@@ -2,13 +2,13 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import VideoListFav from './VideoListFav.component';
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 
-jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(),
+jest.mock('../../providers/SearchStatus', () => ({
+  useSearchStatus: jest.fn(),
 }));
 
-const videoProviderMock = {
+const searchProviderMock = {
   searchMode: true,
   inSearchMode: jest.fn(),
 };
@@ -17,7 +17,7 @@ const childrenMock = <div>Children Mock</div>;
 
 describe('VideoListFav component', () => {
   it('renders VideoListFav children', () => {
-    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
+    (useSearchStatus as jest.Mock).mockReturnValue(searchProviderMock);
 
     render(<VideoListFav>{childrenMock}</VideoListFav>);
 
@@ -25,7 +25,7 @@ describe('VideoListFav component', () => {
   });
 
   it("renders VideoListFav component with class 'related-list' if the searchMode is false", () => {
-    (useVideo as jest.Mock).mockReturnValue({...videoProviderMock, searchMode: false});
+    (useSearchStatus as jest.Mock).mockReturnValue({...searchProviderMock, searchMode: false});
 
     const { container } = render(<VideoListFav>{childrenMock}</VideoListFav>);
 

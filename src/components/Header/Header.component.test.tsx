@@ -3,10 +3,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 
 import Header from './Header.component';
-import { useVideo } from '../../providers/Video';
+import { useSearchStatus } from '../../providers/SearchStatus';
 
-jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(),
+jest.mock('../../providers/SearchStatus', () => ({
+  useSearchStatus: jest.fn(),
 }));
 jest.mock('../Search', () => () => <div>Search Mock</div>);
 jest.mock('../ThemeToggle', () => () => <div>ThemeToggle Mock</div>);
@@ -14,14 +14,14 @@ jest.mock('../ProfileButton', () => () => <div>ProfileButton Mock</div>);
 
 const mockHandler = jest.fn();
 
-const videoProviderMock = {
+const searchProviderMock = {
   searchMode: false,
   inSearchMode: jest.fn(),
 };
 
 describe('Header component', () => {
   beforeEach(() => {
-    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
+    (useSearchStatus as jest.Mock).mockReturnValue(searchProviderMock);
 
     render(
       <MemoryRouter>
@@ -52,6 +52,6 @@ describe('Header component', () => {
     
     fireEvent.click(logoTitle);
 
-    expect(videoProviderMock.inSearchMode).toHaveBeenCalledTimes(1);
+    expect(searchProviderMock.inSearchMode).toHaveBeenCalledTimes(1);
   });
 });

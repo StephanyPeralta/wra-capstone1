@@ -3,13 +3,13 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import ThemeToggle from './ThemeToggle.component';
-import { useSelector } from '../../providers/Selector';
+import { usePreferences } from '../../providers/Preferences';
 
-jest.mock('../../providers/Selector', () => ({
-  useSelector: jest.fn(),
+jest.mock('../../providers/Preferences', () => ({
+  usePreferences: jest.fn(),
 }));
 
-const selectorMock = {
+const preferencesMock = {
   changeThemeMode: jest.fn(),
   theme: 'light',
 };
@@ -17,7 +17,7 @@ const selectorMock = {
 describe('ThemeToggle component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    (useSelector as jest.Mock).mockReturnValue(selectorMock);
+    (usePreferences as jest.Mock).mockReturnValue(preferencesMock);
   });
 
   it('renders ThemeToggle elements', () => {
@@ -35,6 +35,6 @@ describe('ThemeToggle component', () => {
 
     userEvent.click(inputTheme);
 ;
-    expect(selectorMock.changeThemeMode).toHaveBeenCalledTimes(1);
+    expect(preferencesMock.changeThemeMode).toHaveBeenCalledTimes(1);
   });
 });

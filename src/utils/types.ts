@@ -2,7 +2,7 @@ export interface CloseModalProps {
     onClose: () => void;
 }
   
-export interface VideoProps {
+export interface Video {
     img: string;
     title: string;
     description: string;
@@ -11,13 +11,12 @@ export interface VideoProps {
     pathVideo: string;
   }
   
-export interface VideoState {
+export interface SearchStatusState {
     searchMode: boolean;
     searchTerm: string;
-    videoProps: VideoProps | null;
 }
 
-export interface SelectorState {
+export interface PreferencesState {
     theme: 'light' | 'dark';
-    favorites: VideoProps[];
+    favorites: Video[];
   }

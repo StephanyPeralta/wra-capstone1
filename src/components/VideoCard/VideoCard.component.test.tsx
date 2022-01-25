@@ -4,29 +4,27 @@ import { render, screen } from '@testing-library/react';
 
 import VideoCard from './VideoCard.component';
 import { useAuth } from '../../providers/Auth';
-import { useVideo } from '../../providers/Video';
-import { useSelector } from '../../providers/Selector';
+import { useSearchStatus } from '../../providers/SearchStatus';
+import { usePreferences } from '../../providers/Preferences';
 
 jest.mock('../../providers/Auth', () => ({
   useAuth: jest.fn(),
 }));
-jest.mock('../../providers/Video', () => ({
-  useVideo: jest.fn(),
+jest.mock('../../providers/SearchStatus', () => ({
+  useSearchStatus: jest.fn(),
 }));
-jest.mock('../../providers/Selector', () => ({
-  useSelector: jest.fn(),
+jest.mock('../../providers/Preferences', () => ({
+  usePreferences: jest.fn(),
 }));
 
 const authMock = { isAuthenticated: false };
 
-const videoProviderMock = {
+const searchProviderMock = {
   searchMode: true,
   searchTerm: 'wizeline',
-  videoProps: {},
-  getVideoProps: jest.fn(),
 };
 
-const selectorMock = {
+const preferencesMock = {
   favorites: [],
   addFavVideo: jest.fn(),
   isFavorite: jest.fn(),
@@ -46,8 +44,8 @@ describe('VideoCard component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    (useSelector as jest.Mock).mockReturnValue(selectorMock);
-    (useVideo as jest.Mock).mockReturnValue(videoProviderMock);
+    (usePreferences as jest.Mock).mockReturnValue(preferencesMock);
+    (useSearchStatus as jest.Mock).mockReturnValue(searchProviderMock);
   });
 
   it('renders VideoCard properties', () => {
