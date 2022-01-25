@@ -3,7 +3,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import { useYoutubeSearch } from './useYoutubeSearch';
 
 const getControlledPromise = () => {
-  let deferred;
+  let deferred: any;
   const promise = new Promise((resolve, reject) => {
     deferred = { resolve, reject };
   });
@@ -25,7 +25,7 @@ describe('useYoutube hook', () => {
 
   it('handles loading state correctly', async () => {
     const { deferred, promise } = getControlledPromise();
-    global.fetch = jest.fn(() => promise);
+    global.fetch = jest.fn(() => promise) as jest.Mock;
     const { result, waitForNextUpdate } = renderHook(useYoutubeSearch);
 
     expect(result.current.isLoading).toBe(true);

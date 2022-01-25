@@ -25,7 +25,7 @@ function useFetch(
     try {
       const response = await fetch(`${url}?${new URLSearchParams(options.params)}`);
       const data = await response.json();
-      
+
       if (options.parseResponse) {
         setData(options.parseResponse(data));
       } else {
@@ -35,7 +35,7 @@ function useFetch(
       setError(true);
     }
     setIsLoading(false);
-      // eslint-disable-next-line
+    // eslint-disable-next-line
   }, [url, options.params, options.parseResponse]);
 
   useEffect(() => {
